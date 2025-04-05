@@ -42,19 +42,21 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(141, 103);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.textBox1.Location = new System.Drawing.Point(159, 137);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(407, 22);
+            this.textBox1.Size = new System.Drawing.Size(677, 37);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Sans Serif Collection", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(135, 173);
+            this.label2.Font = new System.Drawing.Font("Sans Serif Collection", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(144, 198);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 32);
+            this.label2.Size = new System.Drawing.Size(195, 81);
             this.label2.TabIndex = 5;
             this.label2.Text = "CONTRASEÑA:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -62,9 +64,11 @@
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(141, 208);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.textBox2.Location = new System.Drawing.Point(159, 260);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(407, 22);
+            this.textBox2.Size = new System.Drawing.Size(458, 37);
             this.textBox2.TabIndex = 4;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -72,10 +76,11 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("Sans Serif Collection", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(141, 270);
+            this.radioButton1.Font = new System.Drawing.Font("Sans Serif Collection", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(159, 391);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(170, 36);
+            this.radioButton1.Size = new System.Drawing.Size(211, 79);
             this.radioButton1.TabIndex = 6;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Administrador ";
@@ -85,10 +90,11 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Sans Serif Collection", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(420, 270);
+            this.radioButton2.Font = new System.Drawing.Font("Sans Serif Collection", 11F);
+            this.radioButton2.Location = new System.Drawing.Point(470, 391);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(128, 36);
+            this.radioButton2.Size = new System.Drawing.Size(159, 79);
             this.radioButton2.TabIndex = 7;
             this.radioButton2.Text = "Operativo";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -97,11 +103,12 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Plum;
-            this.button1.Font = new System.Drawing.Font("Sans Serif Collection", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(494, 437);
+            this.button1.Font = new System.Drawing.Font("Sans Serif Collection", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(756, 598);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(6);
-            this.button1.Size = new System.Drawing.Size(137, 43);
+            this.button1.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.button1.Size = new System.Drawing.Size(156, 79);
             this.button1.TabIndex = 10;
             this.button1.Text = "Acceder";
             this.button1.UseVisualStyleBackColor = false;
@@ -110,10 +117,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(135, 68);
+            this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(144, 75);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(261, 32);
+            this.label1.Size = new System.Drawing.Size(301, 81);
             this.label1.TabIndex = 3;
             this.label1.Text = "CORREO ELECTRÓNICO:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -121,10 +128,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Sans Serif Collection", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(150, 349);
+            this.label3.Font = new System.Drawing.Font("Sans Serif Collection", 11F);
+            this.label3.Location = new System.Drawing.Point(169, 509);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(230, 32);
+            this.label3.Size = new System.Drawing.Size(268, 75);
             this.label3.TabIndex = 11;
             this.label3.Text = "¿No tienes una cuenta? ";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -132,31 +139,35 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Sans Serif Collection", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(396, 349);
+            this.linkLabel1.Font = new System.Drawing.Font("Sans Serif Collection", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(420, 509);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(112, 32);
+            this.linkLabel1.Size = new System.Drawing.Size(138, 75);
             this.linkLabel1.TabIndex = 12;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Regístrate";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(701, 541);
+            this.ClientSize = new System.Drawing.Size(1011, 768);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "INICIO DE SESIÓN";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = " ";
             this.ResumeLayout(false);
             this.PerformLayout();
 

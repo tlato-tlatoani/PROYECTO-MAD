@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PROYECTO_MAD
 {
-    public partial class Form3 : Form
+    public partial class Hoteles : Form
     {
-        public Form3()
+        public Hoteles()
         {
             InitializeComponent();
         }
@@ -48,6 +48,31 @@ namespace PROYECTO_MAD
         }
 
         private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reservaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reporteDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
         {
 
         }
