@@ -136,5 +136,30 @@ namespace PROYECTO_MAD
         {
 
         }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void verClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
