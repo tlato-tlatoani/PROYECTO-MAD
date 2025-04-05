@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PROYECTO_MAD
 {
-    public partial class Form2 : Form
+    public partial class Usuarios : Form
     {
-        public Form2()
+        public Usuarios()
         {
             InitializeComponent();
         }

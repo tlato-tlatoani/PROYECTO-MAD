@@ -1,6 +1,6 @@
 ﻿namespace PROYECTO_MAD
 {
-    partial class Form2
+    partial class Usuarios
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -58,8 +58,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +67,8 @@
             this.tiposDeHabitacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
@@ -299,7 +299,7 @@
             this.button1.Location = new System.Drawing.Point(19, 209);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button1.Padding = new System.Windows.Forms.Padding(5);
             this.button1.Size = new System.Drawing.Size(103, 49);
             this.button1.TabIndex = 24;
             this.button1.Text = "Registrar";
@@ -313,7 +313,7 @@
             this.button2.Location = new System.Drawing.Point(130, 209);
             this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button2.Padding = new System.Windows.Forms.Padding(5);
             this.button2.Size = new System.Drawing.Size(103, 49);
             this.button2.TabIndex = 25;
             this.button2.Text = "Editar";
@@ -342,6 +342,7 @@
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(142, 55);
             this.radioButton1.TabIndex = 26;
+            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Administrador ";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -353,7 +354,7 @@
             this.button3.Location = new System.Drawing.Point(765, 18);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button3.Padding = new System.Windows.Forms.Padding(5);
             this.button3.Size = new System.Drawing.Size(81, 38);
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
@@ -388,7 +389,7 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.textBox9);
             this.panel1.Location = new System.Drawing.Point(103, 94);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(939, 67);
             this.panel1.TabIndex = 45;
@@ -419,27 +420,6 @@
             this.menuStrip1.TabIndex = 46;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(37, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(178, 172);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 47;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.LavenderBlush;
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Location = new System.Drawing.Point(846, 283);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(250, 273);
-            this.panel2.TabIndex = 48;
-            // 
             // usuarioToolStripMenuItem1
             // 
             this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
@@ -464,7 +444,7 @@
             // verHotelesToolStripMenuItem
             // 
             this.verHotelesToolStripMenuItem.Name = "verHotelesToolStripMenuItem";
-            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.verHotelesToolStripMenuItem.Text = "Ver Hoteles";
             this.verHotelesToolStripMenuItem.Click += new System.EventHandler(this.verHotelesToolStripMenuItem_Click);
             // 
@@ -474,7 +454,7 @@
             this.habitacionesToolStripMenuItem1,
             this.tiposDeHabitacionesToolStripMenuItem});
             this.habitacionesToolStripMenuItem.Name = "habitacionesToolStripMenuItem";
-            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.habitacionesToolStripMenuItem.Text = "Habitaciones";
             // 
             // habitacionesToolStripMenuItem1
@@ -501,8 +481,29 @@
             // verClientesToolStripMenuItem
             // 
             this.verClientesToolStripMenuItem.Name = "verClientesToolStripMenuItem";
-            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             this.verClientesToolStripMenuItem.Click += new System.EventHandler(this.verClientesToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(37, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(178, 172);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 47;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LavenderBlush;
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Location = new System.Drawing.Point(846, 283);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(250, 273);
+            this.panel2.TabIndex = 48;
             // 
             // label13
             // 
@@ -524,7 +525,7 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 50;
             // 
-            // Form2
+            // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -561,7 +562,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "Form2";
+            this.Name = "Usuarios";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "USUARIO";
             this.Load += new System.EventHandler(this.Form2_Load);

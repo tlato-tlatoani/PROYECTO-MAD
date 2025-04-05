@@ -1,6 +1,6 @@
 ﻿namespace PROYECTO_MAD
 {
-    partial class Form1
+    partial class InicioDeSesion
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InicioDeSesion));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -109,7 +109,7 @@
             this.button1.Location = new System.Drawing.Point(504, 389);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button1.Padding = new System.Windows.Forms.Padding(5);
             this.button1.Size = new System.Drawing.Size(104, 51);
             this.button1.TabIndex = 10;
             this.button1.Text = "Acceder";
@@ -153,7 +153,7 @@
             this.linkLabel1.Text = "Regístrate";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // Form1
+            // InicioDeSesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,7 +171,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "InicioDeSesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.ResumeLayout(false);
