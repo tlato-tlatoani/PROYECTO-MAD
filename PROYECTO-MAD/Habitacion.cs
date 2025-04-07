@@ -10,24 +10,19 @@ using System.Windows.Forms;
 
 namespace PROYECTO_MAD
 {
-    public partial class Reporte_de_ocupación_por_hotel : Form
+    public partial class Habitacion : Form
     {
-        public Reporte_de_ocupación_por_hotel()
+        public Habitacion()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

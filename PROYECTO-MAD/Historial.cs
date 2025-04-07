@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PROYECTO_MAD
 {
-    public partial class Reporte_de_ocupación_por_hotel : Form
+    public partial class Historial : Form
     {
-        public Reporte_de_ocupación_por_hotel()
+        public Historial()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -27,7 +22,7 @@ namespace PROYECTO_MAD
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
