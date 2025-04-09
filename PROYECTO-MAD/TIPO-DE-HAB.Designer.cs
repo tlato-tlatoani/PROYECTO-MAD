@@ -52,6 +52,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,9 +66,12 @@
             this.tiposDeHabitacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.verHistorialDeClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,7 +79,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 16F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(446, 38);
+            this.label1.Location = new System.Drawing.Point(517, 38);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(267, 75);
@@ -84,7 +91,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label5.Location = new System.Drawing.Point(296, 285);
+            this.label5.Location = new System.Drawing.Point(605, 275);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(251, 48);
@@ -95,7 +102,7 @@
             // 
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox4.Location = new System.Drawing.Point(551, 291);
+            this.textBox4.Location = new System.Drawing.Point(860, 281);
             this.textBox4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(97, 23);
@@ -105,7 +112,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label3.Location = new System.Drawing.Point(126, 202);
+            this.label3.Location = new System.Drawing.Point(435, 192);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(170, 48);
@@ -117,7 +124,7 @@
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox2.Location = new System.Drawing.Point(134, 237);
+            this.textBox2.Location = new System.Drawing.Point(443, 227);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(306, 23);
@@ -128,7 +135,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label2.Location = new System.Drawing.Point(126, 263);
+            this.label2.Location = new System.Drawing.Point(435, 253);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(156, 48);
@@ -139,7 +146,7 @@
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox1.Location = new System.Drawing.Point(134, 291);
+            this.textBox1.Location = new System.Drawing.Point(443, 281);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(115, 23);
@@ -149,7 +156,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label4.Location = new System.Drawing.Point(469, 202);
+            this.label4.Location = new System.Drawing.Point(778, 192);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 48);
@@ -161,7 +168,7 @@
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox3.Location = new System.Drawing.Point(477, 237);
+            this.textBox3.Location = new System.Drawing.Point(786, 227);
             this.textBox3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(115, 23);
@@ -172,7 +179,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label7.Location = new System.Drawing.Point(126, 320);
+            this.label7.Location = new System.Drawing.Point(435, 310);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(134, 48);
@@ -184,7 +191,7 @@
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(134, 356);
+            this.listBox1.Location = new System.Drawing.Point(443, 346);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(217, 132);
@@ -194,7 +201,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label6.Location = new System.Drawing.Point(361, 333);
+            this.label6.Location = new System.Drawing.Point(670, 323);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(306, 48);
@@ -205,7 +212,7 @@
             // 
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox6.Location = new System.Drawing.Point(671, 339);
+            this.textBox6.Location = new System.Drawing.Point(980, 329);
             this.textBox6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(50, 23);
@@ -215,7 +222,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label8.Location = new System.Drawing.Point(361, 381);
+            this.label8.Location = new System.Drawing.Point(670, 371);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 48);
@@ -227,7 +234,7 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(461, 386);
+            this.comboBox1.Location = new System.Drawing.Point(770, 376);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(176, 24);
@@ -238,7 +245,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label9.Location = new System.Drawing.Point(361, 429);
+            this.label9.Location = new System.Drawing.Point(670, 419);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(115, 48);
@@ -250,7 +257,7 @@
             // 
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox5.Location = new System.Drawing.Point(477, 435);
+            this.textBox5.Location = new System.Drawing.Point(786, 425);
             this.textBox5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(219, 23);
@@ -260,7 +267,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Plum;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button2.Location = new System.Drawing.Point(931, 502);
+            this.button2.Location = new System.Drawing.Point(1154, 544);
             this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button2.Name = "button2";
             this.button2.Padding = new System.Windows.Forms.Padding(5);
@@ -274,7 +281,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Plum;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button1.Location = new System.Drawing.Point(732, 502);
+            this.button1.Location = new System.Drawing.Point(955, 544);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(5);
@@ -289,7 +296,7 @@
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.textBox9);
-            this.panel1.Location = new System.Drawing.Point(104, 92);
+            this.panel1.Location = new System.Drawing.Point(175, 92);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(939, 67);
@@ -329,6 +336,46 @@
             this.textBox9.Size = new System.Drawing.Size(350, 22);
             this.textBox9.TabIndex = 11;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
+            this.label10.Location = new System.Drawing.Point(954, 192);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(68, 48);
+            this.label10.TabIndex = 59;
+            this.label10.Text = "HOTEL:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(962, 227);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(201, 24);
+            this.comboBox2.TabIndex = 60;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Sans Serif Collection", 8.8F);
+            this.label14.Location = new System.Drawing.Point(30, 562);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(251, 41);
+            this.label14.TabIndex = 68;
+            this.label14.Text = "*TIPOS DE HABITACIÓN YA REGISTRADOS";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(37, 192);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(361, 370);
+            this.dataGridView1.TabIndex = 67;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.LavenderBlush;
@@ -336,11 +383,12 @@
             this.usuarioToolStripMenuItem1,
             this.reservacionesToolStripMenuItem,
             this.hotelesToolStripMenuItem,
-            this.clientesToolStripMenuItem1});
+            this.clientesToolStripMenuItem1,
+            this.reportesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1145, 24);
-            this.menuStrip1.TabIndex = 57;
+            this.menuStrip1.Size = new System.Drawing.Size(1301, 24);
+            this.menuStrip1.TabIndex = 69;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // usuarioToolStripMenuItem1
@@ -394,7 +442,8 @@
             // clientesToolStripMenuItem1
             // 
             this.clientesToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verClientesToolStripMenuItem});
+            this.verClientesToolStripMenuItem,
+            this.verHistorialDeClientesToolStripMenuItem});
             this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
             this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
             this.clientesToolStripMenuItem1.Text = "Clientes";
@@ -402,37 +451,47 @@
             // verClientesToolStripMenuItem
             // 
             this.verClientesToolStripMenuItem.Name = "verClientesToolStripMenuItem";
-            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.verClientesToolStripMenuItem.Text = "Ver Clientes";
             // 
-            // label10
+            // verHistorialDeClientesToolStripMenuItem
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label10.Location = new System.Drawing.Point(645, 202);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 48);
-            this.label10.TabIndex = 59;
-            this.label10.Text = "HOTEL:";
+            this.verHistorialDeClientesToolStripMenuItem.Name = "verHistorialDeClientesToolStripMenuItem";
+            this.verHistorialDeClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.verHistorialDeClientesToolStripMenuItem.Text = "Ver Historial de Clientes";
             // 
-            // comboBox2
+            // reportesToolStripMenuItem
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(653, 237);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(201, 24);
-            this.comboBox2.TabIndex = 60;
+            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem,
+            this.reporteDeVentasToolStripMenuItem});
+            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.reportesToolStripMenuItem.Text = "Reportes";
+            // 
+            // reporteDeOcupaciónPorHotelToolStripMenuItem
+            // 
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Name = "reporteDeOcupaciónPorHotelToolStripMenuItem";
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Text = "Reporte de Ocupación por hotel";
+            // 
+            // reporteDeVentasToolStripMenuItem
+            // 
+            this.reporteDeVentasToolStripMenuItem.Name = "reporteDeVentasToolStripMenuItem";
+            this.reporteDeVentasToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             // 
             // TIPO_DE_HAB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(1145, 602);
+            this.ClientSize = new System.Drawing.Size(1301, 625);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBox3);
@@ -460,6 +519,7 @@
             this.Load += new System.EventHandler(this.TIPO_DE_HAB_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -492,6 +552,10 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem reservacionesToolStripMenuItem;
@@ -502,7 +566,9 @@
         private System.Windows.Forms.ToolStripMenuItem tiposDeHabitacionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem verClientesToolStripMenuItem;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ToolStripMenuItem verHistorialDeClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeOcupaciónPorHotelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeVentasToolStripMenuItem;
     }
 }

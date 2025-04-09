@@ -29,16 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reporte_de_Ventas));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verHotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.habitacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.habitacionesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tiposDeHabitacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.verClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -51,95 +41,32 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verHotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.habitacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.habitacionesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeHabitacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.verClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verHistorialDeClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.BackColor = System.Drawing.Color.LavenderBlush;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usuarioToolStripMenuItem1,
-            this.reservacionesToolStripMenuItem,
-            this.hotelesToolStripMenuItem,
-            this.clientesToolStripMenuItem1,
-            this.reportesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1145, 24);
-            this.menuStrip1.TabIndex = 48;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // usuarioToolStripMenuItem1
-            // 
-            this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
-            this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
-            this.usuarioToolStripMenuItem1.Text = "Usuario";
-            // 
-            // reservacionesToolStripMenuItem
-            // 
-            this.reservacionesToolStripMenuItem.Name = "reservacionesToolStripMenuItem";
-            this.reservacionesToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.reservacionesToolStripMenuItem.Text = "Reservaciones";
-            // 
-            // hotelesToolStripMenuItem
-            // 
-            this.hotelesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verHotelesToolStripMenuItem,
-            this.habitacionesToolStripMenuItem});
-            this.hotelesToolStripMenuItem.Name = "hotelesToolStripMenuItem";
-            this.hotelesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.hotelesToolStripMenuItem.Text = "Hoteles";
-            // 
-            // verHotelesToolStripMenuItem
-            // 
-            this.verHotelesToolStripMenuItem.Name = "verHotelesToolStripMenuItem";
-            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.verHotelesToolStripMenuItem.Text = "Ver Hoteles";
-            // 
-            // habitacionesToolStripMenuItem
-            // 
-            this.habitacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.habitacionesToolStripMenuItem1,
-            this.tiposDeHabitacionesToolStripMenuItem});
-            this.habitacionesToolStripMenuItem.Name = "habitacionesToolStripMenuItem";
-            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.habitacionesToolStripMenuItem.Text = "Habitaciones";
-            // 
-            // habitacionesToolStripMenuItem1
-            // 
-            this.habitacionesToolStripMenuItem1.Name = "habitacionesToolStripMenuItem1";
-            this.habitacionesToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
-            this.habitacionesToolStripMenuItem1.Text = "Ver habitaciones";
-            // 
-            // tiposDeHabitacionesToolStripMenuItem
-            // 
-            this.tiposDeHabitacionesToolStripMenuItem.Name = "tiposDeHabitacionesToolStripMenuItem";
-            this.tiposDeHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.tiposDeHabitacionesToolStripMenuItem.Text = "Tipos de Habitaciones";
-            // 
-            // clientesToolStripMenuItem1
-            // 
-            this.clientesToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verClientesToolStripMenuItem});
-            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
-            this.clientesToolStripMenuItem1.Text = "Clientes";
-            // 
-            // verClientesToolStripMenuItem
-            // 
-            this.verClientesToolStripMenuItem.Name = "verClientesToolStripMenuItem";
-            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(484, 101);
+            this.dataGridView1.Location = new System.Drawing.Point(498, 101);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(637, 465);
+            this.dataGridView1.Size = new System.Drawing.Size(763, 488);
             this.dataGridView1.TabIndex = 65;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -155,7 +82,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Location = new System.Drawing.Point(25, 101);
+            this.panel1.Location = new System.Drawing.Point(39, 101);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(440, 299);
@@ -254,54 +181,142 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 16F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(394, 41);
+            this.label1.Location = new System.Drawing.Point(486, 41);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(383, 75);
             this.label1.TabIndex = 63;
             this.label1.Text = "REPORTE DE VENTAS POR HOTEL";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.LavenderBlush;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usuarioToolStripMenuItem1,
+            this.reservacionesToolStripMenuItem,
+            this.hotelesToolStripMenuItem,
+            this.clientesToolStripMenuItem1,
+            this.reportesToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1301, 24);
+            this.menuStrip1.TabIndex = 68;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // usuarioToolStripMenuItem1
+            // 
+            this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
+            this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
+            this.usuarioToolStripMenuItem1.Text = "Usuario";
+            // 
+            // reservacionesToolStripMenuItem
+            // 
+            this.reservacionesToolStripMenuItem.Name = "reservacionesToolStripMenuItem";
+            this.reservacionesToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.reservacionesToolStripMenuItem.Text = "Reservaciones";
+            // 
+            // hotelesToolStripMenuItem
+            // 
+            this.hotelesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verHotelesToolStripMenuItem,
+            this.habitacionesToolStripMenuItem});
+            this.hotelesToolStripMenuItem.Name = "hotelesToolStripMenuItem";
+            this.hotelesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.hotelesToolStripMenuItem.Text = "Hoteles";
+            // 
+            // verHotelesToolStripMenuItem
+            // 
+            this.verHotelesToolStripMenuItem.Name = "verHotelesToolStripMenuItem";
+            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.verHotelesToolStripMenuItem.Text = "Ver Hoteles";
+            // 
+            // habitacionesToolStripMenuItem
+            // 
+            this.habitacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.habitacionesToolStripMenuItem1,
+            this.tiposDeHabitacionesToolStripMenuItem});
+            this.habitacionesToolStripMenuItem.Name = "habitacionesToolStripMenuItem";
+            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.habitacionesToolStripMenuItem.Text = "Habitaciones";
+            // 
+            // habitacionesToolStripMenuItem1
+            // 
+            this.habitacionesToolStripMenuItem1.Name = "habitacionesToolStripMenuItem1";
+            this.habitacionesToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.habitacionesToolStripMenuItem1.Text = "Ver habitaciones";
+            // 
+            // tiposDeHabitacionesToolStripMenuItem
+            // 
+            this.tiposDeHabitacionesToolStripMenuItem.Name = "tiposDeHabitacionesToolStripMenuItem";
+            this.tiposDeHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.tiposDeHabitacionesToolStripMenuItem.Text = "Tipos de Habitaciones";
+            // 
+            // clientesToolStripMenuItem1
+            // 
+            this.clientesToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verClientesToolStripMenuItem,
+            this.verHistorialDeClientesToolStripMenuItem});
+            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
+            this.clientesToolStripMenuItem1.Text = "Clientes";
+            // 
+            // verClientesToolStripMenuItem
+            // 
+            this.verClientesToolStripMenuItem.Name = "verClientesToolStripMenuItem";
+            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.verClientesToolStripMenuItem.Text = "Ver Clientes";
+            // 
+            // verHistorialDeClientesToolStripMenuItem
+            // 
+            this.verHistorialDeClientesToolStripMenuItem.Name = "verHistorialDeClientesToolStripMenuItem";
+            this.verHistorialDeClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.verHistorialDeClientesToolStripMenuItem.Text = "Ver Historial de Clientes";
+            // 
             // reportesToolStripMenuItem
             // 
+            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem,
+            this.reporteDeVentasToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.reportesToolStripMenuItem.Text = "Reportes";
+            // 
+            // reporteDeOcupaciónPorHotelToolStripMenuItem
+            // 
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Name = "reporteDeOcupaciónPorHotelToolStripMenuItem";
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Text = "Reporte de Ocupación por hotel";
+            // 
+            // reporteDeVentasToolStripMenuItem
+            // 
+            this.reporteDeVentasToolStripMenuItem.Name = "reporteDeVentasToolStripMenuItem";
+            this.reporteDeVentasToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             // 
             // Reporte_de_Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(1145, 602);
+            this.ClientSize = new System.Drawing.Size(1301, 625);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Reporte_de_Ventas";
             this.Text = "Reporte_de_Ventas";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem reservacionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hotelesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verHotelesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem habitacionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem habitacionesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tiposDeHabitacionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem verClientesToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox3;
@@ -314,6 +329,19 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem reservacionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hotelesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verHotelesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem habitacionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem habitacionesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeHabitacionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem verClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verHistorialDeClientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeOcupaciónPorHotelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeVentasToolStripMenuItem;
     }
 }

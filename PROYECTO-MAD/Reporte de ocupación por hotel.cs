@@ -31,5 +31,10 @@ namespace PROYECTO_MAD
         {
 
         }
+
+        private void Reporte_de_ocupación_por_hotel_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
