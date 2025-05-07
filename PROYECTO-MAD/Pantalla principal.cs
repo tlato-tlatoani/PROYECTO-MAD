@@ -79,5 +79,12 @@ namespace PROYECTO_MAD
             reporteventasform.Show();
             this.Close();
         }
+
+        private void Pantalla_principal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           InicioDeSesion iniciarsesionform = new InicioDeSesion();
+            iniciarsesionform.Show();
+            this.Close();
+        }
     }
 }
