@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,6 +53,7 @@
     <Compile Include="Clientes.Designer.cs">
       <DependentUpon>Clientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="EnlaceDB.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +89,12 @@
     </Compile>
     <Compile Include="Reporte de Ventas.Designer.cs">
       <DependentUpon>Reporte de Ventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Registro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Registro.Designer.cs">
+      <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
     <Compile Include="Servicios.cs">
       <SubType>Form</SubType>
@@ -146,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte de Ventas.resx">
       <DependentUpon>Reporte de Ventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Registro.resx">
+      <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Servicios.resx">
       <DependentUpon>Servicios.cs</DependentUpon>

@@ -26,5 +26,12 @@ namespace PROYECTO_MAD
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Reservacion reservacionform = new Reservacion();
+            reservacionform.Show();
+            this.Hide();
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace PROYECTO_MAD
 {
     internal static class Program
     {
+        static int clienteactual = 0;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PROYECTO_MAD.Resources;
 
 namespace PROYECTO_MAD
 {
@@ -29,7 +30,13 @@ namespace PROYECTO_MAD
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            EnlaceDB enlace = new EnlaceDB();
+            if (enlace.Autentificar(textBox1.Text, textBox2.Text))
+            {
+                Pantalla_principal pantallaprincipalform = new Pantalla_principal();
+                pantallaprincipalform.Show();
+                this.Hide();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,10 +71,17 @@ namespace PROYECTO_MAD
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            Registro registroform = new Registro();
+            registroform.Show();
+            this.Hide();
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void InicioDeSesion_Load(object sender, EventArgs e)
         {
 
         }

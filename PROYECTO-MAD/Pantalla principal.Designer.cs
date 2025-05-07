@@ -89,12 +89,14 @@
             this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
             this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
             this.usuarioToolStripMenuItem1.Text = "Usuario";
+            this.usuarioToolStripMenuItem1.Click += new System.EventHandler(this.usuarioToolStripMenuItem1_Click);
             // 
             // reservacionesToolStripMenuItem
             // 
             this.reservacionesToolStripMenuItem.Name = "reservacionesToolStripMenuItem";
             this.reservacionesToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.reservacionesToolStripMenuItem.Text = "Reservaciones";
+            this.reservacionesToolStripMenuItem.Click += new System.EventHandler(this.reservacionesToolStripMenuItem_Click);
             // 
             // hotelesToolStripMenuItem
             // 
@@ -110,6 +112,7 @@
             this.verHotelesToolStripMenuItem.Name = "verHotelesToolStripMenuItem";
             this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.verHotelesToolStripMenuItem.Text = "Ver Hoteles";
+            this.verHotelesToolStripMenuItem.Click += new System.EventHandler(this.verHotelesToolStripMenuItem_Click);
             // 
             // habitacionesToolStripMenuItem
             // 
@@ -125,12 +128,14 @@
             this.habitacionesToolStripMenuItem1.Name = "habitacionesToolStripMenuItem1";
             this.habitacionesToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
             this.habitacionesToolStripMenuItem1.Text = "Ver habitaciones";
+            this.habitacionesToolStripMenuItem1.Click += new System.EventHandler(this.habitacionesToolStripMenuItem1_Click);
             // 
             // tiposDeHabitacionesToolStripMenuItem
             // 
             this.tiposDeHabitacionesToolStripMenuItem.Name = "tiposDeHabitacionesToolStripMenuItem";
             this.tiposDeHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.tiposDeHabitacionesToolStripMenuItem.Text = "Tipos de Habitaciones";
+            this.tiposDeHabitacionesToolStripMenuItem.Click += new System.EventHandler(this.tiposDeHabitacionesToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem1
             // 
@@ -146,12 +151,14 @@
             this.verClientesToolStripMenuItem.Name = "verClientesToolStripMenuItem";
             this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.verClientesToolStripMenuItem.Text = "Ver Clientes";
+            this.verClientesToolStripMenuItem.Click += new System.EventHandler(this.verClientesToolStripMenuItem_Click);
             // 
             // verHistorialDeClientesToolStripMenuItem
             // 
             this.verHistorialDeClientesToolStripMenuItem.Name = "verHistorialDeClientesToolStripMenuItem";
             this.verHistorialDeClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.verHistorialDeClientesToolStripMenuItem.Text = "Ver Historial de Clientes";
+            this.verHistorialDeClientesToolStripMenuItem.Click += new System.EventHandler(this.verHistorialDeClientesToolStripMenuItem_Click);
             // 
             // reportesToolStripMenuItem
             // 
@@ -167,12 +174,14 @@
             this.reporteDeOcupaciónPorHotelToolStripMenuItem.Name = "reporteDeOcupaciónPorHotelToolStripMenuItem";
             this.reporteDeOcupaciónPorHotelToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.reporteDeOcupaciónPorHotelToolStripMenuItem.Text = "Reporte de Ocupación por hotel";
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Click += new System.EventHandler(this.reporteDeOcupaciónPorHotelToolStripMenuItem_Click);
             // 
             // reporteDeVentasToolStripMenuItem
             // 
             this.reporteDeVentasToolStripMenuItem.Name = "reporteDeVentasToolStripMenuItem";
             this.reporteDeVentasToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
+            this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
             // Pantalla_principal
             // 
