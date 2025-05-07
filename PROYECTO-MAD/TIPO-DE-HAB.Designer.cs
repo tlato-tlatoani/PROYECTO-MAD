@@ -80,8 +80,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 16F, System.Drawing.FontStyle.Bold);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label1.Location = new System.Drawing.Point(517, 38);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label1.Location = new System.Drawing.Point(669, 58);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label1.Location = new System.Drawing.Point(669, 58);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -96,8 +100,12 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label5.Location = new System.Drawing.Point(605, 275);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label5.Location = new System.Drawing.Point(444, 438);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label5.Location = new System.Drawing.Point(444, 438);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -111,8 +119,13 @@
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.textBox4.Location = new System.Drawing.Point(860, 281);
             this.textBox4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.textBox4.Location = new System.Drawing.Point(826, 448);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.textBox4.Location = new System.Drawing.Point(826, 448);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -126,8 +139,12 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label3.Location = new System.Drawing.Point(435, 192);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label3.Location = new System.Drawing.Point(189, 311);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label3.Location = new System.Drawing.Point(189, 311);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -142,8 +159,13 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.textBox2.Location = new System.Drawing.Point(443, 227);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.textBox2.Location = new System.Drawing.Point(201, 365);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.textBox2.Location = new System.Drawing.Point(201, 365);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -158,8 +180,12 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label2.Location = new System.Drawing.Point(435, 253);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label2.Location = new System.Drawing.Point(189, 405);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label2.Location = new System.Drawing.Point(189, 405);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -173,8 +199,13 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.textBox1.Location = new System.Drawing.Point(443, 281);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.textBox1.Location = new System.Drawing.Point(201, 448);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.textBox1.Location = new System.Drawing.Point(201, 448);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -188,8 +219,12 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label4.Location = new System.Drawing.Point(778, 192);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label4.Location = new System.Drawing.Point(704, 311);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label4.Location = new System.Drawing.Point(704, 311);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -204,8 +239,13 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.textBox3.Location = new System.Drawing.Point(786, 227);
             this.textBox3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.textBox3.Location = new System.Drawing.Point(716, 365);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.textBox3.Location = new System.Drawing.Point(716, 365);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -220,8 +260,12 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label7.Location = new System.Drawing.Point(435, 310);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label7.Location = new System.Drawing.Point(189, 492);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label7.Location = new System.Drawing.Point(189, 492);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -235,9 +279,15 @@
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.listBox1.FormattingEnabled = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(443, 346);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Location = new System.Drawing.Point(201, 548);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.listBox1.ItemHeight = 25;
             this.listBox1.Location = new System.Drawing.Point(201, 548);
@@ -252,8 +302,12 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label6.Location = new System.Drawing.Point(670, 323);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label6.Location = new System.Drawing.Point(542, 512);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label6.Location = new System.Drawing.Point(542, 512);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -267,8 +321,13 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.textBox6.Location = new System.Drawing.Point(980, 329);
             this.textBox6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.textBox6.Location = new System.Drawing.Point(1006, 522);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.textBox6.Location = new System.Drawing.Point(1006, 522);
             this.textBox6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -282,8 +341,12 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label8.Location = new System.Drawing.Point(670, 371);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label8.Location = new System.Drawing.Point(542, 586);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label8.Location = new System.Drawing.Point(542, 586);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -298,8 +361,13 @@
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboBox1.FormattingEnabled = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.comboBox1.Location = new System.Drawing.Point(770, 376);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.comboBox1.Location = new System.Drawing.Point(692, 594);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.comboBox1.Location = new System.Drawing.Point(692, 594);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -314,8 +382,12 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label9.Location = new System.Drawing.Point(670, 419);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label9.Location = new System.Drawing.Point(542, 660);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label9.Location = new System.Drawing.Point(542, 660);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -330,8 +402,13 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.textBox5.Location = new System.Drawing.Point(786, 425);
             this.textBox5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.textBox5.Location = new System.Drawing.Point(716, 669);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.textBox5.Location = new System.Drawing.Point(716, 669);
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -345,8 +422,13 @@
             this.button2.BackColor = System.Drawing.Color.Plum;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.button2.Location = new System.Drawing.Point(1154, 544);
             this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.button2.Location = new System.Drawing.Point(1396, 772);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.button2.Location = new System.Drawing.Point(1396, 772);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -364,8 +446,13 @@
             this.button1.BackColor = System.Drawing.Color.Plum;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.button1.Location = new System.Drawing.Point(955, 544);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.button1.Location = new System.Drawing.Point(1098, 772);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.button1.Location = new System.Drawing.Point(1098, 772);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -384,8 +471,12 @@
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.textBox9);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.panel1.Location = new System.Drawing.Point(175, 92);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
+=======
+            this.panel1.Location = new System.Drawing.Point(156, 142);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.panel1.Location = new System.Drawing.Point(156, 142);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -426,14 +517,98 @@
             this.textBox9.Size = new System.Drawing.Size(524, 29);
             this.textBox9.TabIndex = 11;
             // 
+<<<<<<< HEAD
+=======
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.LavenderBlush;
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usuarioToolStripMenuItem1,
+            this.reservacionesToolStripMenuItem,
+            this.hotelesToolStripMenuItem,
+            this.clientesToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1718, 36);
+            this.menuStrip1.TabIndex = 57;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // usuarioToolStripMenuItem1
+            // 
+            this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
+            this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(88, 30);
+            this.usuarioToolStripMenuItem1.Text = "Usuario";
+            // 
+            // reservacionesToolStripMenuItem
+            // 
+            this.reservacionesToolStripMenuItem.Name = "reservacionesToolStripMenuItem";
+            this.reservacionesToolStripMenuItem.Size = new System.Drawing.Size(138, 30);
+            this.reservacionesToolStripMenuItem.Text = "Reservaciones";
+            // 
+            // hotelesToolStripMenuItem
+            // 
+            this.hotelesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verHotelesToolStripMenuItem,
+            this.habitacionesToolStripMenuItem});
+            this.hotelesToolStripMenuItem.Name = "hotelesToolStripMenuItem";
+            this.hotelesToolStripMenuItem.Size = new System.Drawing.Size(88, 30);
+            this.hotelesToolStripMenuItem.Text = "Hoteles";
+            // 
+            // verHotelesToolStripMenuItem
+            // 
+            this.verHotelesToolStripMenuItem.Name = "verHotelesToolStripMenuItem";
+            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(216, 34);
+            this.verHotelesToolStripMenuItem.Text = "Ver Hoteles";
+            // 
+            // habitacionesToolStripMenuItem
+            // 
+            this.habitacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.habitacionesToolStripMenuItem1,
+            this.tiposDeHabitacionesToolStripMenuItem});
+            this.habitacionesToolStripMenuItem.Name = "habitacionesToolStripMenuItem";
+            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(216, 34);
+            this.habitacionesToolStripMenuItem.Text = "Habitaciones";
+            // 
+            // habitacionesToolStripMenuItem1
+            // 
+            this.habitacionesToolStripMenuItem1.Name = "habitacionesToolStripMenuItem1";
+            this.habitacionesToolStripMenuItem1.Size = new System.Drawing.Size(289, 34);
+            this.habitacionesToolStripMenuItem1.Text = "Ver habitaciones";
+            // 
+            // tiposDeHabitacionesToolStripMenuItem
+            // 
+            this.tiposDeHabitacionesToolStripMenuItem.Name = "tiposDeHabitacionesToolStripMenuItem";
+            this.tiposDeHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(289, 34);
+            this.tiposDeHabitacionesToolStripMenuItem.Text = "Tipos de Habitaciones";
+            // 
+            // clientesToolStripMenuItem1
+            // 
+            this.clientesToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verClientesToolStripMenuItem});
+            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(89, 30);
+            this.clientesToolStripMenuItem1.Text = "Clientes";
+            // 
+            // verClientesToolStripMenuItem
+            // 
+            this.verClientesToolStripMenuItem.Name = "verClientesToolStripMenuItem";
+            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(102, 34);
+            // 
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
+<<<<<<< HEAD
             this.label10.Location = new System.Drawing.Point(954, 192);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label10.Location = new System.Drawing.Point(968, 311);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 48);
+            this.label10.Size = new System.Drawing.Size(96, 68);
             this.label10.TabIndex = 59;
             this.label10.Text = "HOTEL:";
             // 
@@ -441,9 +616,14 @@
             // 
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboBox2.FormattingEnabled = true;
+<<<<<<< HEAD
             this.comboBox2.Location = new System.Drawing.Point(962, 227);
+=======
+            this.comboBox2.Location = new System.Drawing.Point(980, 365);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(201, 24);
+            this.comboBox2.Size = new System.Drawing.Size(300, 33);
             this.comboBox2.TabIndex = 60;
             // 
             // label14
@@ -625,10 +805,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1301, 625);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.dataGridView1);
+=======
+            this.ClientSize = new System.Drawing.Size(1718, 926);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.ClientSize = new System.Drawing.Size(1718, 926);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b

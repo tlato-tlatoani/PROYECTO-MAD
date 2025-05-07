@@ -55,11 +55,15 @@
 <<<<<<< HEAD
 =======
             this.button2 = new System.Windows.Forms.Button();
+<<<<<<< HEAD
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+<<<<<<< HEAD
 <<<<<<< HEAD
             this.button8 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -86,13 +90,20 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 <<<<<<< HEAD
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.menuStrip1.SuspendLayout();
+=======
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.SuspendLayout();
@@ -102,8 +113,12 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label11.Location = new System.Drawing.Point(467, 289);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label11.Location = new System.Drawing.Point(687, 412);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label11.Location = new System.Drawing.Point(687, 412);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -117,8 +132,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 16F, System.Drawing.FontStyle.Bold);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label1.Location = new System.Drawing.Point(578, 27);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label1.Location = new System.Drawing.Point(789, 28);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label1.Location = new System.Drawing.Point(789, 28);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -131,9 +150,16 @@
             // dateTimePicker1
             // 
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.dateTimePicker1.Location = new System.Drawing.Point(581, 293);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(216, 20);
+=======
+            this.dateTimePicker1.Location = new System.Drawing.Point(696, 450);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(298, 26);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.dateTimePicker1.Location = new System.Drawing.Point(696, 450);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -145,9 +171,16 @@
             // dateTimePicker2
             // 
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.dateTimePicker2.Location = new System.Drawing.Point(581, 261);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(216, 20);
+=======
+            this.dateTimePicker2.Location = new System.Drawing.Point(696, 517);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(298, 26);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.dateTimePicker2.Location = new System.Drawing.Point(696, 517);
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -161,8 +194,12 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label2.Location = new System.Drawing.Point(467, 257);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label2.Location = new System.Drawing.Point(685, 473);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label2.Location = new System.Drawing.Point(685, 473);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -178,8 +215,12 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox9);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.panel1.Location = new System.Drawing.Point(184, 86);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
+=======
+            this.panel1.Location = new System.Drawing.Point(153, 111);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.panel1.Location = new System.Drawing.Point(153, 111);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -207,7 +248,11 @@
             this.label3.Location = new System.Drawing.Point(128, 28);
             this.label3.Name = "label3";
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label3.Size = new System.Drawing.Size(176, 44);
+=======
+            this.label3.Size = new System.Drawing.Size(252, 64);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label3.Size = new System.Drawing.Size(252, 64);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -229,6 +274,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Sans Serif Collection", 8.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label15.Location = new System.Drawing.Point(99, 155);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 =======
@@ -242,12 +288,24 @@
 =======
             this.label15.Text = "*EN CASO DE QUERER REGISTRAR UNA NUEVA RESERVACIÓN, IGNORA LA BUSQUEDA DE ARRIBA";
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
+            this.label15.Location = new System.Drawing.Point(148, 217);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(815, 62);
+            this.label15.TabIndex = 69;
+            this.label15.Text = "*EN CASO DE QUERER REGISTRAR UNA NUEVA RESERVACIÓN, IGNORA LA BUSQUEDA DE ARRIBA";
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.comboBox2.Location = new System.Drawing.Point(542, 228);
+=======
+            this.comboBox2.Location = new System.Drawing.Point(714, 311);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.comboBox2.Location = new System.Drawing.Point(714, 311);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -261,8 +319,12 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label5.Location = new System.Drawing.Point(467, 221);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label5.Location = new System.Drawing.Point(602, 300);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label5.Location = new System.Drawing.Point(602, 300);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -276,8 +338,12 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label6.Location = new System.Drawing.Point(890, 177);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label6.Location = new System.Drawing.Point(1104, 300);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label6.Location = new System.Drawing.Point(1104, 300);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -290,6 +356,7 @@
             // 
             this.comboBox3.FormattingEnabled = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.comboBox3.Location = new System.Drawing.Point(958, 184);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(290, 21);
@@ -299,6 +366,11 @@
             this.comboBox3.Location = new System.Drawing.Point(1206, 311);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox3.Name = "comboBox3";
+=======
+            this.comboBox3.Location = new System.Drawing.Point(1206, 311);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox3.Name = "comboBox3";
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.comboBox3.Size = new System.Drawing.Size(354, 28);
             this.comboBox3.TabIndex = 76;
             // 
@@ -317,8 +389,12 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label7.Location = new System.Drawing.Point(20, 8);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label7.Location = new System.Drawing.Point(28, 34);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label7.Location = new System.Drawing.Point(28, 34);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -332,7 +408,12 @@
             this.dataGridView2.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.dataGridView2.Location = new System.Drawing.Point(15, 42);
+=======
+            this.dataGridView2.Location = new System.Drawing.Point(24, 105);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.dataGridView2.Location = new System.Drawing.Point(24, 105);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -352,9 +433,16 @@
             this.panel2.Controls.Add(this.dataGridView2);
             this.panel2.Controls.Add(this.label7);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.panel2.Location = new System.Drawing.Point(463, 337);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(405, 270);
+=======
+            this.panel2.Location = new System.Drawing.Point(62, 372);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(608, 450);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.panel2.Location = new System.Drawing.Point(62, 372);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -368,10 +456,16 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label9.Location = new System.Drawing.Point(20, 228);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(170, 44);
+=======
+            this.label9.Location = new System.Drawing.Point(28, 395);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(253, 64);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label9.Location = new System.Drawing.Point(28, 395);
             this.label9.Name = "label9";
@@ -385,15 +479,21 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.textBox2.Location = new System.Drawing.Point(228, 234);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(68, 22);
 =======
+=======
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.textBox2.Location = new System.Drawing.Point(340, 405);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(101, 29);
+<<<<<<< HEAD
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.textBox2.TabIndex = 82;
             // 
@@ -402,8 +502,12 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.label8.Location = new System.Drawing.Point(20, 200);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+=======
+            this.label8.Location = new System.Drawing.Point(28, 352);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.label8.Location = new System.Drawing.Point(28, 352);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
@@ -418,8 +522,13 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.textBox1.Location = new System.Drawing.Point(228, 206);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.textBox1.Location = new System.Drawing.Point(340, 362);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.textBox1.Location = new System.Drawing.Point(340, 362);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -434,8 +543,13 @@
             this.button4.BackColor = System.Drawing.Color.Plum;
             this.button4.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.button4.Location = new System.Drawing.Point(1063, 549);
             this.button4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.button4.Location = new System.Drawing.Point(1356, 823);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.button4.Location = new System.Drawing.Point(1356, 823);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -452,8 +566,13 @@
             this.button5.BackColor = System.Drawing.Color.Plum;
             this.button5.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.button5.Location = new System.Drawing.Point(1170, 549);
             this.button5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+=======
+            this.button5.Location = new System.Drawing.Point(1523, 823);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.button5.Location = new System.Drawing.Point(1523, 823);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -480,17 +599,28 @@
             this.button2.Text = "Registrar";
             this.button2.UseVisualStyleBackColor = false;
             // 
+<<<<<<< HEAD
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.Plum;
             this.button6.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.button6.Location = new System.Drawing.Point(895, 416);
             this.button6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(5);
             this.button6.Size = new System.Drawing.Size(95, 49);
+=======
+            this.button6.Location = new System.Drawing.Point(698, 553);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.button6.Name = "button6";
+            this.button6.Padding = new System.Windows.Forms.Padding(8);
+            this.button6.Size = new System.Drawing.Size(252, 75);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.button6.Location = new System.Drawing.Point(698, 553);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -507,11 +637,19 @@
             this.button7.BackColor = System.Drawing.Color.Plum;
             this.button7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.button7.Location = new System.Drawing.Point(895, 480);
             this.button7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button7.Name = "button7";
             this.button7.Padding = new System.Windows.Forms.Padding(5);
             this.button7.Size = new System.Drawing.Size(113, 49);
+=======
+            this.button7.Location = new System.Drawing.Point(698, 661);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.button7.Name = "button7";
+            this.button7.Padding = new System.Windows.Forms.Padding(8);
+            this.button7.Size = new System.Drawing.Size(252, 75);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.button7.Location = new System.Drawing.Point(698, 661);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -527,10 +665,18 @@
             // 
             this.dateTimePicker3.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker3.Location = new System.Drawing.Point(1013, 433);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(260, 22);
+=======
+            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.dateTimePicker3.Location = new System.Drawing.Point(985, 578);
+            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(298, 26);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
             this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.dateTimePicker3.Location = new System.Drawing.Point(985, 578);
@@ -543,6 +689,7 @@
             // 
             // dateTimePicker4
             // 
+<<<<<<< HEAD
 <<<<<<< HEAD
             this.dateTimePicker4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker4.Location = new System.Drawing.Point(1013, 498);
@@ -581,6 +728,14 @@
             this.dateTimePicker4.Size = new System.Drawing.Size(298, 26);
             this.dateTimePicker4.TabIndex = 88;
             // 
+=======
+            this.dateTimePicker4.Location = new System.Drawing.Point(985, 681);
+            this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(298, 26);
+            this.dateTimePicker4.TabIndex = 88;
+            // 
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
@@ -591,12 +746,16 @@
             this.linkLabel1.TabIndex = 89;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Factura";
+<<<<<<< HEAD
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+<<<<<<< HEAD
 <<<<<<< HEAD
             this.dataGridView1.Location = new System.Drawing.Point(898, 212);
             this.dataGridView1.Name = "dataGridView1";
@@ -759,6 +918,8 @@
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
 =======
+=======
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.dataGridView1.Location = new System.Drawing.Point(1115, 349);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
@@ -766,12 +927,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(560, 166);
             this.dataGridView1.TabIndex = 84;
             // 
+<<<<<<< HEAD
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             // Reservacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
+<<<<<<< HEAD
 <<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1301, 625);
             this.Controls.Add(this.comboBox1);
@@ -787,6 +952,11 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.linkLabel1);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
+            this.ClientSize = new System.Drawing.Size(1718, 926);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.linkLabel1);
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.Controls.Add(this.dateTimePicker4);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.button7);
@@ -794,7 +964,10 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.Controls.Add(this.comboBox4);
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.Controls.Add(this.comboBox3);
@@ -821,9 +994,12 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 <<<<<<< HEAD
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+=======
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
             this.ResumeLayout(false);
@@ -856,13 +1032,17 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
         private System.Windows.Forms.Button button2;
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.DateTimePicker dateTimePicker4;
+<<<<<<< HEAD
 <<<<<<< HEAD
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.LinkLabel linkLabel1;
@@ -885,6 +1065,10 @@
         private System.Windows.Forms.ToolStripMenuItem reporteDeVentasToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
+=======
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
 =======
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DataGridView dataGridView1;

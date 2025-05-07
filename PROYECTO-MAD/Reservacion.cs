@@ -38,6 +38,7 @@ namespace PROYECTO_MAD
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         private void label10_Click(object sender, EventArgs e)
         {
 
@@ -127,10 +128,15 @@ namespace PROYECTO_MAD
             this.Close();
         }
 =======
+=======
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
         private void button8_Click(object sender, EventArgs e)
         {
 
         }
+<<<<<<< HEAD
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
+=======
 >>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
     }
 }
