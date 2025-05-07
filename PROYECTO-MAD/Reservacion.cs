@@ -37,6 +37,7 @@ namespace PROYECTO_MAD
 
         }
 
+<<<<<<< HEAD
         private void label10_Click(object sender, EventArgs e)
         {
 
@@ -125,5 +126,11 @@ namespace PROYECTO_MAD
             reporteventasform.Show();
             this.Close();
         }
+=======
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+>>>>>>> ade97f9902a8fbb49e62ca15befd91b27cf4751b
     }
 }
