@@ -194,5 +194,17 @@ namespace PROYECTO_MAD
             reporteventasform.Show();
             this.Close();
         }
+
+        private void hotelesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void verServiciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Servicios serviciosform = new Servicios();
+            serviciosform.Show();
+            this.Close();
+        }
     }
 }

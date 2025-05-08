@@ -17,31 +17,31 @@ namespace PROYECTO_MAD
             InitializeComponent();
         }
 
-        private void CambiarFormulario(Form nuevoForm, bool cerrarAppAlSalir = false)
-        {
-            this.Hide();
+        //private void CambiarFormulario(Form nuevoForm, bool cerrarAppAlSalir = false)
+        //{
+        //    this.Hide();
 
-            if (cerrarAppAlSalir)
-                nuevoForm.FormClosed += (s, args) => Application.Exit();
-            else
-                nuevoForm.FormClosed += (s, args) => this.Close();
+        //    if (cerrarAppAlSalir)
+        //        nuevoForm.FormClosed += (s, args) => Application.Exit();
+        //    else
+        //        nuevoForm.FormClosed += (s, args) => this.Close();
 
-            nuevoForm.Show();
-        }
+        //    nuevoForm.Show();
+        //}
         private void usuarioToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            CambiarFormulario(new Usuarios(), true);
-            //Usuarios usuariosform = new Usuarios();
-            //usuariosform.Show();
-            //this.Close();
+            //CambiarFormulario(new Usuarios(), true);
+            Usuarios usuariosform = new Usuarios();
+            usuariosform.Show();
+            this.Close();
         }
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CambiarFormulario(new Reservacion(), true);
-            //Form1 identificateform = new Form1();
-            //identificateform.Show();
-            //this.Close();
+            //CambiarFormulario(new Reservacion(), true);
+            Form1 identificateform = new Form1();
+            identificateform.Show();
+            this.Close();
         }
 
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -95,6 +95,18 @@ namespace PROYECTO_MAD
 
         private void Pantalla_principal_FormClosed(object sender, FormClosedEventArgs e)
         {
+        }
+
+        private void hotelesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void verServiciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Servicios serviciosform = new Servicios();
+            serviciosform.Show();
+            this.Close();
         }
     }
 }

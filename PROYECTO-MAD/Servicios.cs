@@ -16,5 +16,12 @@ namespace PROYECTO_MAD
         {
             InitializeComponent();
         }
+
+        private void verServiciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Servicios serviciosform = new Servicios();
+            serviciosform.Show();
+            this.Close();
+        }
     }
 }

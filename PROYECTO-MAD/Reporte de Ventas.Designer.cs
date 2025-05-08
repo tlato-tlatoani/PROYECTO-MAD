@@ -49,6 +49,7 @@
             this.habitacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.habitacionesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeHabitacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verServiciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verHistorialDeClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,9 +65,11 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(498, 101);
+            this.dataGridView1.Location = new System.Drawing.Point(664, 124);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(763, 488);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1017, 601);
             this.dataGridView1.TabIndex = 65;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -82,52 +85,56 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Location = new System.Drawing.Point(39, 101);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(52, 124);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(440, 299);
+            this.panel1.Size = new System.Drawing.Size(587, 368);
             this.panel1.TabIndex = 64;
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox3.Location = new System.Drawing.Point(83, 137);
+            this.textBox3.Location = new System.Drawing.Point(111, 169);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 23);
+            this.textBox3.Size = new System.Drawing.Size(132, 26);
             this.textBox3.TabIndex = 64;
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox2.Location = new System.Drawing.Point(64, 82);
+            this.textBox2.Location = new System.Drawing.Point(85, 101);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 23);
+            this.textBox2.Size = new System.Drawing.Size(132, 26);
             this.textBox2.TabIndex = 63;
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox1.Location = new System.Drawing.Point(64, 25);
+            this.textBox1.Location = new System.Drawing.Point(85, 31);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.Size = new System.Drawing.Size(132, 26);
             this.textBox1.TabIndex = 62;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(270, 30);
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(360, 37);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(141, 238);
+            this.listBox1.Size = new System.Drawing.Size(187, 292);
             this.listBox1.TabIndex = 46;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label4.Location = new System.Drawing.Point(202, 18);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(269, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 44);
+            this.label4.Size = new System.Drawing.Size(112, 39);
             this.label4.TabIndex = 45;
             this.label4.Text = "HOTEL:";
             // 
@@ -135,10 +142,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label3.Location = new System.Drawing.Point(8, 132);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(11, 162);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 44);
+            this.label3.Size = new System.Drawing.Size(127, 39);
             this.label3.TabIndex = 44;
             this.label3.Text = "CIUDAD:";
             // 
@@ -146,10 +152,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label2.Location = new System.Drawing.Point(11, 77);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(15, 95);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 44);
+            this.label2.Size = new System.Drawing.Size(80, 39);
             this.label2.TabIndex = 43;
             this.label2.Text = "AÑO:";
             // 
@@ -157,11 +162,11 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Pink;
             this.button3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.button3.Location = new System.Drawing.Point(83, 203);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.button3.Location = new System.Drawing.Point(111, 250);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5);
-            this.button3.Size = new System.Drawing.Size(81, 38);
+            this.button3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.button3.Size = new System.Drawing.Size(108, 47);
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
             this.button3.UseVisualStyleBackColor = false;
@@ -170,10 +175,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label11.Location = new System.Drawing.Point(11, 18);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(15, 22);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 44);
+            this.label11.Size = new System.Drawing.Size(83, 39);
             this.label11.TabIndex = 12;
             this.label11.Text = "PAIS:";
             // 
@@ -181,16 +185,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 16F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(486, 41);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(648, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(383, 75);
+            this.label1.Size = new System.Drawing.Size(810, 67);
             this.label1.TabIndex = 63;
             this.label1.Text = "REPORTE DE VENTAS POR HOTEL";
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.LavenderBlush;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.usuarioToolStripMenuItem1,
             this.reservacionesToolStripMenuItem,
@@ -199,21 +203,21 @@
             this.reportesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1301, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1735, 28);
             this.menuStrip1.TabIndex = 68;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // usuarioToolStripMenuItem1
             // 
             this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
-            this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
+            this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(73, 24);
             this.usuarioToolStripMenuItem1.Text = "Usuario";
             this.usuarioToolStripMenuItem1.Click += new System.EventHandler(this.usuarioToolStripMenuItem1_Click);
             // 
             // reservacionesToolStripMenuItem
             // 
             this.reservacionesToolStripMenuItem.Name = "reservacionesToolStripMenuItem";
-            this.reservacionesToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.reservacionesToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.reservacionesToolStripMenuItem.Text = "Reservaciones";
             this.reservacionesToolStripMenuItem.Click += new System.EventHandler(this.reservacionesToolStripMenuItem_Click);
             // 
@@ -221,15 +225,16 @@
             // 
             this.hotelesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.verHotelesToolStripMenuItem,
-            this.habitacionesToolStripMenuItem});
+            this.habitacionesToolStripMenuItem,
+            this.verServiciosToolStripMenuItem});
             this.hotelesToolStripMenuItem.Name = "hotelesToolStripMenuItem";
-            this.hotelesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.hotelesToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.hotelesToolStripMenuItem.Text = "Hoteles";
             // 
             // verHotelesToolStripMenuItem
             // 
             this.verHotelesToolStripMenuItem.Name = "verHotelesToolStripMenuItem";
-            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.verHotelesToolStripMenuItem.Text = "Ver Hoteles";
             this.verHotelesToolStripMenuItem.Click += new System.EventHandler(this.verHotelesToolStripMenuItem_Click);
             // 
@@ -239,22 +244,29 @@
             this.habitacionesToolStripMenuItem1,
             this.tiposDeHabitacionesToolStripMenuItem});
             this.habitacionesToolStripMenuItem.Name = "habitacionesToolStripMenuItem";
-            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.habitacionesToolStripMenuItem.Text = "Habitaciones";
             // 
             // habitacionesToolStripMenuItem1
             // 
             this.habitacionesToolStripMenuItem1.Name = "habitacionesToolStripMenuItem1";
-            this.habitacionesToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.habitacionesToolStripMenuItem1.Size = new System.Drawing.Size(240, 26);
             this.habitacionesToolStripMenuItem1.Text = "Ver habitaciones";
             this.habitacionesToolStripMenuItem1.Click += new System.EventHandler(this.habitacionesToolStripMenuItem1_Click);
             // 
             // tiposDeHabitacionesToolStripMenuItem
             // 
             this.tiposDeHabitacionesToolStripMenuItem.Name = "tiposDeHabitacionesToolStripMenuItem";
-            this.tiposDeHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.tiposDeHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.tiposDeHabitacionesToolStripMenuItem.Text = "Tipos de Habitaciones";
             this.tiposDeHabitacionesToolStripMenuItem.Click += new System.EventHandler(this.tiposDeHabitacionesToolStripMenuItem_Click);
+            // 
+            // verServiciosToolStripMenuItem
+            // 
+            this.verServiciosToolStripMenuItem.Name = "verServiciosToolStripMenuItem";
+            this.verServiciosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.verServiciosToolStripMenuItem.Text = "Ver Servicios";
+            this.verServiciosToolStripMenuItem.Click += new System.EventHandler(this.verServiciosToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem1
             // 
@@ -262,20 +274,20 @@
             this.verClientesToolStripMenuItem,
             this.verHistorialDeClientesToolStripMenuItem});
             this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(75, 24);
             this.clientesToolStripMenuItem1.Text = "Clientes";
             // 
             // verClientesToolStripMenuItem
             // 
             this.verClientesToolStripMenuItem.Name = "verClientesToolStripMenuItem";
-            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.verClientesToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.verClientesToolStripMenuItem.Text = "Ver Clientes";
             this.verClientesToolStripMenuItem.Click += new System.EventHandler(this.verClientesToolStripMenuItem_Click);
             // 
             // verHistorialDeClientesToolStripMenuItem
             // 
             this.verHistorialDeClientesToolStripMenuItem.Name = "verHistorialDeClientesToolStripMenuItem";
-            this.verHistorialDeClientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.verHistorialDeClientesToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.verHistorialDeClientesToolStripMenuItem.Text = "Ver Historial de Clientes";
             this.verHistorialDeClientesToolStripMenuItem.Click += new System.EventHandler(this.verHistorialDeClientesToolStripMenuItem_Click);
             // 
@@ -285,34 +297,35 @@
             this.reporteDeOcupaciónPorHotelToolStripMenuItem,
             this.reporteDeVentasToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.reportesToolStripMenuItem.Text = "Reportes";
             // 
             // reporteDeOcupaciónPorHotelToolStripMenuItem
             // 
             this.reporteDeOcupaciónPorHotelToolStripMenuItem.Name = "reporteDeOcupaciónPorHotelToolStripMenuItem";
-            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.reporteDeOcupaciónPorHotelToolStripMenuItem.Size = new System.Drawing.Size(306, 26);
             this.reporteDeOcupaciónPorHotelToolStripMenuItem.Text = "Reporte de Ocupación por hotel";
             this.reporteDeOcupaciónPorHotelToolStripMenuItem.Click += new System.EventHandler(this.reporteDeOcupaciónPorHotelToolStripMenuItem_Click);
             // 
             // reporteDeVentasToolStripMenuItem
             // 
             this.reporteDeVentasToolStripMenuItem.Name = "reporteDeVentasToolStripMenuItem";
-            this.reporteDeVentasToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.reporteDeVentasToolStripMenuItem.Size = new System.Drawing.Size(306, 26);
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
             // Reporte_de_Ventas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(1301, 625);
+            this.ClientSize = new System.Drawing.Size(1735, 769);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Reporte_de_Ventas";
             this.Text = "Reporte_de_Ventas";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -352,5 +365,6 @@
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeOcupaciónPorHotelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeVentasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verServiciosToolStripMenuItem;
     }
 }
