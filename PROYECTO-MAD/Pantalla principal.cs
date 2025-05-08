@@ -17,18 +17,31 @@ namespace PROYECTO_MAD
             InitializeComponent();
         }
 
+        private void CambiarFormulario(Form nuevoForm, bool cerrarAppAlSalir = false)
+        {
+            this.Hide();
+
+            if (cerrarAppAlSalir)
+                nuevoForm.FormClosed += (s, args) => Application.Exit();
+            else
+                nuevoForm.FormClosed += (s, args) => this.Close();
+
+            nuevoForm.Show();
+        }
         private void usuarioToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Usuarios usuariosform = new Usuarios();
-            usuariosform.Show();
-            this.Close();
+            CambiarFormulario(new Usuarios(), true);
+            //Usuarios usuariosform = new Usuarios();
+            //usuariosform.Show();
+            //this.Close();
         }
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
-            identificateform.Show();
-            this.Close();
+            CambiarFormulario(new Reservacion(), true);
+            //Form1 identificateform = new Form1();
+            //identificateform.Show();
+            //this.Close();
         }
 
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
