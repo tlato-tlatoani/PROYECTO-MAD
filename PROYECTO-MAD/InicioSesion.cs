@@ -31,7 +31,8 @@ namespace PROYECTO_MAD
         private void button1_Click(object sender, EventArgs e)
         {
             EnlaceDB enlace = new EnlaceDB();
-            if (enlace.Autentificar(textBox1.Text, textBox2.Text))
+            bool l_tipoUsuario = radioButton1.Checked;
+            if (enlace.Autentificar(textBox1.Text, textBox2.Text, l_tipoUsuario))
             {
                 Pantalla_principal pantallaprincipalform = new Pantalla_principal();
                 pantallaprincipalform.Show();

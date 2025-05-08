@@ -66,7 +66,7 @@ namespace PROYECTO_MAD
             _conexion.Close();
         }
 
-        public bool Autentificar(string us, string ps)
+        public bool Autentificar(string us, string ps, bool _tipousuario)
         {
             bool isValid = false;
             try
@@ -81,6 +81,8 @@ namespace PROYECTO_MAD
                 parametro1.Value = us;
                 var parametro2 = _comandosql.Parameters.Add("@contrasenna", SqlDbType.NChar, 20);
                 parametro2.Value = ps;
+                var parametro3 = _comandosql.Parameters.Add("@tipousuario", SqlDbType.Bit);
+                parametro3.Value = _tipousuario;
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(_tabla);
