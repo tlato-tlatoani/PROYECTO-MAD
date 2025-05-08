@@ -82,9 +82,6 @@ namespace PROYECTO_MAD
 
         private void Pantalla_principal_FormClosed(object sender, FormClosedEventArgs e)
         {
-           InicioDeSesion iniciarsesionform = new InicioDeSesion();
-            iniciarsesionform.Show();
-            this.Close();
         }
     }
 }

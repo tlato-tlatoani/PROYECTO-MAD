@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,30 @@ namespace PROYECTO_MAD.Resources
         private void Registro_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Usuario l_usuario = new Usuario(
+                int.Parse(textBox6.Text),
+                textBox3.Text,
+                textBox4.Text,
+                textBox5.Text,
+                textBox2.Text,
+                textBox1.Text,
+                textBox8.Text,
+                textBox7.Text,
+                dateTimePicker1.Value,
+                radioButton1.Checked
+            );
+
+            EnlaceDB l_enlace = new EnlaceDB();
+            if (l_enlace.Registrar(l_usuario, false))
+            {
+                Pantalla_principal pantallaprincipalform = new Pantalla_principal();
+                pantallaprincipalform.Show();
+                this.Close();
+            }
         }
     }
 }
