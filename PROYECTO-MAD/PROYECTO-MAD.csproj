@@ -54,6 +54,12 @@
       <DependentUpon>Clientes.cs</DependentUpon>
     </Compile>
     <Compile Include="EnlaceDB.cs" />
+    <Compile Include="Entities\Clientes.cs" />
+    <Compile Include="Entities\Habitacion.cs" />
+    <Compile Include="Entities\Hotel.cs" />
+    <Compile Include="Entities\Reservacion.cs" />
+    <Compile Include="Entities\Servicios.cs" />
+    <Compile Include="Entities\TipoHab.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
