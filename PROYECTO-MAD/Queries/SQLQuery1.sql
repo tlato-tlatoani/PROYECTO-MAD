@@ -180,7 +180,7 @@ CREATE PROCEDURE Validar
 AS
 BEGIN
     SET NOCOUNT ON
-    SELECT u.NoNomina
+    SELECT u.NoNomina, u.TipoUsuario
        FROM Usuario u
 	   JOIN Contrasenna c ON c.idUsuario = u.NoNomina
        WHERE u.CorreoElectronico = @email AND c.Contrasenna = @contrasenna AND u.Contrasenna = c.idContrasenna AND u.TipoUsuario = @tipousuario AND u.Estado = 1;
@@ -249,6 +249,39 @@ BEGIN
 	END
 END
 GO
+
+DROP PROCEDURE Editar;
+GO
+CREATE PROCEDURE Editar
+(
+	@NoNomina INT,
+	@Nombre NVARCHAR (50),
+	@ApellidoPaterno NVARCHAR (50),
+	@ApellidoMaterno NVARCHAR (50),
+	@CorreoElectronico NVARCHAR (40),
+	@Contrasenna NVARCHAR (20),
+	@TelCelular NVARCHAR (10),
+	@TelCasa NVARCHAR (10) ,
+	@FechaNacimiento DATE ,
+	@TipoUsuario NVARCHAR(15)
+)
+AS
+BEGIN
+	UPDATE Usuario SET
+		Nombre = @Nombre, 
+		ApellidoPaterno = @ApellidoPaterno, 
+		ApellidoMaterno = @ApellidoMaterno, 
+		CorreoElectronico = @CorreoElectronico,
+		TelCelular = @TelCelular, 
+		TelCasa = @TelCasa, 
+		FechaNacimiento = @FechaNacimiento, 
+		TipoUsuario = @TipoUsuario
+	WHERE NoNomina = @NoNomina;
+	
+	INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Usuario [Administrador]', 'Administrador ha Editado un Usuario', @NoNomina);
+END
+GO
+
 
 EXEC Validar @email='martinezperez@gmail.com', @contrasenna='Flordecerezo01*', @tipousuario = 1;
 GO

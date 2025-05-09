@@ -31,6 +31,7 @@ namespace PROYECTO_MAD
         private void usuarioToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //CambiarFormulario(new Usuarios(), true);
+            if (!Program.m_usuario.TipoUsuario) { return; }
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
             this.Close();

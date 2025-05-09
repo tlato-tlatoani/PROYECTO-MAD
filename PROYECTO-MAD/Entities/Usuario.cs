@@ -45,5 +45,6 @@ namespace PROYECTO_MAD.Entities
             FechaNacimiento = _FechaNacimiento;
             TipoUsuario = _TipoUsuario;
         }
+        public Usuario() { }
     }
 }

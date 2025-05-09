@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace PROYECTO_MAD
     internal static class Program
     {
         static int clienteactual = 0;
+        public static Usuario m_usuario;
 
         /// <summary>
         /// Punto de entrada principal para la aplicación.

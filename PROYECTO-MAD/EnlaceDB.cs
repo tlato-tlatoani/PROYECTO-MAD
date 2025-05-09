@@ -67,11 +67,10 @@ namespace PROYECTO_MAD
             _conexion.Close();
         }
 
-        public bool Autentificar(string us, string ps, bool _tipousuario)
+        public Usuario Autentificar(string us, string ps, bool _tipousuario)
         {
-            bool isValid = false;
-            try
-            {
+            Usuario l_usuario = null;
+            try {
                 conectar();
                 string qry = "Validar";
                 _comandosql = new SqlCommand(qry, _conexion);
@@ -88,22 +87,21 @@ namespace PROYECTO_MAD
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(_tabla);
 
-                if(_tabla.Rows.Count > 0)
-                {
-                    isValid = true;
+                if (_tabla.Rows.Count > 0) {
+                    l_usuario = new Usuario();
+                    l_usuario.NoNomina = int.Parse(_tabla.Rows[0].ItemArray[0].ToString());
+                    l_usuario.TipoUsuario = (bool) _tabla.Rows[0].ItemArray[1];
                 }
-
             }
             catch(SqlException e)
             {
-                isValid = false;
             }
             finally
             {
                 desconectar();
             }
 
-            return isValid;
+            return l_usuario;
         }
 
         public bool Registrar(Usuario _usuario, bool _isAdmin)
@@ -139,6 +137,56 @@ namespace PROYECTO_MAD
                 parametro10.Value = _usuario.TipoUsuario;
                 var parametro11 = _comandosql.Parameters.Add("@EsAdmin", SqlDbType.Bit);
                 parametro11.Value = _isAdmin;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+
+                isValid = true;
+            }
+            catch (SqlException e)
+            {
+                isValid = false;
+                string msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return isValid;
+        }
+        public bool Editar(Usuario _usuario) {
+            bool isValid = false;
+            try
+            {
+                conectar();
+                string qry = "Editar";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 9000;
+
+                var parametro1 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro1.Value = _usuario.NoNomina;
+                var parametro2 = _comandosql.Parameters.Add("@Nombre", SqlDbType.NVarChar, 50);
+                parametro2.Value = _usuario.Nombre;
+                var parametro3 = _comandosql.Parameters.Add("@ApellidoPaterno", SqlDbType.NVarChar, 50);
+                parametro3.Value = _usuario.ApellidoPaterno;
+                var parametro4 = _comandosql.Parameters.Add("@ApellidoMaterno", SqlDbType.NVarChar, 50);
+                parametro4.Value = _usuario.ApellidoMaterno;
+                var parametro5 = _comandosql.Parameters.Add("@CorreoElectronico", SqlDbType.NVarChar, 40);
+                parametro5.Value = _usuario.CorreoElectronico;
+                var parametro6 = _comandosql.Parameters.Add("@Contrasenna", SqlDbType.NVarChar, 20);
+                parametro6.Value = _usuario.RealContrasenna;
+                var parametro7 = _comandosql.Parameters.Add("@TelCelular", SqlDbType.NVarChar, 10);
+                parametro7.Value = _usuario.TelCelular;
+                var parametro8 = _comandosql.Parameters.Add("@TelCasa", SqlDbType.NVarChar, 10);
+                parametro8.Value = _usuario.TelCasa;
+                var parametro9 = _comandosql.Parameters.Add("@FechaNacimiento", SqlDbType.Date);
+                parametro9.Value = _usuario.FechaNacimiento;
+                var parametro10 = _comandosql.Parameters.Add("@TipoUsuario", SqlDbType.Bit);
+                parametro10.Value = _usuario.TipoUsuario;
 
                 _adaptador.InsertCommand = _comandosql;
                 _comandosql.ExecuteNonQuery();

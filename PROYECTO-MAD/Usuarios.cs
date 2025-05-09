@@ -14,6 +14,9 @@ namespace PROYECTO_MAD
     public partial class Usuarios : Form
     {
         public List<Usuario> m_usuarios;
+        public bool m_registrando = false;
+        public bool m_editando = false;
+        public int m_usuarioActual = -1;
 
         public Usuarios()
         {
@@ -24,6 +27,7 @@ namespace PROYECTO_MAD
         {
             m_usuarios = new EnlaceDB().getUsuarios();
 
+            dataGridView1.Rows.Clear();
             foreach (Usuario _usuario in m_usuarios)
             {
                 dataGridView1.Rows.Add();
@@ -132,12 +136,77 @@ namespace PROYECTO_MAD
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!m_registrando) {
+                m_registrando = true;
+                m_usuarioActual = -1;
 
+                MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Usuario.", "Informacion");
+
+                textBox1.Enabled = true;
+            } else {
+                DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Usuario?", "Advertencia", MessageBoxButtons.YesNo);
+                if (l_editar == DialogResult.Yes) {
+                    Usuario l_usuario = new Usuario(
+                        int.Parse(textBox6.Text),
+                        textBox3.Text,
+                        textBox4.Text,
+                        textBox5.Text,
+                        textBox2.Text,
+                        textBox1.Text,
+                        textBox8.Text,
+                        textBox7.Text,
+                        dateTimePicker1.Value,
+                        radioButton1.Checked
+                    );
+
+                    EnlaceDB l_enlace = new EnlaceDB();
+                    if (l_enlace.Registrar(l_usuario, true)) {
+                        MessageBox.Show(this, "Usuario Registrado con Exito.", "Informacion");
+                        Usuarios_Load(this, new EventArgs());
+                        textBox1.Enabled = false;
+                        m_registrando = false;
+                    }
+                }
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
+        private void button2_Click(object sender, EventArgs e) {
+            if (!m_editando) {
+                if (m_usuarioActual <= 0) {
+                    MessageBox.Show(this, "Necesitas Seleccionar un Usuario para Realizar esta Accion.", "Advertencia");
+                    return;
+                }
 
+                m_editando = true;
+
+                MessageBox.Show(this, "Estas en Modo Edicion.\nSi Presionas este Boton de Nuevo Editaras el Usuario Seleccionado.", "Informacion");
+
+                textBox6.Enabled = false;
+            } else {
+                DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Usuario?", "Advertencia", MessageBoxButtons.YesNo);
+                if (l_editar == DialogResult.Yes) {
+                    Usuario l_usuario = new Usuario(
+                        int.Parse(textBox6.Text),
+                        textBox3.Text,
+                        textBox4.Text,
+                        textBox5.Text,
+                        textBox2.Text,
+                        textBox1.Text,
+                        textBox8.Text,
+                        textBox7.Text,
+                        dateTimePicker1.Value,
+                        radioButton1.Checked
+                    );
+
+                    EnlaceDB l_enlace = new EnlaceDB();
+                    if (l_enlace.Editar(l_usuario)) {
+                        MessageBox.Show(this, "Usuario Editado con Exito.", "Informacion");
+                        Usuarios_Load(this, new EventArgs());
+                        textBox6.Enabled = true;
+                        m_editando = false;
+                    }
+                }
+            }
         }
 
         private void label11_Click(object sender, EventArgs e)
@@ -255,6 +324,23 @@ namespace PROYECTO_MAD
             }
 
             if (l_usuario == null) { return; }
+
+            m_usuarioActual = l_usuario.NoNomina;
+
+            if (m_registrando) {
+                m_registrando = false;
+                textBox1.Enabled = false;
+                textBox1.Text = "";
+
+                MessageBox.Show(this, "Has salido del Modo Registro", "Informacion");
+            }
+            if (m_editando)
+            {
+                m_editando = false;
+                textBox6.Enabled = true;
+
+                MessageBox.Show(this, "Has salido del Modo Edicion", "Informacion");
+            }
 
             textBox2.Text = l_usuario.CorreoElectronico;
             textBox3.Text = l_usuario.Nombre;

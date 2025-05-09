@@ -32,7 +32,7 @@ namespace PROYECTO_MAD
         {
             EnlaceDB enlace = new EnlaceDB();
             bool l_tipoUsuario = radioButton1.Checked;
-            if (enlace.Autentificar(textBox1.Text, textBox2.Text, l_tipoUsuario))
+            if ((Program.m_usuario = enlace.Autentificar(textBox1.Text, textBox2.Text, l_tipoUsuario)) != null)
             {
                 Pantalla_principal pantallaprincipalform = new Pantalla_principal();
                 pantallaprincipalform.Show();
