@@ -21,7 +21,7 @@ CREATE TABLE Cliente(
 CREATE TABLE Servicio(
 	CodServicio INT PRIMARY KEY IDENTITY(1,1),
 	Nombre VARCHAR (50) NOT NULL,
-	Precio DECIMAL (7,2) NOT NULL,
+	Precio MONEY NOT NULL,
 	Descripcion VARCHAR (200) NOT NULL
 );
 
@@ -39,10 +39,10 @@ CREATE TABLE Hotel(
 
 CREATE TABLE TiposHabitacion(
 	CodTDH INT PRIMARY KEY IDENTITY(1,1),
-	NivelHabitacion INT NOT NULL,
+	NivelHabitacion VARCHAR(20) NOT NULL,
 	NoCamas INT CHECK(NoCamas > 0),
 	TipoCama VARCHAR (30) NOT NULL,
-	PrecioNoche DECIMAL (7,2) NULL,
+	PrecioNoche MONEY NULL,
 	CantPersonasMax INT NULL,
 	Locacion VARCHAR (60) NOT NULL,
 	Amenidades VARCHAR (100) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE HotelesServicio(
 	idHotelesServicio INT PRIMARY KEY IDENTITY(1,1),
 	Hotel INT NOT NULL,
 	Servicio INT NOT NULL,
-	CostoExtra FLOAT NOT NULL,
+	CostoExtra MONEY NOT NULL,
 	FOREIGN KEY (Servicio) REFERENCES Servicio(CodServicio),
 	FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel)
 );
@@ -93,10 +93,10 @@ CREATE TABLE Checks(
 
 CREATE TABLE Factura(
 	NoFactura INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PrecioTotal DECIMAL (7,2) NOT NULL,
+	PrecioTotal MONEY NOT NULL,
 	NombreDescuento VARCHAR (50) NOT NULL,
-	Descuento DECIMAL (7,2),
-	Anticipo DECIMAL (7,2),
+	Descuento MONEY NOT NULL,
+	Anticipo MONEY NOT NULL,
 	FechaCreacion DATE DEFAULT GETDATE(),
 	FormaPago VARCHAR(50) NOT NULL,
 	Entrada INT NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE Contrasenna(
 	FOREIGN KEY (idUsuario) REFERENCES Usuario(NoNomina)
 );
 
-DROP TABLE Operacion;
+
 CREATE TABLE Operacion(
 	idRegistroAfectado INT PRIMARY KEY IDENTITY(1,1),
 	Accion Varchar(100) NOT NULL,
@@ -164,11 +164,13 @@ EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Contrase�a d
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Administrador (0) u Operativo(1)', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Usuario', @level2type = N'COLUMN', @level2name = N'TipoUsuario';
 
 select * from Usuario;
+select*from Contrasenna
+
 insert into Usuario (NoNomina, Nombre, ApellidoPaterno, ApellidoMaterno, CorreoElectronico, Contrasenna, TelCelular, TelCasa, FechaNacimiento, TipoUsuario) values (1023, 'Laura', 'Mart�nez', 'Perez', 'martinezperez@gmail.com', 1, 8180101836, 111111111,'2004-06-04',1);
 insert into Contrasenna(FechaCreacion, Contrasenna, idUsuario) values ('07-05-2025', 'Flordecerezo01*', 1023);
 insert into Contrasenna(FechaCreacion, Contrasenna, idUsuario) values ('08-05-2025', 'Flordecerezo02*', 1023);
 
-DROP PROCEDURE Validar;
+
 GO
 CREATE PROCEDURE Validar
 (
@@ -187,9 +189,6 @@ BEGIN
 END
 GO
 
-
-DROP PROCEDURE Registrar;
-GO
 CREATE PROCEDURE Registrar
 (
 	@NoNomina INT,
@@ -250,8 +249,6 @@ BEGIN
 END
 GO
 
-DROP PROCEDURE Editar;
-GO
 CREATE PROCEDURE Editar
 (
 	@NoNomina INT,
@@ -282,11 +279,11 @@ BEGIN
 END
 GO
 
-
+update Usuario set estado=1 
 EXEC Validar @email='martinezperez@gmail.com', @contrasenna='Flordecerezo01*', @tipousuario = 1;
 GO
 
-DROP PROCEDURE GetUsuarios;
+
 GO
 CREATE PROCEDURE GetUsuarios
 AS
@@ -309,6 +306,13 @@ GO
 
 EXEC GetUsuarios;
 GO
+
+
+ALTER TABLE TiposHabitacion
+drop column NivelHabitacion;
+
+ALTER TABLE TiposHabitacion
+add NivelHabitacion varchar(20) not null;
 
 SELECT * FROM Usuario;
 SELECT * FROM Contrasenna;

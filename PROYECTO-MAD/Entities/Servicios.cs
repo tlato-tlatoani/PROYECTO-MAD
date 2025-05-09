@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace PROYECTO_MAD.Entities
 {
-    internal class Servicios
+    public class Servicios
     {
+        public int CodServicio;
+        public string Nombre;
+        public decimal Precio;
+        public string Descripcion;
+        public Servicios(
+        int _CodServicio,
+        string _Nombre,
+        decimal _Precio,
+        string _Descripcion
+            )
+        {
+            CodServicio = _CodServicio;
+            Nombre = _Nombre;
+            Precio = _Precio;
+            Descripcion = _Descripcion;
+        }
+        public Servicios() { }
     }
 }
