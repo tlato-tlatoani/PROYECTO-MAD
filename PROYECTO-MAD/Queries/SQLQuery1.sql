@@ -253,6 +253,29 @@ GO
 EXEC Validar @email='martinezperez@gmail.com', @contrasenna='Flordecerezo01*', @tipousuario = 1;
 GO
 
+DROP PROCEDURE GetUsuarios;
+GO
+CREATE PROCEDURE GetUsuarios
+AS
+BEGIN
+    SELECT 
+		NoNomina, 
+		Nombre, 
+		ApellidoPaterno, 
+		ApellidoMaterno, 
+		CorreoElectronico, 
+		Contrasenna, 
+		TelCelular, 
+		TelCasa, 
+		FechaNacimiento, 
+		TipoUsuario,
+		Estado
+	FROM Usuario;
+END
+GO
+
+EXEC GetUsuarios;
+GO
 
 SELECT * FROM Usuario;
 SELECT * FROM Contrasenna;

@@ -18,6 +18,7 @@ namespace PROYECTO_MAD.Entities
         public string TelCasa;
         public DateTime FechaNacimiento;
 	    public bool TipoUsuario;
+        public bool Estado;
 
         public string RealContrasenna;
 

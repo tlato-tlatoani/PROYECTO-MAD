@@ -160,24 +160,41 @@ namespace PROYECTO_MAD
             return isValid;
         }
 
-        public DataTable get_Users()
-        {
+        public List<Usuario> getUsuarios() {
             var msg = "";
             DataTable tabla = new DataTable();
-            try
-            {
+
+            try {
                 conectar();
-				// Ejemplo de cómo ejecutar un query, 
-				// PERO lo correcto es siempre usar SP para cualquier consulta a la base de datos
-                string qry = "Select Nombre, email, Fecha_modif from Usuarios where Activo = 0;";
+
+                string qry = "GetUsuarios";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.Text;
-						// Esta opción solo la podrían utilizar si hacen un EXEC al SP concatenando los parámetros.
+                _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
 
+                List<Usuario> l_usuarios = new List<Usuario>();
+                foreach (DataRow _row in tabla.Rows) {
+                    l_usuarios.Add(new Usuario(
+                        int.Parse(_row["NoNomina"].ToString()),
+                        _row["Nombre"].ToString(),
+                        _row["ApellidoPaterno"].ToString(),
+                        _row["ApellidoMaterno"].ToString(),
+                        _row["CorreoElectronico"].ToString(),
+                        "1",
+                        _row["TelCelular"].ToString(),
+                        _row["TelCasa"].ToString(),
+                        DateTime.Parse(_row["FechaNacimiento"].ToString()),
+                        (bool) _row["TipoUsuario"]
+                    ));
+
+                    l_usuarios[l_usuarios.Count() - 1].Contrasenna = int.Parse(_row["Contrasenna"].ToString());
+                    l_usuarios[l_usuarios.Count() - 1].Estado = (bool) _row["Estado"];
+                }
+
+                return l_usuarios;
             }
             catch (SqlException e)
             {
@@ -190,7 +207,7 @@ namespace PROYECTO_MAD
                 desconectar();
             }
 
-            return tabla;
+            return new List<Usuario>();
         }
 
 		// Ejemplo de método para recibir una consulta en forma de tabla
