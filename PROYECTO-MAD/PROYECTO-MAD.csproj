@@ -54,7 +54,7 @@
       <DependentUpon>Clientes.cs</DependentUpon>
     </Compile>
     <Compile Include="EnlaceDB.cs" />
-    <Compile Include="Entities\Clientes.cs" />
+    <Compile Include="Entities\EntClientes.cs" />
     <Compile Include="Entities\Habitacion.cs" />
     <Compile Include="Entities\Hotel.cs" />
     <Compile Include="Entities\Reservacion.cs" />

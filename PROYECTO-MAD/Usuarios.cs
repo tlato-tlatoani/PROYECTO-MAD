@@ -141,8 +141,6 @@ namespace PROYECTO_MAD
                 m_usuarioActual = -1;
 
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Usuario.", "Informacion");
-
-                textBox1.Enabled = true;
             } else {
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Usuario?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes) {
@@ -163,7 +161,6 @@ namespace PROYECTO_MAD
                     if (l_enlace.Registrar(l_usuario, true)) {
                         MessageBox.Show(this, "Usuario Registrado con Exito.", "Informacion");
                         Usuarios_Load(this, new EventArgs());
-                        textBox1.Enabled = false;
                         m_registrando = false;
                     }
                 }
@@ -329,7 +326,6 @@ namespace PROYECTO_MAD
 
             if (m_registrando) {
                 m_registrando = false;
-                textBox1.Enabled = false;
                 textBox1.Text = "";
 
                 MessageBox.Show(this, "Has salido del Modo Registro", "Informacion");

@@ -42,7 +42,7 @@ namespace PROYECTO_MAD.Resources
                 textBox8.Text,
                 textBox7.Text,
                 dateTimePicker1.Value,
-                radioButton1.Checked
+                false
             );
 
             EnlaceDB l_enlace = new EnlaceDB();

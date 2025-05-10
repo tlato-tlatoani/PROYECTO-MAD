@@ -24,7 +24,6 @@ using System.Configuration;
 using System.Windows.Forms;
 using PROYECTO_MAD.Entities;
 
-
 /*
 Se tiene que cambiar el namespace para el que usen en su proyecto
 */
@@ -111,6 +110,59 @@ namespace PROYECTO_MAD
             {
                 conectar();
                 string qry = "Registrar";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 9000;
+
+                var parametro1 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro1.Value = _usuario.NoNomina;
+                var parametro2 = _comandosql.Parameters.Add("@Nombre", SqlDbType.NChar, 50);
+                parametro2.Value = _usuario.Nombre;
+                var parametro3 = _comandosql.Parameters.Add("@ApellidoPaterno", SqlDbType.NChar, 50);
+                parametro3.Value = _usuario.ApellidoPaterno;
+                var parametro4 = _comandosql.Parameters.Add("@ApellidoMaterno", SqlDbType.NChar, 50);
+                parametro4.Value = _usuario.ApellidoMaterno;
+                var parametro5 = _comandosql.Parameters.Add("@CorreoElectronico", SqlDbType.NChar, 40);
+                parametro5.Value = _usuario.CorreoElectronico;
+                var parametro6 = _comandosql.Parameters.Add("@Contrasenna", SqlDbType.NChar, 20);
+                parametro6.Value = _usuario.RealContrasenna;
+                var parametro7 = _comandosql.Parameters.Add("@TelCelular", SqlDbType.NChar, 10);
+                parametro7.Value = _usuario.TelCelular;
+                var parametro8 = _comandosql.Parameters.Add("@TelCasa", SqlDbType.NChar, 10);
+                parametro8.Value = _usuario.TelCasa;
+                var parametro9 = _comandosql.Parameters.Add("@FechaNacimiento", SqlDbType.Date);
+                parametro9.Value = _usuario.FechaNacimiento;
+                var parametro10 = _comandosql.Parameters.Add("@TipoUsuario", SqlDbType.Bit);
+                parametro10.Value = _usuario.TipoUsuario;
+                var parametro11 = _comandosql.Parameters.Add("@EsAdmin", SqlDbType.Bit);
+                parametro11.Value = _isAdmin;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+
+                isValid = true;
+            }
+            catch (SqlException e)
+            {
+                isValid = false;
+                string msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return isValid;
+        }
+
+        public bool RegistrarCliente(EntClientes _cliente, int _admin) {
+            bool isValid = false;
+            try
+            {
+                conectar();
+                string qry = "RegistrarCliente";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 9000;
@@ -258,28 +310,45 @@ namespace PROYECTO_MAD
             return new List<Usuario>();
         }
 
-		// Ejemplo de método para recibir una consulta en forma de tabla
-		// Cuando el SP ejecutará un SELECT
-        public DataTable get_Deptos(string opc)
-        {
+        // Ejemplo de método para recibir una consulta en forma de tabla
+        // Cuando el SP ejecutará un SELECT
+
+        public List<EntClientes> getClientes() {
             var msg = "";
             DataTable tabla = new DataTable();
+
             try
             {
                 conectar();
-                string qry = "sp_Gestiona_Deptos";
+
+                string qry = "GetClientes";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@Opc", SqlDbType.Char, 1);
-                parametro1.Value = opc;
-
-
                 _adaptador.SelectCommand = _comandosql;
-                _adaptador.Fill(tabla); 
-				// la ejecución del SP espera que regrese datos en formato tabla
+                _adaptador.Fill(tabla);
 
+                List<EntClientes> l_clientes = new List<EntClientes>();
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_clientes.Add(new EntClientes(
+                        _row["RFC"].ToString(),
+                        _row["Nombre"].ToString(),
+                        _row["ApellidoPaterno"].ToString(),
+                        _row["ApellidoMaterno"].ToString(),
+                        _row["Ciudad"].ToString(),
+                        _row["Estado"].ToString(),
+                        _row["Pais"].ToString(),
+                        _row["CorreoElectronico"].ToString(),
+                        _row["TelCelular"].ToString(),
+                        _row["TelCasa"].ToString(),
+                        DateTime.Parse(_row["FechaNacimiento"].ToString()),
+                        _row["TelCasa"].ToString()
+                    ));
+                }
+
+                return l_clientes;
             }
             catch (SqlException e)
             {
@@ -292,11 +361,10 @@ namespace PROYECTO_MAD
                 desconectar();
             }
 
-            return tabla;
+            return new List<EntClientes>();
         }
-		
-		// Ejemplo de método para ejecutar un SP que no se espera que regrese información, 
-		// solo que ejecute ya sea un INSERT, UPDATE o DELETE
+        // Ejemplo de método para ejecutar un SP que no se espera que regrese información, 
+        // solo que ejecute ya sea un INSERT, UPDATE o DELETE
         public bool Add_Deptos(string opc, string depto)
         {
             var msg = "";

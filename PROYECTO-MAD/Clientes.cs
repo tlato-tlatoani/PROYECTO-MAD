@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace PROYECTO_MAD
 {
     public partial class Clientes : Form
     {
+        public List<EntClientes> m_clientes;
+        public bool m_registrando = false;
+        public bool m_editando = false;
+        public int m_clienteActual = -1;
+
         public Clientes()
         {
             InitializeComponent();
@@ -29,7 +36,15 @@ namespace PROYECTO_MAD
 
         private void Clientes_Load(object sender, EventArgs e)
         {
+            m_clientes = new EnlaceDB().getClientes();
 
+            dataGridView1.Rows.Clear();
+            foreach (EntClientes _cliente in m_clientes) {
+                dataGridView1.Rows.Add();
+                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+                l_row.Cells["RFC"].Value = _cliente.RFC;
+                l_row.Cells["Nombre"].Value = _cliente.Nombre;
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -175,6 +190,44 @@ namespace PROYECTO_MAD
             Servicios serviciosform = new Servicios();
             serviciosform.Show();
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (!m_registrando) {
+                m_registrando = true;
+                m_clienteActual = -1;
+
+                MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Cliente.", "Informacion");
+            } else {
+                DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Cliente?", "Advertencia", MessageBoxButtons.YesNo);
+                if (l_editar == DialogResult.Yes) {
+                    //EntClientes l_cliente = new EntClientes(
+                    //    textBox5.Text,
+                    //    textBox1.Text,
+                    //    textBox4.Text,
+                    //    textBox5.Text,
+                    //    textBox2.Text,
+                    //    textBox1.Text,
+                    //    textBox8.Text,
+                    //    textBox7.Text,
+                    //    dateTimePicker1.Value,
+                    //    radioButton1.Checked
+                    //);
+
+                    //EnlaceDB l_enlace = new EnlaceDB();
+                    //if (l_enlace.RegistrarCliente(l_cliente, Program.m_usuario.NoNomina)) {
+                    //    MessageBox.Show(this, "Usuario Registrado con Exito.", "Informacion");
+                    //    Clientes_Load(this, new EventArgs());
+                    //    m_registrando = false;
+                    //}
+                }
+            }
         }
     }
 }

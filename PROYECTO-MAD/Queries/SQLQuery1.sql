@@ -18,6 +18,7 @@ CREATE TABLE Cliente(
 	EstadoCivil VARCHAR (10) NOT NULL,
 );
 
+DROP TABLE Servicio;
 CREATE TABLE Servicio(
 	CodServicio INT PRIMARY KEY IDENTITY(1,1),
 	Nombre VARCHAR (50) NOT NULL,
@@ -37,6 +38,7 @@ CREATE TABLE Hotel(
 	NoPisos INT CHECK(NoPisos > 0)
 );
 
+DROP TABLE TiposHabitacion;
 CREATE TABLE TiposHabitacion(
 	CodTDH INT PRIMARY KEY IDENTITY(1,1),
 	NivelHabitacion VARCHAR(20) NOT NULL,
@@ -91,6 +93,7 @@ CREATE TABLE Checks(
 	FOREIGN KEY (idReservacion) REFERENCES Reservacion(CodReservacion)
 );
 
+DROP TABLE Factura;
 CREATE TABLE Factura(
 	NoFactura INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	PrecioTotal MONEY NOT NULL,
@@ -167,14 +170,12 @@ select * from Usuario;
 select*from Contrasenna
 
 insert into Usuario (NoNomina, Nombre, ApellidoPaterno, ApellidoMaterno, CorreoElectronico, Contrasenna, TelCelular, TelCasa, FechaNacimiento, TipoUsuario) values (1023, 'Laura', 'Mart�nez', 'Perez', 'martinezperez@gmail.com', 1, 8180101836, 111111111,'2004-06-04',1);
-insert into Contrasenna(FechaCreacion, Contrasenna, idUsuario) values ('07-05-2025', 'Flordecerezo01*', 1023);
 insert into Contrasenna(FechaCreacion, Contrasenna, idUsuario) values ('08-05-2025', 'Flordecerezo02*', 1023);
 
 
 GO
 CREATE PROCEDURE Validar
 (
-    -- Add the parameters for the stored procedure here
     @email nvarchar(40) = NULL,
     @contrasenna nvarchar(20) = NULL,
 	@tipousuario bit = 0
@@ -249,7 +250,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE Editar
+CREATE OR ALTER PROCEDURE Editar
 (
 	@NoNomina INT,
 	@Nombre NVARCHAR (50),
@@ -264,11 +265,25 @@ CREATE PROCEDURE Editar
 )
 AS
 BEGIN
+	DECLARE @ContrasIguales AS INT;
+	DECLARE @TotalContras AS INT;
+
+	SELECT @ContrasIguales = Count(c.Contrasenna) FROM Contrasenna c WHERE c.Contrasenna = @Contrasenna AND c.idUsuario = @NoNomina;
+	IF @ContrasIguales > 0 BEGIN RETURN; END
+	
+	INSERT INTO Contrasenna (idUsuario, Contrasenna) VALUES (@NoNomina, @Contrasenna);
+
+	SELECT @TotalContras = Count(c.Contrasenna) FROM Contrasenna c WHERE c.idUsuario = @NoNomina;
+	IF @TotalContras > 2 BEGIN
+		DELETE FROM Contrasenna WHERE idUsuario = @NoNomina AND idContrasenna = (SELECT TOP 1 idContrasenna FROM Contrasenna WHERE idUsuario = @NoNomina ORDER BY idContrasenna ASC);
+	END
+
 	UPDATE Usuario SET
 		Nombre = @Nombre, 
 		ApellidoPaterno = @ApellidoPaterno, 
 		ApellidoMaterno = @ApellidoMaterno, 
 		CorreoElectronico = @CorreoElectronico,
+		Contrasenna = (SELECT TOP 1 idContrasenna FROM Contrasenna WHERE idUsuario = @NoNomina ORDER BY idContrasenna DESC),
 		TelCelular = @TelCelular, 
 		TelCasa = @TelCasa, 
 		FechaNacimiento = @FechaNacimiento, 
@@ -279,10 +294,63 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE RegistrarCliente
+(
+	@RFC NVARCHAR (15),
+	@Nombre NVARCHAR (50),
+	@ApellidoPaterno NVARCHAR (50),
+	@ApellidoMaterno NVARCHAR (50),
+	@Ciudad NVARCHAR (30),
+	@Estado NVARCHAR (30),
+	@Pais NVARCHAR (30),
+	@CorreoElectronico NVARCHAR (40),
+	@TelCelular NVARCHAR (10),
+	@TelCasa NVARCHAR (10),
+	@FechaNacimiento DATE,
+	@EstadoCivil NVARCHAR (10),
+	@NoNomina INT
+)
+AS
+BEGIN
+	INSERT INTO Cliente(
+		RFC, 
+		Nombre, 
+		ApellidoPaterno, 
+		ApellidoMaterno, 
+		Ciudad, 
+		Estado, 
+		Pais, 
+		CorreoElectronico, 
+		TelCelular, 
+		TelCasa, 
+		FechaNacimiento, 
+		EstadoCivil
+	) VALUES (
+		@RFC, 
+		@Nombre, 
+		@ApellidoPaterno, 
+		@ApellidoMaterno, 
+		@Ciudad, 
+		@Estado, 
+		@Pais, 
+		@CorreoElectronico, 
+		@TelCelular, 
+		@TelCasa, 
+		@FechaNacimiento, 
+		@EstadoCivil
+	);
+	
+	INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Cliente [Administrador]', 'Administrador ha Registrado un Cliente', @NoNomina);
+END
+GO
+
+
 update Usuario set estado=1 
 EXEC Validar @email='martinezperez@gmail.com', @contrasenna='Flordecerezo01*', @tipousuario = 1;
 GO
 
+TRUNCATE TABLE Contrasenna;
+insert into Contrasenna(FechaCreacion, Contrasenna, idUsuario) values ('07-05-2025', 'Flordecerezo01*', 1023);
 
 GO
 CREATE PROCEDURE GetUsuarios
@@ -307,12 +375,25 @@ GO
 EXEC GetUsuarios;
 GO
 
-
-ALTER TABLE TiposHabitacion
-drop column NivelHabitacion;
-
-ALTER TABLE TiposHabitacion
-add NivelHabitacion varchar(20) not null;
+CREATE OR ALTER PROCEDURE GetClientes
+AS
+BEGIN
+    SELECT 
+		RFC, 
+		Nombre, 
+		ApellidoPaterno, 
+		ApellidoMaterno, 
+		Ciudad, 
+		Estado, 
+		Pais, 
+		CorreoElectronico, 
+		TelCelular, 
+		TelCasa,
+		FechaNacimiento,
+		EstadoCivil
+	FROM Cliente;
+END
+GO
 
 SELECT * FROM Usuario;
 SELECT * FROM Contrasenna;
@@ -329,7 +410,7 @@ SELECT * FROM Checks;
 
 UPDATE Usuario SET Estado = 1 WHERE NoNomina = 2004;
 TRUNCATE TABLE Contrasenna;
-DELETE FROM USUARIO WHERE NoNomina = 2004;
+DELETE FROM USUARIO WHERE NoNomina = 3000;
 
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'El RFC �nico del cliente', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE',  @level1name = N'Cliente',  @level2type = N'COLUMN', @level2name = N'RFC';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Nombre o nombres sin apellidos', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Cliente', @level2type = N'COLUMN', @level2name = N'Nombre';

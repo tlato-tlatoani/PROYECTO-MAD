@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PROYECTO_MAD.Entities
 {
-    public class Clientes
+    public class EntClientes
     {
         public string RFC;
         public string Nombre;
@@ -21,7 +21,7 @@ namespace PROYECTO_MAD.Entities
         public DateTime FechaNacimiento;
         public string EstadoCivil;
 
-        public Clientes(
+        public EntClientes(
         string _RFC,
         string _Nombre,
         string _ApellidoPaterno,
@@ -49,6 +49,6 @@ namespace PROYECTO_MAD.Entities
             EstadoCivil = _EstadoCivil;
 
         }
-        public Clientes() { }
+        public EntClientes() { }
     }
 }
