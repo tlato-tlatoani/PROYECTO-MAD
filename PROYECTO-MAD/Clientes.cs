@@ -122,13 +122,6 @@ namespace PROYECTO_MAD
 
         }
 
-        private void usuarioToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Usuarios usuariosform = new Usuarios();
-            usuariosform.Show();
-            this.Close();
-        }
-
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form1 identificateform = new Form1();
@@ -228,6 +221,25 @@ namespace PROYECTO_MAD
                     //}
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void verEditarRegistrarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios usuariosform = new Usuarios();
+            usuariosform.Show();
+            this.Close();
+        }
+
+        private void miPerfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios usuariosform = new Usuarios();
+            usuariosform.Show();
+            this.Close();
         }
     }
 }

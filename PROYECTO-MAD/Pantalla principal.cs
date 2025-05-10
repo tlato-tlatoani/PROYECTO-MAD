@@ -28,14 +28,6 @@ namespace PROYECTO_MAD
 
         //    nuevoForm.Show();
         //}
-        private void usuarioToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            //CambiarFormulario(new Usuarios(), true);
-            if (!Program.m_usuario.TipoUsuario) { return; }
-            Usuarios usuariosform = new Usuarios();
-            usuariosform.Show();
-            this.Close();
-        }
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -107,6 +99,20 @@ namespace PROYECTO_MAD
         {
             Servicios serviciosform = new Servicios();
             serviciosform.Show();
+            this.Close();
+        }
+
+        private void miPerfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios usuariosform = new Usuarios();
+            usuariosform.Show();
+            this.Close();
+        }
+
+        private void verEditarRegistrarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios usuariosform = new Usuarios();
+            usuariosform.Show();
             this.Close();
         }
     }

@@ -226,7 +226,14 @@ namespace PROYECTO_MAD
 
         }
 
-        private void usuarioToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void miPerfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios usuariosform = new Usuarios();
+            usuariosform.Show();
+            this.Close();
+        }
+
+        private void verEditarRegistrarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
@@ -261,6 +268,13 @@ namespace PROYECTO_MAD
             this.Close();
         }
 
+        private void verServiciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Servicios serviciosform = new Servicios();
+            serviciosform.Show();
+            this.Close();
+        }
+
         private void verClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clientes clientesform = new Clientes();
@@ -286,13 +300,6 @@ namespace PROYECTO_MAD
         {
             Reporte_de_Ventas reporteventasform = new Reporte_de_Ventas();
             reporteventasform.Show();
-            this.Close();
-        }
-
-        private void verServiciosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Servicios serviciosform = new Servicios();
-            serviciosform.Show();
             this.Close();
         }
 

@@ -10,19 +10,14 @@ using System.Windows.Forms;
 
 namespace PROYECTO_MAD
 {
-    public partial class Habitacion : Form
+    public partial class Perfil : Form
     {
-        public Habitacion()
+        public Perfil()
         {
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
@@ -69,11 +64,19 @@ namespace PROYECTO_MAD
             this.Close();
         }
 
+        private void verServiciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Servicios serviciosform = new Servicios();
+            serviciosform.Show();
+            this.Close();
+        }
+
         private void verClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clientes clientesform = new Clientes();
             clientesform.Show();
             this.Close();
+
         }
 
         private void verHistorialDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -94,13 +97,6 @@ namespace PROYECTO_MAD
         {
             Reporte_de_Ventas reporteventasform = new Reporte_de_Ventas();
             reporteventasform.Show();
-            this.Close();
-        }
-
-        private void verServiciosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Servicios serviciosform = new Servicios();
-            serviciosform.Show();
             this.Close();
         }
     }

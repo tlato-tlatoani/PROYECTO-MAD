@@ -22,13 +22,6 @@ namespace PROYECTO_MAD
 
         }
 
-        private void usuarioToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Usuarios usuariosform = new Usuarios();
-            usuariosform.Show();
-            this.Close();
-        }
-
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form1 identificateform = new Form1();
@@ -89,6 +82,20 @@ namespace PROYECTO_MAD
         {
             Servicios serviciosform = new Servicios();
             serviciosform.Show();
+            this.Close();
+        }
+
+        private void miPerfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios usuariosform = new Usuarios();
+            usuariosform.Show();
+            this.Close();
+        }
+
+        private void verEditarRegistrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios usuariosform = new Usuarios();
+            usuariosform.Show();
             this.Close();
         }
     }
