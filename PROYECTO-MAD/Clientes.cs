@@ -188,7 +188,15 @@ namespace PROYECTO_MAD
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            string l_busqueda = textBox9.Text;
+            dataGridView1.ClearSelection();
+            foreach (DataGridViewRow _row in dataGridView1.Rows)
+            {
+                if (!_row.Cells["Correo"].Value.ToString().TrimEnd().Equals(l_busqueda)) { continue; }
+                _row.Selected = true;
+                dataGridView1_Click(dataGridView1, new DataGridViewCellEventArgs(0, 0));
+                return;
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
