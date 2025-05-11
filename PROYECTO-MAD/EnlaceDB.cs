@@ -213,6 +213,55 @@ namespace PROYECTO_MAD
 
             return isValid;
         }
+        public bool RegistrarHotel(Hotel _hotel, int _admin)
+        {
+            bool isValid = false;
+            try
+            {
+                conectar();
+                string qry = "RegistrarHotel";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 9000;
+
+                var parametro1 = _comandosql.Parameters.Add("@CodHotel", SqlDbType.Int);
+                parametro1.Value = _hotel.CodHotel;
+                var parametro2 = _comandosql.Parameters.Add("@NombreHotel", SqlDbType.NVarChar, 100);
+                parametro2.Value = _hotel.NombreHotel;
+                var parametro3 = _comandosql.Parameters.Add("@Ciudad", SqlDbType.NVarChar, 30);
+                parametro3.Value = _hotel.Ciudad;
+                var parametro4 = _comandosql.Parameters.Add("@Estado", SqlDbType.NVarChar, 30);
+                parametro4.Value = _hotel.Estado;
+                var parametro5 = _comandosql.Parameters.Add("@Pais", SqlDbType.NVarChar, 30);
+                parametro5.Value = _hotel.Pais;
+                var parametro6 = _comandosql.Parameters.Add("@ZonaTuristica", SqlDbType.Bit);
+                parametro6.Value = _hotel.ZonaTuristica;
+                var parametro7 = _comandosql.Parameters.Add("@Locacion", SqlDbType.NVarChar, 60);
+                parametro7.Value = _hotel.Locacion;
+                var parametro8 = _comandosql.Parameters.Add("@NoPisos", SqlDbType.Int);
+                parametro8.Value = _hotel.NoPisos;
+                var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro13.Value = _admin;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+
+                isValid = true;
+            }
+            catch (SqlException e)
+            {
+                isValid = false;
+                string msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return isValid;
+        }
         public bool Editar(Usuario _usuario) {
             bool isValid = false;
             try

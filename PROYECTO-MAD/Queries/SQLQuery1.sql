@@ -37,6 +37,10 @@ CREATE TABLE Hotel(
 	Locacion VARCHAR (60) NOT NULL,
 	NoPisos INT CHECK(NoPisos > 0)
 );
+ALTER TABLE Hotel ADD FechaInicio Date Not Null;
+ALTER TABLE Hotel DROP COLUMN Amenidades;
+ALTER TABLE Hotel DROP COLUMN ZonaTuristica;
+ALTER TABLE Hotel ADD ZonaTuristica Bit Not Null;
 
 DROP TABLE TiposHabitacion;
 CREATE TABLE TiposHabitacion(
@@ -380,11 +384,6 @@ BEGIN
 END
 GO
 
-
-
-update Usuario set estado=1 
-EXEC Validar @email='martinezperez@gmail.com', @contrasenna='Flordecerezo01*', @tipousuario = 1;
-GO
 
 TRUNCATE TABLE Contrasenna;
 insert into Contrasenna(FechaCreacion, Contrasenna, idUsuario) values ('07-05-2025', 'Flordecerezo01*', 1023);

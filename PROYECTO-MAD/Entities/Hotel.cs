@@ -14,8 +14,7 @@ namespace PROYECTO_MAD.Entities
         public string Ciudad;
         public string Estado;
         public string Pais;
-        public string Amenidades;
-        public string ZonaTuristica;
+        public bool ZonaTuristica;
         public string Locacion;
         public int NoPisos;
 
@@ -27,8 +26,7 @@ namespace PROYECTO_MAD.Entities
             string _Ciudad, 
             string _Estado, 
             string _Pais, 
-            string _Amenidades, 
-            string _ZonaTuristica, 
+            bool _ZonaTuristica, 
             string _Locacion,
             int    _NoPisos
 
@@ -38,7 +36,6 @@ namespace PROYECTO_MAD.Entities
             Ciudad = _Ciudad;
             Estado = _Estado;
             Pais = _Pais;
-            Amenidades = _Amenidades;
             ZonaTuristica = _ZonaTuristica;
             Locacion = _Locacion;
             NoPisos = _NoPisos;

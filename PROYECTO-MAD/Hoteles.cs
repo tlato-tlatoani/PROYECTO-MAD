@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PROYECTO_MAD
 {
     public partial class Hoteles : Form
     {
+        public List<Hotel> m_hoteles;
+        public bool m_registrando = false;
+        public bool m_editando = false;
+        public int m_actual = 0;
         public Hoteles()
         {
             InitializeComponent();
@@ -212,6 +218,42 @@ namespace PROYECTO_MAD
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
             this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (!m_registrando)
+            {
+                m_registrando = true;
+                m_actual = 0;
+
+                MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Hotel.", "Informacion");
+            }
+            else
+            {
+                DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Hotel?", "Advertencia", MessageBoxButtons.YesNo);
+                if (l_editar == DialogResult.Yes)
+                {
+                    Hotel l_hotel = new Hotel(
+                        int.Parse(textBox7.Text),
+                        textBox9.Text,
+                        textBox1.Text,
+                        textBox4.Text,
+                        textBox5.Text,
+                        radioButton1.Checked,
+                        textBox3.Text,
+                        int.Parse(textBox6.Text)
+                    );
+
+                    EnlaceDB l_enlace = new EnlaceDB();
+                    if (l_enlace.RegistrarHotel(l_hotel, Program.m_usuario.NoNomina))
+                    {
+                        MessageBox.Show(this, "Hotel Registrado con Exito.", "Informacion");
+                        Form3_Load(this, new EventArgs());
+                        m_registrando = false;
+                    }
+                }
+            }
         }
     }
 }
