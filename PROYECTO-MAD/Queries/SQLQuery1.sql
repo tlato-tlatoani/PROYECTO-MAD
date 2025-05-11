@@ -344,6 +344,43 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE EditarCliente
+(
+	@RFC NVARCHAR (15),
+	@Nombre NVARCHAR (50),
+	@ApellidoPaterno NVARCHAR (50),
+	@ApellidoMaterno NVARCHAR (50),
+	@Ciudad NVARCHAR (30),
+	@Estado NVARCHAR (30),
+	@Pais NVARCHAR (30),
+	@CorreoElectronico NVARCHAR (40),
+	@TelCelular NVARCHAR (10),
+	@TelCasa NVARCHAR (10),
+	@FechaNacimiento DATE,
+	@EstadoCivil NVARCHAR (10),
+	@NoNomina INT
+)
+AS
+BEGIN
+	UPDATE Cliente SET
+		Nombre = @Nombre, 
+		ApellidoPaterno = @ApellidoPaterno, 
+		ApellidoMaterno = @ApellidoMaterno, 
+		Ciudad = @Ciudad, 
+		Estado = @Estado, 
+		Pais = @Pais, 
+		CorreoElectronico = @CorreoElectronico, 
+		TelCelular = @TelCelular, 
+		TelCasa = @TelCasa, 
+		FechaNacimiento = @FechaNacimiento, 
+		EstadoCivil = @EstadoCivil
+	WHERE RFC = @RFC;
+	
+	INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Cliente [Administrador]', 'Administrador ha Editado un Cliente', @NoNomina);
+END
+GO
+
+
 
 update Usuario set estado=1 
 EXEC Validar @email='martinezperez@gmail.com', @contrasenna='Flordecerezo01*', @tipousuario = 1;

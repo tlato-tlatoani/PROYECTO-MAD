@@ -63,9 +63,12 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.RFC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verEditarRegistrarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verHotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,8 +86,6 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verEditarRegistrarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -306,8 +307,14 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Soltero",
+            "Casado",
+            "Divorciado",
+            "Viudo"});
             this.comboBox1.Location = new System.Drawing.Point(849, 413);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
@@ -431,6 +438,7 @@
             this.button2.TabIndex = 25;
             this.button2.Text = "Editar";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label15
             // 
@@ -455,13 +463,16 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.RFC,
-            this.Nombre});
+            this.Nombre,
+            this.Correo});
             this.dataGridView1.Location = new System.Drawing.Point(34, 205);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(361, 370);
             this.dataGridView1.TabIndex = 65;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // RFC
             // 
@@ -474,6 +485,12 @@
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
+            // 
+            // Correo
+            // 
+            this.Correo.HeaderText = "Correo Electronico";
+            this.Correo.Name = "Correo";
+            this.Correo.ReadOnly = true;
             // 
             // label14
             // 
@@ -511,6 +528,20 @@
             this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
             this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
             this.usuarioToolStripMenuItem1.Text = "Usuario";
+            // 
+            // miPerfilToolStripMenuItem
+            // 
+            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
+            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.miPerfilToolStripMenuItem.Text = "Mi perfil";
+            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            // 
+            // verEditarRegistrarUsuarioToolStripMenuItem
+            // 
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Name = "verEditarRegistrarUsuarioToolStripMenuItem";
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarUsuarioToolStripMenuItem_Click);
             // 
             // reservacionesToolStripMenuItem
             // 
@@ -658,20 +689,6 @@
             this.label17.Text = "APELLIDO PATERNO:";
             this.label17.UseWaitCursor = true;
             // 
-            // miPerfilToolStripMenuItem
-            // 
-            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
-            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.miPerfilToolStripMenuItem.Text = "Mi perfil";
-            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
-            // 
-            // verEditarRegistrarUsuarioToolStripMenuItem
-            // 
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Name = "verEditarRegistrarUsuarioToolStripMenuItem";
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarUsuarioToolStripMenuItem_Click);
-            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -785,5 +802,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ToolStripMenuItem miPerfilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEditarRegistrarUsuarioToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
     }
 }

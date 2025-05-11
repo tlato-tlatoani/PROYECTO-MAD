@@ -167,28 +167,32 @@ namespace PROYECTO_MAD
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 9000;
 
-                var parametro1 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
-                parametro1.Value = _usuario.NoNomina;
+                var parametro1 = _comandosql.Parameters.Add("@RFC", SqlDbType.NVarChar, 15);
+                parametro1.Value = _cliente.RFC;
                 var parametro2 = _comandosql.Parameters.Add("@Nombre", SqlDbType.NChar, 50);
-                parametro2.Value = _usuario.Nombre;
+                parametro2.Value = _cliente.Nombre;
                 var parametro3 = _comandosql.Parameters.Add("@ApellidoPaterno", SqlDbType.NChar, 50);
-                parametro3.Value = _usuario.ApellidoPaterno;
+                parametro3.Value = _cliente.ApellidoPaterno;
                 var parametro4 = _comandosql.Parameters.Add("@ApellidoMaterno", SqlDbType.NChar, 50);
-                parametro4.Value = _usuario.ApellidoMaterno;
-                var parametro5 = _comandosql.Parameters.Add("@CorreoElectronico", SqlDbType.NChar, 40);
-                parametro5.Value = _usuario.CorreoElectronico;
-                var parametro6 = _comandosql.Parameters.Add("@Contrasenna", SqlDbType.NChar, 20);
-                parametro6.Value = _usuario.RealContrasenna;
-                var parametro7 = _comandosql.Parameters.Add("@TelCelular", SqlDbType.NChar, 10);
-                parametro7.Value = _usuario.TelCelular;
-                var parametro8 = _comandosql.Parameters.Add("@TelCasa", SqlDbType.NChar, 10);
-                parametro8.Value = _usuario.TelCasa;
-                var parametro9 = _comandosql.Parameters.Add("@FechaNacimiento", SqlDbType.Date);
-                parametro9.Value = _usuario.FechaNacimiento;
-                var parametro10 = _comandosql.Parameters.Add("@TipoUsuario", SqlDbType.Bit);
-                parametro10.Value = _usuario.TipoUsuario;
-                var parametro11 = _comandosql.Parameters.Add("@EsAdmin", SqlDbType.Bit);
-                parametro11.Value = _isAdmin;
+                parametro4.Value = _cliente.ApellidoMaterno;
+                var parametro5 = _comandosql.Parameters.Add("@Ciudad", SqlDbType.NChar, 30);
+                parametro5.Value = _cliente.Ciudad;
+                var parametro6 = _comandosql.Parameters.Add("@Estado", SqlDbType.NChar, 30);
+                parametro6.Value = _cliente.Estado;
+                var parametro7 = _comandosql.Parameters.Add("@Pais", SqlDbType.NChar, 30);
+                parametro7.Value = _cliente.Pais;
+                var parametro8 = _comandosql.Parameters.Add("@CorreoElectronico", SqlDbType.NChar, 40);
+                parametro8.Value = _cliente.CorreoElectronico;
+                var parametro9 = _comandosql.Parameters.Add("@TelCelular", SqlDbType.NVarChar, 10);
+                parametro9.Value = _cliente.TelCelular;
+                var parametro10 = _comandosql.Parameters.Add("@TelCasa", SqlDbType.NVarChar, 10);
+                parametro10.Value = _cliente.TelCasa;
+                var parametro11 = _comandosql.Parameters.Add("@FechaNacimiento", SqlDbType.Date);
+                parametro11.Value = _cliente.FechaNacimiento;
+                var parametro12 = _comandosql.Parameters.Add("@EstadoCivil", SqlDbType.NVarChar, 10);
+                parametro12.Value = _cliente.EstadoCivil;
+                var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro13.Value = _admin;
 
                 _adaptador.InsertCommand = _comandosql;
                 _comandosql.ExecuteNonQuery();
@@ -259,7 +263,63 @@ namespace PROYECTO_MAD
 
             return isValid;
         }
+        public bool EditarCliente(EntClientes _cliente, int _admin)
+        {
+            bool isValid = false;
+            try
+            {
+                conectar();
+                string qry = "EditarCliente";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 9000;
 
+                var parametro1 = _comandosql.Parameters.Add("@RFC", SqlDbType.NVarChar, 15);
+                parametro1.Value = _cliente.RFC;
+                var parametro2 = _comandosql.Parameters.Add("@Nombre", SqlDbType.NChar, 50);
+                parametro2.Value = _cliente.Nombre;
+                var parametro3 = _comandosql.Parameters.Add("@ApellidoPaterno", SqlDbType.NChar, 50);
+                parametro3.Value = _cliente.ApellidoPaterno;
+                var parametro4 = _comandosql.Parameters.Add("@ApellidoMaterno", SqlDbType.NChar, 50);
+                parametro4.Value = _cliente.ApellidoMaterno;
+                var parametro5 = _comandosql.Parameters.Add("@Ciudad", SqlDbType.NChar, 30);
+                parametro5.Value = _cliente.Ciudad;
+                var parametro6 = _comandosql.Parameters.Add("@Estado", SqlDbType.NChar, 30);
+                parametro6.Value = _cliente.Estado;
+                var parametro7 = _comandosql.Parameters.Add("@Pais", SqlDbType.NChar, 30);
+                parametro7.Value = _cliente.Pais;
+                var parametro8 = _comandosql.Parameters.Add("@CorreoElectronico", SqlDbType.NChar, 40);
+                parametro8.Value = _cliente.CorreoElectronico;
+                var parametro9 = _comandosql.Parameters.Add("@TelCelular", SqlDbType.NVarChar, 10);
+                parametro9.Value = _cliente.TelCelular;
+                var parametro10 = _comandosql.Parameters.Add("@TelCasa", SqlDbType.NVarChar, 10);
+                parametro10.Value = _cliente.TelCasa;
+                var parametro11 = _comandosql.Parameters.Add("@FechaNacimiento", SqlDbType.Date);
+                parametro11.Value = _cliente.FechaNacimiento;
+                var parametro12 = _comandosql.Parameters.Add("@EstadoCivil", SqlDbType.NVarChar, 10);
+                parametro12.Value = _cliente.EstadoCivil;
+                var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro13.Value = _admin;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+
+                isValid = true;
+            }
+            catch (SqlException e)
+            {
+                isValid = false;
+                string msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return isValid;
+        }
         public List<Usuario> getUsuarios() {
             var msg = "";
             DataTable tabla = new DataTable();
@@ -344,7 +404,7 @@ namespace PROYECTO_MAD
                         _row["TelCelular"].ToString(),
                         _row["TelCasa"].ToString(),
                         DateTime.Parse(_row["FechaNacimiento"].ToString()),
-                        _row["TelCasa"].ToString()
+                        _row["EstadoCivil"].ToString()
                     ));
                 }
 

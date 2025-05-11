@@ -17,7 +17,7 @@ namespace PROYECTO_MAD
         public List<EntClientes> m_clientes;
         public bool m_registrando = false;
         public bool m_editando = false;
-        public int m_clienteActual = -1;
+        public string m_clienteActual = "";
 
         public Clientes()
         {
@@ -44,6 +44,7 @@ namespace PROYECTO_MAD
                 DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
                 l_row.Cells["RFC"].Value = _cliente.RFC;
                 l_row.Cells["Nombre"].Value = _cliente.Nombre;
+                l_row.Cells["Correo"].Value = _cliente.CorreoElectronico;
             }
         }
 
@@ -194,31 +195,34 @@ namespace PROYECTO_MAD
         {
             if (!m_registrando) {
                 m_registrando = true;
-                m_clienteActual = -1;
+                m_clienteActual = "";
 
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Cliente.", "Informacion");
             } else {
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Cliente?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes) {
-                    //EntClientes l_cliente = new EntClientes(
-                    //    textBox5.Text,
-                    //    textBox1.Text,
-                    //    textBox4.Text,
-                    //    textBox5.Text,
-                    //    textBox2.Text,
-                    //    textBox1.Text,
-                    //    textBox8.Text,
-                    //    textBox7.Text,
-                    //    dateTimePicker1.Value,
-                    //    radioButton1.Checked
-                    //);
+                    EntClientes l_cliente = new EntClientes(
+                        textBox5.Text,
+                        textBox1.Text,
+                        textBox11.Text,
+                        textBox10.Text,
+                        textBox2.Text,
+                        textBox3.Text,
+                        textBox4.Text,
+                        textBox8.Text,
+                        textBox7.Text,
+                        textBox6.Text,
+                        dateTimePicker1.Value,
+                        comboBox1.Text
+                    );
 
-                    //EnlaceDB l_enlace = new EnlaceDB();
-                    //if (l_enlace.RegistrarCliente(l_cliente, Program.m_usuario.NoNomina)) {
-                    //    MessageBox.Show(this, "Usuario Registrado con Exito.", "Informacion");
-                    //    Clientes_Load(this, new EventArgs());
-                    //    m_registrando = false;
-                    //}
+                    EnlaceDB l_enlace = new EnlaceDB();
+                    if (l_enlace.RegistrarCliente(l_cliente, Program.m_usuario.NoNomina))
+                    {
+                        MessageBox.Show(this, "Cliente Registrado con Exito.", "Informacion");
+                        Clientes_Load(this, new EventArgs());
+                        m_registrando = false;
+                    }
                 }
             }
         }
@@ -240,6 +244,95 @@ namespace PROYECTO_MAD
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
             this.Close();
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            EntClientes l_cliente = null;
+
+            foreach (EntClientes _cliente in m_clientes)
+            {
+                if (!dataGridView1.SelectedCells[0].Value.ToString().Equals(_cliente.RFC)) { continue; }
+                l_cliente = _cliente;
+
+                break;
+            }
+
+            if (l_cliente == null) { return; }
+
+            m_clienteActual = l_cliente.RFC;
+
+            if (m_registrando)
+            {
+                m_registrando = false;
+                textBox1.Text = "";
+
+                MessageBox.Show(this, "Has salido del Modo Registro", "Informacion");
+            }
+            if (m_editando)
+            {
+                m_editando = false;
+
+                MessageBox.Show(this, "Has salido del Modo Edicion", "Informacion");
+            }
+
+            textBox8.Text = l_cliente.CorreoElectronico;
+            textBox1.Text = l_cliente.Nombre;
+            textBox11.Text = l_cliente.ApellidoPaterno;
+            textBox10.Text = l_cliente.ApellidoMaterno;
+            dateTimePicker1.Value = l_cliente.FechaNacimiento;
+            textBox5.Text = l_cliente.RFC;
+            textBox2.Text = l_cliente.Ciudad;
+            textBox3.Text = l_cliente.Estado;
+            textBox4.Text = l_cliente.Pais;
+            textBox6.Text = l_cliente.TelCasa;
+            textBox7.Text = l_cliente.TelCelular;
+            comboBox1.Text = l_cliente.EstadoCivil;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!m_editando)
+            {
+                if (m_clienteActual.Length <= 0)
+                {
+                    MessageBox.Show(this, "Necesitas Seleccionar un Cliente para Realizar esta Accion.", "Advertencia");
+                    return;
+                }
+
+                m_editando = true;
+
+                MessageBox.Show(this, "Estas en Modo Edicion.\nSi Presionas este Boton de Nuevo Editaras el Cliente Seleccionado.", "Informacion");
+            }
+            else
+            {
+                DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Cliente?", "Advertencia", MessageBoxButtons.YesNo);
+                if (l_editar == DialogResult.Yes)
+                {
+                    EntClientes l_cliente = new EntClientes(
+                        textBox5.Text,
+                        textBox1.Text,
+                        textBox11.Text,
+                        textBox10.Text,
+                        textBox2.Text,
+                        textBox3.Text,
+                        textBox4.Text,
+                        textBox8.Text,
+                        textBox7.Text,
+                        textBox6.Text,
+                        dateTimePicker1.Value,
+                        comboBox1.Text
+                    );
+
+                    EnlaceDB l_enlace = new EnlaceDB();
+                    if (l_enlace.EditarCliente(l_cliente, Program.m_usuario.NoNomina))
+                    {
+                        MessageBox.Show(this, "Cliente Editado con Exito.", "Informacion");
+                        Clientes_Load(this, new EventArgs());
+                        m_editando = false;
+                    }
+                }
+            }
         }
     }
 }
