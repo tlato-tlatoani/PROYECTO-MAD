@@ -1,8 +1,4 @@
 ﻿USE GatoHotelero;
-
-EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Contrase�a de del usuario', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Usuario', @level2type = N'COLUMN', @level2name = N'Contrasenna';
-EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Administrador (0) u Operativo(1)', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Usuario', @level2type = N'COLUMN', @level2name = N'TipoUsuario';
-
 select * from Usuario;
 select*from Contrasenna
 
@@ -465,3 +461,57 @@ Truncate table TiposHabitacion;
 
 Select * from Hotel;
 Select * from TiposHabitacion;
+
+GO
+
+CREATE OR ALTER PROCEDURE BuscarClienteRFC
+(
+	@RFC NVARCHAR (15)
+)
+AS
+BEGIN
+	SELECT
+		RFC, 
+		Nombre, 
+		ApellidoPaterno, 
+		ApellidoMaterno, 
+		Ciudad, 
+		Estado, 
+		Pais, 
+		CorreoElectronico, 
+		TelCelular, 
+		TelCasa,
+		FechaNacimiento,
+		EstadoCivil
+	FROM Cliente
+
+	WHERE RFC= @RFC;
+END
+
+GO
+
+CREATE OR ALTER PROCEDURE BuscarClienteAp
+(
+	@ApellidoPaterno NVARCHAR (50),
+	@ApellidoMaterno NVARCHAR (50)
+
+)
+AS
+BEGIN
+	SELECT
+		RFC, 
+		Nombre, 
+		ApellidoPaterno, 
+		ApellidoMaterno, 
+		Ciudad, 
+		Estado, 
+		Pais, 
+		CorreoElectronico, 
+		TelCelular, 
+		TelCasa,
+		FechaNacimiento,
+		EstadoCivil
+	FROM Cliente
+
+	WHERE ApellidoPaterno = @ApellidoMaterno AND ApellidoMaterno = @ApellidoMaterno;
+END

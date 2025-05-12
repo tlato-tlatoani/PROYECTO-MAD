@@ -15,8 +15,6 @@ CREATE TABLE Cliente(
 	FechaNacimiento DATE NOT NULL,
 	EstadoCivil VARCHAR (10) NOT NULL,
 );
-
-DROP TABLE Servicio;
 CREATE TABLE Servicio(
 	CodServicio INT PRIMARY KEY IDENTITY(1,1),
 	Nombre VARCHAR (50) NOT NULL,
@@ -168,3 +166,6 @@ ALTER TABLE Usuario
 ADD Estado BIT NOT NULL Default 0;
 
 UPDATE Usuario SET Estado = 1 WHERE NoNomina = 2004;
+
+ALTER TABLE Servicio
+ADD idHotel INT FOREIGN KEY (idHotel) REFERENCES Hotel(CodHotel);

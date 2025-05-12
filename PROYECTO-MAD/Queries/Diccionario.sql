@@ -68,10 +68,13 @@ EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Administrador 
 
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'C�digo de contrase�a �nico', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Contrasenna', @level2type = N'COLUMN', @level2name = N'idContrasenna';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'C�digo de usuario �nico del usuario al que pertenece la contrase�a', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Contrasenna', @level2type = N'COLUMN', @level2name = N'idUsuario';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Contrase�a de del usuario', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Usuario', @level2type = N'COLUMN', @level2name = N'Contrasenna';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Administrador (0) u Operativo(1)', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Usuario', @level2type = N'COLUMN', @level2name = N'TipoUsuario';
 
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'C�digo �nico del registro afectado', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Operacion', @level2type = N'COLUMN', @level2name = N'idRegistroAfectado';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Tabla con la que se relaciona el registro', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Operacion', @level2type = N'COLUMN', @level2name = N'TablaAfectada';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Que operaci�n se realiza', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Operacion', @level2type = N'COLUMN', @level2name = N'TipoOperacion';
+
 
 SELECT S.NAME AS [SCHEMA_TABLE], 
        T.NAME AS [TABLE NAME], 
