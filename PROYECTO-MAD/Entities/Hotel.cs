@@ -17,6 +17,7 @@ namespace PROYECTO_MAD.Entities
         public bool ZonaTuristica;
         public string Locacion;
         public int NoPisos;
+        public DateTime FechaInicio;
 
 
         public Hotel(
@@ -28,9 +29,11 @@ namespace PROYECTO_MAD.Entities
             string _Pais, 
             bool _ZonaTuristica, 
             string _Locacion,
-            int    _NoPisos
+            int    _NoPisos,
+            DateTime _FechaInicio
 
-            ){
+            )
+        {
             CodHotel = _CodHotel;
             NombreHotel = _NombreHotel;
             Ciudad = _Ciudad;
@@ -39,6 +42,7 @@ namespace PROYECTO_MAD.Entities
             ZonaTuristica = _ZonaTuristica;
             Locacion = _Locacion;
             NoPisos = _NoPisos;
+            FechaInicio = _FechaInicio;
         }
 
         public Hotel() { }

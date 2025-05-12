@@ -39,11 +39,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -56,6 +54,8 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +73,8 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -182,23 +184,12 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label7.Location = new System.Drawing.Point(435, 310);
+            this.label7.Location = new System.Drawing.Point(435, 323);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(134, 48);
             this.label7.TabIndex = 29;
             this.label7.Text = "TIPOS DE CAMAS:";
-            // 
-            // listBox1
-            // 
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(443, 346);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(217, 116);
-            this.listBox1.TabIndex = 30;
             // 
             // label6
             // 
@@ -232,17 +223,6 @@
             this.label8.TabIndex = 33;
             this.label8.Text = "LOCACIÓN:";
             this.label8.Click += new System.EventHandler(this.label8_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(770, 376);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(176, 24);
-            this.comboBox1.TabIndex = 34;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -292,6 +272,7 @@
             this.button1.TabIndex = 37;
             this.button1.Text = "Registrar";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
@@ -317,6 +298,7 @@
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label13
             // 
@@ -352,6 +334,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(962, 227);
@@ -372,13 +355,35 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Nivel});
             this.dataGridView1.Location = new System.Drawing.Point(37, 192);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(361, 370);
             this.dataGridView1.TabIndex = 67;
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Nivel
+            // 
+            this.Nivel.HeaderText = "Nivel";
+            this.Nivel.Name = "Nivel";
+            this.Nivel.ReadOnly = true;
             // 
             // menuStrip1
             // 
@@ -520,12 +525,39 @@
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
+            // textBox7
+            // 
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.textBox7.Location = new System.Drawing.Point(770, 377);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(219, 23);
+            this.textBox7.TabIndex = 70;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "Individual",
+            "Matrimonial",
+            "King Size",
+            "Queen Size",
+            "Junior"});
+            this.listBox1.Location = new System.Drawing.Point(443, 353);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox1.Size = new System.Drawing.Size(214, 212);
+            this.listBox1.TabIndex = 71;
+            // 
             // TIPO_DE_HAB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(1301, 625);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.textBox7);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.dataGridView1);
@@ -539,11 +571,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
@@ -578,11 +608,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button2;
@@ -612,5 +640,9 @@
         private System.Windows.Forms.ToolStripMenuItem verServiciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verPerfilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEditarRegistrarUsuarioToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nivel;
     }
 }

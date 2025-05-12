@@ -18,6 +18,8 @@ namespace PROYECTO_MAD.Entities
         public int idHotel;
         public decimal PrecioNoche;
 
+        public string nombreHotel;
+
         public TipoHab(
 
         int _CodTDH,
@@ -27,7 +29,7 @@ namespace PROYECTO_MAD.Entities
         int _CantPersonasMax,
         string _Locacion,
         string _Amenidades,
-        int _idHotel,
+        string _idHotel,
         decimal _PrecioNoche
         )
         {
@@ -40,7 +42,7 @@ namespace PROYECTO_MAD.Entities
             CantPersonasMax = _CantPersonasMax;
             Locacion = _Locacion;
             Amenidades = _Amenidades;
-            idHotel = _idHotel;
+            nombreHotel = _idHotel;
             PrecioNoche = _PrecioNoche;
 
         }

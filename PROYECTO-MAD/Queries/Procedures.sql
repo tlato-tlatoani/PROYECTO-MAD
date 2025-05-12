@@ -262,6 +262,23 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROCEDURE GetHoteles
+AS
+BEGIN
+    SELECT 
+		CodHotel,
+		NombreHotel,
+		Ciudad,
+		Estado,
+		Pais,
+		ZonaTuristica,
+		Locacion,
+		NoPisos,
+		FechaInicio
+	FROM Hotel;
+END
+GO
+
 CREATE OR ALTER PROCEDURE BuscarCliente
 (
 	@CorreoElectronico NVARCHAR (40)
@@ -289,15 +306,162 @@ GO
 
 CREATE OR ALTER PROCEDURE RegistrarHoteles 
 (
-	@CodHotel INT, 
-	@NombreHotel NVARCHAR (100), 
-	@Ciudad NVARCHAR (30), 
-	@Estado NVARCHAR (30), 
-	@Pais NVARCHAR (30), 
-	@ZonaTuristica BIT, 
-	@Locacion VARCHAR (60),
-	@NoPisos INT
+    @NombreHotel NVARCHAR (100), 
+    @Ciudad NVARCHAR (30), 
+    @Estado NVARCHAR (30), 
+    @Pais NVARCHAR (30), 
+    @ZonaTuristica BIT, 
+    @Locacion VARCHAR (60),
+    @NoPisos INT,
+	@FechaInicio Date,
+    @NoNomina INT
 )
+AS
 BEGIN
+    INSERT INTO Hotel(
+    NombreHotel,
+    Ciudad,
+    Estado,
+    Pais,
+    ZonaTuristica,
+    Locacion,
+    NoPisos,
+    FechaInicio
+    )
+    VALUES
+    (
+    @NombreHotel, 
+    @Ciudad,
+    @Estado, 
+    @Pais, 
+    @ZonaTuristica, 
+    @Locacion,
+    @NoPisos,
+    @FechaInicio
+    );
 
+    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Hotel', 'Administrador ha Registrado un Hotel', @NoNomina);
 END
+GO;
+
+CREATE OR ALTER PROCEDURE EditarHotel
+(
+	@NombreHotel NVARCHAR (100), 
+    @Ciudad NVARCHAR (30), 
+    @Estado NVARCHAR (30), 
+    @Pais NVARCHAR (30), 
+    @ZonaTuristica BIT, 
+    @Locacion VARCHAR (60),
+    @NoPisos INT,
+	@FechaInicio Date,
+    @CodHotel INT,
+    @NoNomina INT
+)
+AS
+BEGIN
+	UPDATE Hotel SET
+		NombreHotel = @NombreHotel,
+		Ciudad = @Ciudad,
+		Estado = @Estado,
+		Pais = @Pais,
+		ZonaTuristica = @ZonaTuristica,
+		Locacion = @Locacion,
+		NoPisos = @NoPisos,
+		FechaInicio = @FechaInicio
+	WHERE CodHotel = @CodHotel;
+	
+	INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Hotel [Administrador]', 'Administrador ha Editado un Hotel', @NoNomina);
+END
+GO
+
+CREATE OR ALTER PROCEDURE GetTiposHabitaciones
+AS
+BEGIN
+    SELECT 
+		CodTDH,
+		NivelHabitacion,
+		NoCamas,
+		TipoCama,
+		PrecioNoche,
+		CantPersonasMax,
+		t.Locacion,
+		Amenidades,
+		idHotel,
+		NombreHotel
+	FROM TiposHabitacion t JOIN Hotel h on CodHotel = idHotel;
+END
+GO
+
+CREATE OR ALTER PROCEDURE RegistrarTipoHabitacion
+(
+	@NivelHabitacion NVARCHAR(20),
+	@NoCamas INT,
+	@TipoCama NVARCHAR (300),
+	@PrecioNoche MONEY,
+	@CantPersonasMax INT,
+	@Locacion NVARCHAR (60),
+	@Amenidades NVARCHAR (100),
+	@NombreHotel NVARCHAR (100),
+    @NoNomina INT
+)
+AS
+BEGIN
+    INSERT INTO TiposHabitacion(
+		NivelHabitacion,
+		NoCamas,
+		TipoCama,
+		PrecioNoche,
+		CantPersonasMax,
+		Locacion,
+		Amenidades,
+		idHotel
+    )
+    VALUES
+    (
+		@NivelHabitacion,
+		@NoCamas,
+		@TipoCama,
+		@PrecioNoche,
+		@CantPersonasMax,
+		@Locacion,
+		@Amenidades,
+		(SELECT CodHotel FROM Hotel WHERE NombreHotel = @NombreHotel)
+    );
+
+    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Tipo de Habitacion', 'Administrador ha Registrado un Tipo de Habitacion', @NoNomina);
+END
+GO;
+
+CREATE OR ALTER PROCEDURE EditarTipoHabitacion
+(
+	@NivelHabitacion NVARCHAR(20),
+	@NoCamas INT,
+	@TipoCama NVARCHAR (300),
+	@PrecioNoche MONEY,
+	@CantPersonasMax INT,
+	@Locacion NVARCHAR (60),
+	@Amenidades NVARCHAR (100),
+	@NombreHotel NVARCHAR (100),
+	@CodTDH INT,
+    @NoNomina INT
+)
+AS
+BEGIN
+	UPDATE TiposHabitacion SET
+		NivelHabitacion = @NivelHabitacion,
+		NoCamas = @NoCamas,
+		TipoCama = @TipoCama,
+		PrecioNoche = @PrecioNoche,
+		CantPersonasMax = @CantPersonasMax,
+		Locacion = @Locacion,
+		Amenidades = @Amenidades
+	WHERE CodTDH = @CodTDH;
+	
+	INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Tipo de Habitacion [Administrador]', 'Administrador ha Editado un Tipo de Habitacion', @NoNomina);
+END
+GO
+
+Truncate table TiposHabitacion;
+
+Select * from Hotel;
+Select * from TiposHabitacion;

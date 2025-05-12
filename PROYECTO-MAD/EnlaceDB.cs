@@ -219,13 +219,11 @@ namespace PROYECTO_MAD
             try
             {
                 conectar();
-                string qry = "RegistrarHotel";
+                string qry = "RegistrarHoteles";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 9000;
 
-                var parametro1 = _comandosql.Parameters.Add("@CodHotel", SqlDbType.Int);
-                parametro1.Value = _hotel.CodHotel;
                 var parametro2 = _comandosql.Parameters.Add("@NombreHotel", SqlDbType.NVarChar, 100);
                 parametro2.Value = _hotel.NombreHotel;
                 var parametro3 = _comandosql.Parameters.Add("@Ciudad", SqlDbType.NVarChar, 30);
@@ -240,6 +238,57 @@ namespace PROYECTO_MAD
                 parametro7.Value = _hotel.Locacion;
                 var parametro8 = _comandosql.Parameters.Add("@NoPisos", SqlDbType.Int);
                 parametro8.Value = _hotel.NoPisos;
+                var parametro9 = _comandosql.Parameters.Add("@FechaInicio", SqlDbType.Date);
+                parametro9.Value = _hotel.FechaInicio;
+                var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro13.Value = _admin;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+
+                isValid = true;
+            }
+            catch (SqlException e)
+            {
+                isValid = false;
+                string msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return isValid;
+        }
+        public bool RegistrarTipoHabitacion(TipoHab _tipoHab, int _admin)
+        {
+            bool isValid = false;
+            try
+            {
+                conectar();
+                string qry = "RegistrarTipoHabitacion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 9000;
+
+                var parametro2 = _comandosql.Parameters.Add("@NivelHabitacion", SqlDbType.NVarChar, 20);
+                parametro2.Value = _tipoHab.NivelHabitacion;
+                var parametro3 = _comandosql.Parameters.Add("@NoCamas", SqlDbType.Int);
+                parametro3.Value = _tipoHab.NoCamas;
+                var parametro4 = _comandosql.Parameters.Add("@TipoCama", SqlDbType.NVarChar, 300);
+                parametro4.Value = _tipoHab.TipoCama;
+                var parametro5 = _comandosql.Parameters.Add("@PrecioNoche", SqlDbType.Money);
+                parametro5.Value = _tipoHab.PrecioNoche;
+                var parametro6 = _comandosql.Parameters.Add("@CantPersonasMax", SqlDbType.Int);
+                parametro6.Value = _tipoHab.CantPersonasMax;
+                var parametro7 = _comandosql.Parameters.Add("@Locacion", SqlDbType.NVarChar, 60);
+                parametro7.Value = _tipoHab.Locacion;
+                var parametro8 = _comandosql.Parameters.Add("@Amenidades", SqlDbType.NVarChar, 100);
+                parametro8.Value = _tipoHab.Amenidades;
+                var parametro9 = _comandosql.Parameters.Add("@NombreHotel", SqlDbType.NVarChar, 100);
+                parametro9.Value = _tipoHab.nombreHotel;
                 var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
                 parametro13.Value = _admin;
 
@@ -369,6 +418,109 @@ namespace PROYECTO_MAD
 
             return isValid;
         }
+        public bool EditarHotel(Hotel _hotel, int _admin)
+        {
+            bool isValid = false;
+            try
+            {
+                conectar();
+                string qry = "EditarHotel";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 9000;
+
+                var parametro2 = _comandosql.Parameters.Add("@NombreHotel", SqlDbType.NVarChar, 100);
+                parametro2.Value = _hotel.NombreHotel;
+                var parametro3 = _comandosql.Parameters.Add("@Ciudad", SqlDbType.NVarChar, 30);
+                parametro3.Value = _hotel.Ciudad;
+                var parametro4 = _comandosql.Parameters.Add("@Estado", SqlDbType.NVarChar, 30);
+                parametro4.Value = _hotel.Estado;
+                var parametro5 = _comandosql.Parameters.Add("@Pais", SqlDbType.NVarChar, 30);
+                parametro5.Value = _hotel.Pais;
+                var parametro6 = _comandosql.Parameters.Add("@ZonaTuristica", SqlDbType.Bit);
+                parametro6.Value = _hotel.ZonaTuristica;
+                var parametro7 = _comandosql.Parameters.Add("@Locacion", SqlDbType.NVarChar, 60);
+                parametro7.Value = _hotel.Locacion;
+                var parametro8 = _comandosql.Parameters.Add("@NoPisos", SqlDbType.Int);
+                parametro8.Value = _hotel.NoPisos;
+                var parametro9 = _comandosql.Parameters.Add("@FechaInicio", SqlDbType.Date);
+                parametro9.Value = _hotel.FechaInicio;
+                var parametro12 = _comandosql.Parameters.Add("@CodHotel", SqlDbType.Int);
+                parametro12.Value = _hotel.CodHotel;
+                var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro13.Value = _admin;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+
+                isValid = true;
+            }
+            catch (SqlException e)
+            {
+                isValid = false;
+                string msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return isValid;
+        }
+        public bool EditarTipoHabitacion(TipoHab _tipoHab, int _admin)
+        {
+            bool isValid = false;
+            try
+            {
+                conectar();
+                string qry = "EditarTipoHabitacion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 9000;
+
+                var parametro2 = _comandosql.Parameters.Add("@NivelHabitacion", SqlDbType.NVarChar, 20);
+                parametro2.Value = _tipoHab.NivelHabitacion;
+                var parametro3 = _comandosql.Parameters.Add("@NoCamas", SqlDbType.Int);
+                parametro3.Value = _tipoHab.NoCamas;
+                var parametro4 = _comandosql.Parameters.Add("@TipoCama", SqlDbType.NVarChar, 300);
+                parametro4.Value = _tipoHab.TipoCama;
+                var parametro5 = _comandosql.Parameters.Add("@PrecioNoche", SqlDbType.Money);
+                parametro5.Value = _tipoHab.PrecioNoche;
+                var parametro6 = _comandosql.Parameters.Add("@CantPersonasMax", SqlDbType.Int);
+                parametro6.Value = _tipoHab.CantPersonasMax;
+                var parametro7 = _comandosql.Parameters.Add("@Locacion", SqlDbType.NVarChar, 60);
+                parametro7.Value = _tipoHab.Locacion;
+                var parametro8 = _comandosql.Parameters.Add("@Amenidades", SqlDbType.NVarChar, 100);
+                parametro8.Value = _tipoHab.Amenidades;
+                var parametro9 = _comandosql.Parameters.Add("@NombreHotel", SqlDbType.NVarChar, 100);
+                parametro9.Value = _tipoHab.nombreHotel;
+                var parametro10 = _comandosql.Parameters.Add("@CodTDH", SqlDbType.Int);
+                parametro10.Value = _tipoHab.CodTDH;
+                var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro13.Value = _admin;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+
+                isValid = true;
+            }
+            catch (SqlException e)
+            {
+                isValid = false;
+                string msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return isValid;
+        }
+
         public List<Usuario> getUsuarios() {
             var msg = "";
             DataTable tabla = new DataTable();
@@ -471,6 +623,102 @@ namespace PROYECTO_MAD
             }
 
             return new List<EntClientes>();
+        }
+        public List<Hotel> getHoteles()
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "GetHoteles";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                List<Hotel> l_hoteles = new List<Hotel>();
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_hoteles.Add(new Hotel(
+                        int.Parse(_row["CodHotel"].ToString()),
+                        _row["NombreHotel"].ToString(),
+                        _row["Ciudad"].ToString(),
+                        _row["Estado"].ToString(),
+                        _row["Pais"].ToString(),
+                        (bool)_row["ZonaTuristica"],
+                        _row["Locacion"].ToString(),
+                        int.Parse(_row["NoPisos"].ToString()),
+                        DateTime.Parse(_row["FechaInicio"].ToString())
+                    ));
+                }
+
+                return l_hoteles;
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return new List<Hotel>();
+        }
+        public List<TipoHab> getTiposHabitaciones()
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "GetTiposHabitaciones";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                List<TipoHab> l_tipoHabs = new List<TipoHab>();
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_tipoHabs.Add(new TipoHab(
+                        int.Parse(_row["CodTDH"].ToString()),
+                        _row["NivelHabitacion"].ToString(),
+                        int.Parse(_row["NoCamas"].ToString()),
+                        _row["TipoCama"].ToString(),
+                        int.Parse(_row["CantPersonasMax"].ToString()),
+                        _row["Locacion"].ToString(),
+                        _row["Amenidades"].ToString(),
+                        _row["NombreHotel"].ToString(),
+                        decimal.Parse(_row["PrecioNoche"].ToString())
+                    ));
+                }
+
+                return l_tipoHabs;
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return new List<TipoHab>();
         }
         // Ejemplo de método para ejecutar un SP que no se espera que regrese información, 
         // solo que ejecute ya sea un INSERT, UPDATE o DELETE

@@ -53,6 +53,8 @@ CREATE TABLE TiposHabitacion(
 	idHotel INT NOT NULL,
 	FOREIGN KEY (idHotel) REFERENCES Hotel(CodHotel)
 );
+ALTER TABLE TiposHabitacion DROP COLUMN TipoCama;
+ALTER TABLE TiposHabitacion ADD TipoCama VARCHAR(300);
 
 CREATE TABLE HotelesServicio(
 	idHotelesServicio INT PRIMARY KEY IDENTITY(1,1),

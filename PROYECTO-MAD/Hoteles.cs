@@ -50,7 +50,15 @@ namespace PROYECTO_MAD
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            m_hoteles = new EnlaceDB().getHoteles();
 
+            dataGridView1.Rows.Clear();
+            foreach (Hotel _hotel in m_hoteles) {
+                dataGridView1.Rows.Add();
+                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+                l_row.Cells["Codigo"].Value = _hotel.CodHotel;
+                l_row.Cells["Nombre"].Value = _hotel.NombreHotel;
+            }
         }
 
         private void label11_Click(object sender, EventArgs e)
@@ -225,7 +233,8 @@ namespace PROYECTO_MAD
             if (!m_registrando)
             {
                 m_registrando = true;
-                m_actual = 0;
+                m_editando = false;
+                m_actual = -1;
 
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Hotel.", "Informacion");
             }
@@ -242,7 +251,8 @@ namespace PROYECTO_MAD
                         textBox5.Text,
                         radioButton1.Checked,
                         textBox3.Text,
-                        int.Parse(textBox6.Text)
+                        int.Parse(textBox6.Text),
+                        dateTimePicker1.Value
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
@@ -253,6 +263,103 @@ namespace PROYECTO_MAD
                         m_registrando = false;
                     }
                 }
+            }
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            Hotel l_hotel = null;
+
+            foreach (Hotel _hotel in m_hoteles)
+            {
+                if (!dataGridView1.SelectedCells[0].Value.ToString().Equals(_hotel.CodHotel.ToString())) { continue; }
+                l_hotel = _hotel;
+
+                break;
+            }
+
+            if (l_hotel == null) { return; }
+
+            m_actual = l_hotel.CodHotel;
+
+            if (m_registrando)
+            {
+                m_registrando = false;
+                textBox1.Text = "";
+
+                MessageBox.Show(this, "Has salido del Modo Registro", "Informacion");
+            }
+            if (m_editando)
+            {
+                m_editando = false;
+
+                MessageBox.Show(this, "Has salido del Modo Edicion", "Informacion");
+            }
+
+            textBox9.Text = l_hotel.NombreHotel;
+            textBox6.Text = l_hotel.NoPisos.ToString();
+            textBox1.Text = l_hotel.Ciudad;
+            textBox4.Text = l_hotel.Estado;
+            textBox5.Text = l_hotel.Pais;
+            textBox3.Text = l_hotel.Locacion;
+            textBox7.Text = l_hotel.CodHotel.ToString();
+            radioButton1.Checked = l_hotel.ZonaTuristica;
+            radioButton2.Checked = !l_hotel.ZonaTuristica;
+            dateTimePicker1.Value = l_hotel.FechaInicio;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (!m_editando)
+            {
+                if (m_actual < 0)
+                {
+                    MessageBox.Show(this, "Necesitas Seleccionar un Hotel para Realizar esta Accion.", "Advertencia");
+                    return;
+                }
+
+                m_editando = true;
+
+                MessageBox.Show(this, "Estas en Modo Edicion.\nSi Presionas este Boton de Nuevo Editaras el Hotel Seleccionado.", "Informacion");
+            }
+            else
+            {
+                DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Hotel?", "Advertencia", MessageBoxButtons.YesNo);
+                if (l_editar == DialogResult.Yes)
+                {
+                    Hotel l_hotel = new Hotel(
+                        int.Parse(textBox7.Text),
+                        textBox9.Text,
+                        textBox1.Text,
+                        textBox4.Text,
+                        textBox5.Text,
+                        radioButton1.Checked,
+                        textBox3.Text,
+                        int.Parse(textBox6.Text),
+                        dateTimePicker1.Value
+                    );
+
+                    EnlaceDB l_enlace = new EnlaceDB();
+                    if (l_enlace.EditarHotel(l_hotel, Program.m_usuario.NoNomina))
+                    {
+                        MessageBox.Show(this, "Cliente Editado con Exito.", "Informacion");
+                        Form3_Load(this, new EventArgs());
+                        m_editando = false;
+                    }
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string l_busqueda = textBox2.Text;
+            dataGridView1.ClearSelection();
+            foreach (DataGridViewRow _row in dataGridView1.Rows)
+            {
+                if (!_row.Cells["Codigo"].Value.ToString().TrimEnd().Equals(l_busqueda)) { continue; }
+                _row.Selected = true;
+                dataGridView1_Click(dataGridView1, new DataGridViewCellEventArgs(0, 0));
+                return;
             }
         }
     }
