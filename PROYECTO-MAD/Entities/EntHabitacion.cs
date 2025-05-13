@@ -6,28 +6,34 @@ using System.Threading.Tasks;
 
 namespace PROYECTO_MAD.Entities
 {
-    public class Habitacion
+    public class EntHabitacion
     {
         public int NoHabitacion;
         public string Estatus;
         public int Piso;
         public int TipoHabitacion;
 
-        public Habitacion (
+        public string TipoHabitacionNombre;
+        public string NombreHotel;
+
+        public EntHabitacion (
         int     _NoHabitacion,
         string  _Estatus,
         int     _Piso,
-        int     _TipoHabitacion
+        string     _TipoHabitacion,
+        string _NombreHotel
 
-        ){
+        )
+        {
         
             NoHabitacion = _NoHabitacion;
             Estatus = _Estatus;
             Piso = _Piso;
-            TipoHabitacion= _TipoHabitacion;
-        
+            TipoHabitacionNombre = _TipoHabitacion;
+            NombreHotel = _NombreHotel;
+
         }
-        public Habitacion() { }
+        public EntHabitacion() { }
 
     }
 }

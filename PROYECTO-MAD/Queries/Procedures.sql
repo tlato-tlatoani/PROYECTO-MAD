@@ -515,3 +515,133 @@ BEGIN
 
 	WHERE ApellidoPaterno = @ApellidoMaterno AND ApellidoMaterno = @ApellidoMaterno;
 END
+
+CREATE OR ALTER PROCEDURE RegistrarHabitacion
+(
+	@NoHabitacion INT,
+	@Estatus VARCHAR (50),
+	@Piso INT,
+	@TipoHabitacion VARCHAR(20),
+    @NoNomina INT
+)
+AS
+BEGIN
+    INSERT INTO Habitacion(
+		NoHabitacion,
+		Estatus,
+		Piso,
+		TipoHabitacion
+    )
+    VALUES
+    (
+		@NoHabitacion,
+		@Estatus,
+		@Piso,
+		(SELECT CodTDH FROM TiposHabitacion WHERE NivelHabitacion = @TipoHabitacion)
+    );
+
+    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Habitacion', 'Administrador ha Registrado una Habitacion', @NoNomina);
+END
+GO;
+
+CREATE OR ALTER PROCEDURE EditarHabitacion
+(
+	@NoHabitacion INT,
+	@Estatus VARCHAR (50),
+	@Piso INT,
+	@TipoHabitacion VARCHAR(20),
+    @NoNomina INT
+)
+AS
+BEGIN
+    Update Habitacion SET
+	Estatus = @Estatus,
+	Piso = @Piso,
+	TipoHabitacion = (SELECT CodTDH FROM TiposHabitacion WHERE NivelHabitacion = @TipoHabitacion)
+	WHERE NoHabitacion = @NoHabitacion;
+
+    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Habitacion', 'Administrador ha Edicion una Habitacion', @NoNomina);
+END
+GO;
+
+CREATE OR ALTER PROCEDURE RegistrarServicio
+(
+	@CodServicio INT,
+	@Nombre VARCHAR (50),
+	@Descripcion VARCHAR(200),
+	@Precio MONEY,
+    @NoNomina INT
+)
+AS
+BEGIN
+    INSERT INTO Servicio(
+		Nombre,
+		Descripcion,
+		Precio
+    )
+    VALUES
+    (
+		@Nombre,
+		@Descripcion,
+		@Precio
+    );
+
+    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Servicio', 'Administrador ha Registrado un Servicio', @NoNomina);
+END
+GO;
+
+CREATE OR ALTER PROCEDURE EditarServicio
+(
+	@CodServicio INT,
+	@Nombre VARCHAR (50),
+	@Descripcion VARCHAR(200),
+	@Precio MONEY,
+    @NoNomina INT
+)
+AS
+BEGIN
+    UPDATE Servicio SET
+	Nombre = @Nombre,
+	Descripcion = @Descripcion,
+	Precio = @Precio
+	WHERE CodServicio = @CodServicio
+
+    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Servicio', 'Administrador ha Editado un Servicio', @NoNomina);
+END
+GO;
+
+CREATE OR ALTER VIEW ViewHabitaciones
+AS
+SELECT 
+	NoHabitacion,
+	Estatus,
+	Piso,
+	TipoHabitacion,
+	NivelHabitacion,
+	NombreHotel
+FROM Habitacion JOIN TiposHabitacion ON CodTDH = TipoHabitacion JOIN Hotel ON CodHotel = idHotel;
+
+CREATE OR ALTER PROCEDURE GetHabitaciones
+AS
+BEGIN
+	SELECT * FROM ViewHabitaciones;
+END
+GO;
+
+CREATE OR ALTER VIEW ViewServicios
+AS
+SELECT 
+	CodServicio
+	Nombre,
+	Descripcion,
+	Precio
+FROM Servicio;
+
+CREATE OR ALTER PROCEDURE GetServicios
+AS
+BEGIN
+	SELECT * FROM ViewServicios;
+END
+GO;
+
+SELECT * FROM Servicio;

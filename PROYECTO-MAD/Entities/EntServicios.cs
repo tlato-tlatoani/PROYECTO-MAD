@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace PROYECTO_MAD.Entities
 {
-    public class Servicios
+    public class EntServicios
     {
         public int CodServicio;
         public string Nombre;
         public decimal Precio;
         public string Descripcion;
-        public Servicios(
+        public EntServicios(
         int _CodServicio,
         string _Nombre,
         decimal _Precio,
@@ -24,6 +24,6 @@ namespace PROYECTO_MAD.Entities
             Precio = _Precio;
             Descripcion = _Descripcion;
         }
-        public Servicios() { }
+        public EntServicios() { }
     }
 }
