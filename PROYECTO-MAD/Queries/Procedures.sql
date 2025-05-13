@@ -513,7 +513,7 @@ BEGIN
 		EstadoCivil
 	FROM Cliente
 
-	WHERE ApellidoPaterno = @ApellidoMaterno AND ApellidoMaterno = @ApellidoMaterno;
+	WHERE ApellidoPaterno = @ApellidoPaterno AND ApellidoMaterno = @ApellidoMaterno;
 END
 
 CREATE OR ALTER PROCEDURE RegistrarHabitacion
@@ -631,10 +631,10 @@ GO;
 CREATE OR ALTER VIEW ViewServicios
 AS
 SELECT 
-	CodServicio
 	Nombre,
 	Descripcion,
-	Precio
+	Precio,
+	CodServicio
 FROM Servicio;
 
 CREATE OR ALTER PROCEDURE GetServicios
