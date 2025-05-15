@@ -236,15 +236,22 @@ namespace PROYECTO_MAD
                         0
                     );
 
-                    EnlaceDB l_enlace = new EnlaceDB();
-                    if (l_enlace.RegistrarReservacion(l_hotel, Program.m_usuario.NoNomina))
-                    {
-                        MessageBox.Show(this, "Hotel Registrado con Exito.", "Informacion");
-                        Form3_Load(this, new EventArgs());
-                        m_registrando = false;
-                    }
+                    //EnlaceDB l_enlace = new EnlaceDB();
+                    //if (l_enlace.RegistrarReservacion(l_hotel, Program.m_usuario.NoNomina))
+                    //{
+                    //    MessageBox.Show(this, "Hotel Registrado con Exito.", "Informacion");
+                    //    Form3_Load(this, new EventArgs());
+                    //    m_registrando = false;
+                    //}
                 }
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form2 checkoutform = new Form2();
+            checkoutform.Show();
+            this.Close();
         }
     }
 }

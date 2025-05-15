@@ -40,13 +40,13 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.verPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,8 +64,8 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -201,27 +201,6 @@
             this.textBox9.Size = new System.Drawing.Size(276, 23);
             this.textBox9.TabIndex = 57;
             // 
-            // textBox6
-            // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox6.Location = new System.Drawing.Point(738, 251);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(140, 23);
-            this.textBox6.TabIndex = 55;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label7.Location = new System.Drawing.Point(730, 221);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 48);
-            this.label7.TabIndex = 56;
-            this.label7.Text = "PRECIO:";
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -282,6 +261,18 @@
             this.dataGridView1.Size = new System.Drawing.Size(361, 370);
             this.dataGridView1.TabIndex = 67;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
             // 
             // menuStrip1
             // 
@@ -423,17 +414,26 @@
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
-            // Codigo
+            // label7
             // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
+            this.label7.Location = new System.Drawing.Point(730, 221);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 48);
+            this.label7.TabIndex = 56;
+            this.label7.Text = "PRECIO:";
             // 
-            // Nombre
+            // textBox6
             // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.textBox6.Location = new System.Drawing.Point(738, 251);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(140, 23);
+            this.textBox6.TabIndex = 55;
             // 
             // Servicios
             // 
@@ -483,8 +483,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBox1;
@@ -509,5 +507,7 @@
         private System.Windows.Forms.ToolStripMenuItem verEditarRegistrarUsuarioToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }

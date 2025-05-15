@@ -45,6 +45,11 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Camas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Habitaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -55,7 +60,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.button8 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label14 = new System.Windows.Forms.Label();
@@ -79,12 +83,7 @@
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Camas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Clientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.Habitaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -273,6 +272,37 @@
             this.dataGridView2.TabIndex = 79;
             this.dataGridView2.Click += new System.EventHandler(this.dataGridView2_Click);
             // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Camas
+            // 
+            this.Camas.HeaderText = "Camas";
+            this.Camas.Name = "Camas";
+            this.Camas.ReadOnly = true;
+            // 
+            // Clientes
+            // 
+            this.Clientes.HeaderText = "Clientes";
+            this.Clientes.Name = "Clientes";
+            this.Clientes.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // Habitaciones
+            // 
+            this.Habitaciones.HeaderText = "Habitaciones";
+            this.Habitaciones.Name = "Habitaciones";
+            this.Habitaciones.ReadOnly = true;
+            this.Habitaciones.Visible = false;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightPink;
@@ -375,7 +405,7 @@
             // 
             this.button7.BackColor = System.Drawing.Color.Plum;
             this.button7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button7.Location = new System.Drawing.Point(895, 480);
+            this.button7.Location = new System.Drawing.Point(898, 471);
             this.button7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button7.Name = "button7";
             this.button7.Padding = new System.Windows.Forms.Padding(5);
@@ -393,14 +423,6 @@
             this.dateTimePicker3.Size = new System.Drawing.Size(260, 22);
             this.dateTimePicker3.TabIndex = 87;
             this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
-            // 
-            // dateTimePicker4
-            // 
-            this.dateTimePicker4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker4.Location = new System.Drawing.Point(1013, 498);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(260, 22);
-            this.dateTimePicker4.TabIndex = 88;
             // 
             // button8
             // 
@@ -611,30 +633,6 @@
             this.label4.Text = "CLIENTE";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Camas
-            // 
-            this.Camas.HeaderText = "Camas";
-            this.Camas.Name = "Camas";
-            this.Camas.ReadOnly = true;
-            // 
-            // Clientes
-            // 
-            this.Clientes.HeaderText = "Clientes";
-            this.Clientes.Name = "Clientes";
-            this.Clientes.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            // 
             // listBox1
             // 
             this.listBox1.Enabled = false;
@@ -643,13 +641,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(375, 186);
             this.listBox1.TabIndex = 97;
-            // 
-            // Habitaciones
-            // 
-            this.Habitaciones.HeaderText = "Habitaciones";
-            this.Habitaciones.Name = "Habitaciones";
-            this.Habitaciones.ReadOnly = true;
-            this.Habitaciones.Visible = false;
             // 
             // Reservacion
             // 
@@ -665,7 +656,6 @@
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.dateTimePicker4);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -727,7 +717,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label14;
