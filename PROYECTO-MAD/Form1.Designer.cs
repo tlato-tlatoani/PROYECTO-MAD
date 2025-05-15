@@ -79,8 +79,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Correo Electronico",
             "RFC",
-            "Apellido Paterno",
-            "Apellido Materno"});
+            "Apellidos"});
             this.comboBox1.Location = new System.Drawing.Point(179, 84);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(312, 21);

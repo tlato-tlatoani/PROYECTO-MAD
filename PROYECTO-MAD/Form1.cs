@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PROYECTO_MAD
 {
@@ -29,6 +30,27 @@ namespace PROYECTO_MAD
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string l_rfc = null;
+            switch (comboBox1.SelectedIndex) {
+                case 0: {
+                    l_rfc = new EnlaceDB().BuscarClientePorCorreo(textBox1.Text);
+                } break;
+                case 1:
+                    {
+                        l_rfc = new EnlaceDB().BuscarClientePorRFC(textBox1.Text);
+                    }
+                    break;
+                case 2:
+                    {
+                        l_rfc = new EnlaceDB().BuscarClientePorApellidos(textBox1.Text, textBox2.Text);
+                    }
+                    break;
+            }
+
+            if (l_rfc == null) { MessageBox.Show("El Cliente que intentanste Buscar no Existe.", "Advertencia"); return; }
+
+            Reservacion.m_cliente = l_rfc;
+
             Reservacion reservacionform = new Reservacion();
             reservacionform.Show();
             this.Hide();

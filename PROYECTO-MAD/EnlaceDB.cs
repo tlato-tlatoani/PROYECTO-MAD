@@ -23,6 +23,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
 using PROYECTO_MAD.Entities;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 /*
 Se tiene que cambiar el namespace para el que usen en su proyecto
@@ -836,6 +837,108 @@ namespace PROYECTO_MAD
 
             return new List<Hotel>();
         }
+        public List<Hotel> getHotelesCiudad(string _ciudad)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "GetHotelesCiudad";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Ciudad", SqlDbType.NVarChar, 30);
+                parametro1.Value = _ciudad;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                List<Hotel> l_hoteles = new List<Hotel>();
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_hoteles.Add(new Hotel(
+                        int.Parse(_row["CodHotel"].ToString()),
+                        _row["NombreHotel"].ToString(),
+                        _row["Ciudad"].ToString(),
+                        _row["Estado"].ToString(),
+                        _row["Pais"].ToString(),
+                        (bool)_row["ZonaTuristica"],
+                        _row["Locacion"].ToString(),
+                        int.Parse(_row["NoPisos"].ToString()),
+                        DateTime.Parse(_row["FechaInicio"].ToString())
+                    ));
+                }
+
+                return l_hoteles;
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return new List<Hotel>();
+        }
+        public Hotel getHotel(string _nombre)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "GetHotelNombre";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100);
+                parametro1.Value = _nombre;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                List<Hotel> l_hoteles = new List<Hotel>();
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_hoteles.Add(new Hotel(
+                        int.Parse(_row["CodHotel"].ToString()),
+                        _row["NombreHotel"].ToString(),
+                        _row["Ciudad"].ToString(),
+                        _row["Estado"].ToString(),
+                        _row["Pais"].ToString(),
+                        (bool)_row["ZonaTuristica"],
+                        _row["Locacion"].ToString(),
+                        int.Parse(_row["NoPisos"].ToString()),
+                        DateTime.Parse(_row["FechaInicio"].ToString())
+                    ));
+                }
+
+                return l_hoteles[0];
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return null;
+        }
         public List<TipoHab> getTiposHabitaciones()
         {
             var msg = "";
@@ -867,6 +970,59 @@ namespace PROYECTO_MAD
                         _row["NombreHotel"].ToString(),
                         decimal.Parse(_row["PrecioNoche"].ToString())
                     ));
+                }
+
+                return l_tipoHabs;
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return new List<TipoHab>();
+        }
+        public List<TipoHab> getTiposHabitacionesHotel(string _hotel)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "GetTiposHabitacionHotel";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Hotel", SqlDbType.NVarChar, 100);
+                parametro1.Value = _hotel;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                List<TipoHab> l_tipoHabs = new List<TipoHab>();
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_tipoHabs.Add(new TipoHab(
+                        int.Parse(_row["CodTDH"].ToString()),
+                        _row["NivelHabitacion"].ToString(),
+                        int.Parse(_row["NoCamas"].ToString()),
+                        _row["TipoCama"].ToString(),
+                        int.Parse(_row["CantPersonasMax"].ToString()),
+                        "",
+                        _row["Amenidades"].ToString(),
+                        "",
+                        decimal.Parse(_row["PrecioNoche"].ToString())
+                    ));
+
+                    l_tipoHabs[l_tipoHabs.Count - 1].Habitaciones = int.Parse(_row["Habitaciones"].ToString());
                 }
 
                 return l_tipoHabs;
@@ -971,44 +1127,163 @@ namespace PROYECTO_MAD
 
             return new List<EntServicios>();
         }
-        // Ejemplo de método para ejecutar un SP que no se espera que regrese información, 
-        // solo que ejecute ya sea un INSERT, UPDATE o DELETE
-        public bool Add_Deptos(string opc, string depto)
+        public List<string> getCiudades()
         {
             var msg = "";
-            var add = true;
+            DataTable tabla = new DataTable();
+
             try
             {
                 conectar();
-                string qry = "sp_Gestiona_Deptos";
+
+                string qry = "GetCiudades";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@Opc", SqlDbType.Char, 1);
-                parametro1.Value = opc;
-                var parametro2 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 20);
-                parametro2.Value = depto;
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
 
-                _adaptador.InsertCommand = _comandosql;
-				// También se tienen las propiedades del adaptador: UpdateCommand  y DeleteCommand
-                
-                _comandosql.ExecuteNonQuery();
+                List<string> l_Habs = new List<string>();
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_Habs.Add(_row["Ciudad"].ToString());
+                }
 
+                return l_Habs;
             }
             catch (SqlException e)
             {
-                add = false;
                 msg = "Excepción de base de datos: \n";
                 msg += e.Message;
                 MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             finally
             {
-                desconectar();                
+                desconectar();
             }
 
-            return add;
+            return new List<string>();
+        }
+
+        public string BuscarClientePorCorreo(string _correo)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            string l_return = null;
+
+            try
+            {
+                conectar();
+
+                string qry = "BuscarCliente";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@RFC", SqlDbType.NVarChar, 40);
+                parametro1.Value = _correo;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_return = _row["RFC"].ToString();
+                }
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return l_return;
+        }
+        public string BuscarClientePorRFC(string _rfc)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            string l_return = null;
+
+            try
+            {
+                conectar();
+
+                string qry = "BuscarClienteRFC";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@RFC", SqlDbType.NVarChar, 15);
+                parametro1.Value = _rfc;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_return = _row["RFC"].ToString();
+                }
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return l_return;
+        }
+        public string BuscarClientePorApellidos(string _ap1, string _ap2)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            string l_return = null;
+
+            try
+            {
+                conectar();
+
+                string qry = "BuscarClienteRFC";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@ApellidoPaterno", SqlDbType.NVarChar, 15);
+                parametro1.Value = _ap1;
+                var parametro2 = _comandosql.Parameters.Add("@ApellidoMaterno", SqlDbType.NVarChar, 15);
+                parametro2.Value = _ap2;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                foreach (DataRow _row in tabla.Rows)
+                {
+                    l_return = _row["RFC"].ToString();
+                }
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return l_return;
         }
 
     }

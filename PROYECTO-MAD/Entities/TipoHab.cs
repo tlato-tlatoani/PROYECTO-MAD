@@ -19,6 +19,7 @@ namespace PROYECTO_MAD.Entities
         public decimal PrecioNoche;
 
         public string nombreHotel;
+        public int Habitaciones;
 
         public TipoHab(
 

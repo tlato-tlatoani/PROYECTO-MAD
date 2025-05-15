@@ -275,31 +275,6 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROCEDURE BuscarCliente
-(
-	@CorreoElectronico NVARCHAR (40)
-)
-AS
-BEGIN
-	SELECT
-		RFC, 
-		Nombre, 
-		ApellidoPaterno, 
-		ApellidoMaterno, 
-		Ciudad, 
-		Estado, 
-		Pais, 
-		CorreoElectronico, 
-		TelCelular, 
-		TelCasa,
-		FechaNacimiento,
-		EstadoCivil
-	FROM Cliente
-
-	WHERE CorreoElectronico= @CorreoElectronico;
-END
-GO
-
 CREATE OR ALTER PROCEDURE RegistrarHoteles 
 (
     @NombreHotel NVARCHAR (100), 
@@ -464,6 +439,31 @@ Select * from TiposHabitacion;
 
 GO
 
+CREATE OR ALTER PROCEDURE BuscarCliente
+(
+	@CorreoElectronico NVARCHAR (40)
+)
+AS
+BEGIN
+	SELECT
+		RFC, 
+		Nombre, 
+		ApellidoPaterno, 
+		ApellidoMaterno, 
+		Ciudad, 
+		Estado, 
+		Pais, 
+		CorreoElectronico, 
+		TelCelular, 
+		TelCasa,
+		FechaNacimiento,
+		EstadoCivil
+	FROM Cliente
+
+	WHERE CorreoElectronico= @CorreoElectronico;
+END
+GO
+
 CREATE OR ALTER PROCEDURE BuscarClienteRFC
 (
 	@RFC NVARCHAR (15)
@@ -484,8 +484,7 @@ BEGIN
 		FechaNacimiento,
 		EstadoCivil
 	FROM Cliente
-
-	WHERE RFC= @RFC;
+	WHERE RFC = @RFC;
 END
 
 GO
@@ -610,6 +609,71 @@ BEGIN
 END
 GO;
 
+CREATE OR ALTER PROCEDURE GetCiudades
+AS
+BEGIN
+	SELECT DISTINCT Ciudad FROM Hotel;
+END
+GO;
+
+CREATE OR ALTER PROCEDURE GetHotelesCiudad
+(
+	@Ciudad NVarchar (30)
+)
+AS
+BEGIN
+	SELECT 
+		CodHotel,
+		NombreHotel,
+		Ciudad,
+		Estado,
+		Pais,
+		ZonaTuristica,
+		Locacion,
+		NoPisos,
+		FechaInicio
+	FROM Hotel WHERE Ciudad = @Ciudad;
+END
+GO;
+
+CREATE OR ALTER PROCEDURE GetHotelNombre
+(
+	@Nombre NVarchar (100)
+)
+AS
+BEGIN
+	SELECT 
+		CodHotel,
+		NombreHotel,
+		Ciudad,
+		Estado,
+		Pais,
+		ZonaTuristica,
+		Locacion,
+		NoPisos,
+		FechaInicio
+	FROM Hotel WHERE NombreHotel = @Nombre;
+END
+GO;
+CREATE OR ALTER PROCEDURE GetTiposHabitacionHotel
+(
+	@Hotel NVarchar (100)
+)
+AS
+BEGIN
+	SELECT 
+		CodTDH,
+		NivelHabitacion,
+		NoCamas,
+		TipoCama,
+		PrecioNoche,
+		CantPersonasMax,
+		Amenidades,
+		idHotel,
+		(Select Count(NoHabitacion) FROM Habitacion WHERE TipoHabitacion = CodTDH AND Estatus = 'Desocupado') AS Habitaciones
+	FROM Hotel JOIN TiposHabitacion on idHotel = CodHotel WHERE NombreHotel = @Hotel;
+END
+GO;
 CREATE OR ALTER VIEW ViewHabitaciones
 AS
 SELECT 
@@ -644,4 +708,7 @@ BEGIN
 END
 GO;
 
-SELECT * FROM Servicio;
+SELECT * FROM Cliente;
+SELECT * FROM Usuario;
+
+EXEC BuscarClienteRFC @RFC = '199';

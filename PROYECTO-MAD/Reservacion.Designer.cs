@@ -58,11 +58,12 @@
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.button8 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verEditarRegistrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verHotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,12 +79,15 @@
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verEditarRegistrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Camas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.Habitaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -143,7 +147,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox9);
             this.panel1.Location = new System.Drawing.Point(184, 86);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(939, 67);
             this.panel1.TabIndex = 68;
@@ -155,7 +159,7 @@
             this.button3.Location = new System.Drawing.Point(765, 18);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button3.Padding = new System.Windows.Forms.Padding(5);
             this.button3.Size = new System.Drawing.Size(81, 38);
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
@@ -189,17 +193,19 @@
             this.label15.Location = new System.Drawing.Point(99, 155);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(516, 41);
+            this.label15.Size = new System.Drawing.Size(504, 41);
             this.label15.TabIndex = 69;
-            this.label15.Text = "*EN CASO DE QUERER REGISTRAR UN NUEVO CLIENTE, IGNORA LA BUSQUEDA DE ARRIBA";
+            this.label15.Text = "*EN CASO DE QUERER REALIZAR UNA RESERVACION, IGNORA LA BUSQUEDA DE ARRIBA";
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(542, 228);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(188, 21);
+            this.comboBox2.Size = new System.Drawing.Size(254, 21);
             this.comboBox2.TabIndex = 73;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -225,11 +231,13 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(958, 184);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(290, 21);
             this.comboBox3.TabIndex = 76;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -244,13 +252,26 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre,
+            this.Camas,
+            this.Clientes,
+            this.Precio,
+            this.Habitaciones});
             this.dataGridView2.Location = new System.Drawing.Point(15, 42);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(373, 158);
             this.dataGridView2.TabIndex = 79;
+            this.dataGridView2.Click += new System.EventHandler(this.dataGridView2_Click);
             // 
             // panel2
             // 
@@ -286,6 +307,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(68, 22);
             this.textBox2.TabIndex = 82;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label8
             // 
@@ -317,7 +339,7 @@
             this.button4.Location = new System.Drawing.Point(1063, 549);
             this.button4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button4.Padding = new System.Windows.Forms.Padding(5);
             this.button4.Size = new System.Drawing.Size(103, 49);
             this.button4.TabIndex = 82;
             this.button4.Text = "Cancelar";
@@ -330,7 +352,7 @@
             this.button5.Location = new System.Drawing.Point(1170, 549);
             this.button5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button5.Padding = new System.Windows.Forms.Padding(5);
             this.button5.Size = new System.Drawing.Size(103, 49);
             this.button5.TabIndex = 83;
             this.button5.Text = "Editar";
@@ -343,7 +365,7 @@
             this.button6.Location = new System.Drawing.Point(895, 416);
             this.button6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button6.Padding = new System.Windows.Forms.Padding(5);
             this.button6.Size = new System.Drawing.Size(95, 49);
             this.button6.TabIndex = 85;
             this.button6.Text = "Check  in";
@@ -356,7 +378,7 @@
             this.button7.Location = new System.Drawing.Point(895, 480);
             this.button7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button7.Name = "button7";
-            this.button7.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button7.Padding = new System.Windows.Forms.Padding(5);
             this.button7.Size = new System.Drawing.Size(113, 49);
             this.button7.TabIndex = 86;
             this.button7.Text = "Check out";
@@ -387,11 +409,12 @@
             this.button8.Location = new System.Drawing.Point(956, 549);
             this.button8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button8.Name = "button8";
-            this.button8.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button8.Padding = new System.Windows.Forms.Padding(5);
             this.button8.Size = new System.Drawing.Size(103, 49);
             this.button8.TabIndex = 89;
             this.button8.Text = "Registrar";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // linkLabel1
             // 
@@ -404,16 +427,6 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Factura";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(898, 212);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(357, 188);
-            this.dataGridView1.TabIndex = 84;
             // 
             // label14
             // 
@@ -462,6 +475,20 @@
             this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
             this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
             this.usuarioToolStripMenuItem1.Text = "Usuario";
+            // 
+            // miPerfilToolStripMenuItem
+            // 
+            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
+            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.miPerfilToolStripMenuItem.Text = "Mi Perfil";
+            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            // 
+            // verEditarRegistrarToolStripMenuItem
+            // 
+            this.verEditarRegistrarToolStripMenuItem.Name = "verEditarRegistrarToolStripMenuItem";
+            this.verEditarRegistrarToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.verEditarRegistrarToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
+            this.verEditarRegistrarToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarToolStripMenuItem_Click);
             // 
             // reservacionesToolStripMenuItem
             // 
@@ -584,19 +611,45 @@
             this.label4.Text = "CLIENTE";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // miPerfilToolStripMenuItem
+            // Nombre
             // 
-            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
-            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.miPerfilToolStripMenuItem.Text = "Mi Perfil";
-            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
             // 
-            // verEditarRegistrarToolStripMenuItem
+            // Camas
             // 
-            this.verEditarRegistrarToolStripMenuItem.Name = "verEditarRegistrarToolStripMenuItem";
-            this.verEditarRegistrarToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.verEditarRegistrarToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
-            this.verEditarRegistrarToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarToolStripMenuItem_Click);
+            this.Camas.HeaderText = "Camas";
+            this.Camas.Name = "Camas";
+            this.Camas.ReadOnly = true;
+            // 
+            // Clientes
+            // 
+            this.Clientes.HeaderText = "Clientes";
+            this.Clientes.Name = "Clientes";
+            this.Clientes.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.Enabled = false;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(898, 218);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(375, 186);
+            this.listBox1.TabIndex = 97;
+            // 
+            // Habitaciones
+            // 
+            this.Habitaciones.HeaderText = "Habitaciones";
+            this.Habitaciones.Name = "Habitaciones";
+            this.Habitaciones.ReadOnly = true;
+            this.Habitaciones.Visible = false;
             // 
             // Reservacion
             // 
@@ -604,12 +657,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(1301, 625);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.dateTimePicker4);
@@ -639,7 +692,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -678,7 +730,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker4;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -700,5 +751,11 @@
         private System.Windows.Forms.ToolStripMenuItem verServiciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miPerfilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEditarRegistrarToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Camas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clientes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Habitaciones;
     }
 }

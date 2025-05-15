@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PROYECTO_MAD.Entities
 {
-    public class Reservacion
+    public class EntReservacion
     {
         public int CodReservacion;
         public string Cliente;
@@ -20,11 +20,13 @@ namespace PROYECTO_MAD.Entities
         public int idCheckIn;
         public int idCheckOut;
 
-        public Reservacion(
+        public string HotelNombre;
+
+        public EntReservacion(
             int _CodReservacion,
         string _Cliente,
         string _Ciudad,
-        int _Hotel,
+        string _Hotel,
         int _CantHabitaciones,
         int _CantPersonas,
         DateTime _Entrada,
@@ -37,7 +39,7 @@ namespace PROYECTO_MAD.Entities
             CodReservacion = _CodReservacion;
             Cliente = _Cliente;
             Ciudad = _Ciudad;
-            Hotel = _Hotel;
+            HotelNombre = _Hotel;
             CantHabitaciones = _CantHabitaciones;
             CantPersonas = _CantPersonas;
             Entrada = _Entrada;
@@ -46,7 +48,7 @@ namespace PROYECTO_MAD.Entities
             idCheckIn = _idCheckIn;
             idCheckOut = _idCheckOut;
         }
-        public Reservacion() { }
+        public EntReservacion() { }
     }
 
 }

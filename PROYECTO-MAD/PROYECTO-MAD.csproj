@@ -57,7 +57,7 @@
     <Compile Include="Entities\EntClientes.cs" />
     <Compile Include="Entities\EntHabitacion.cs" />
     <Compile Include="Entities\Hotel.cs" />
-    <Compile Include="Entities\Reservacion.cs" />
+    <Compile Include="Entities\EntReservacion.cs" />
     <Compile Include="Entities\EntServicios.cs" />
     <Compile Include="Entities\TipoHab.cs" />
     <Compile Include="Entities\Usuario.cs" />
