@@ -49,7 +49,9 @@ namespace PROYECTO_MAD
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            Factura facturaform = new Factura();
+            facturaform.Show();
+            this.Close();
         }
 
         private void label14_Click(object sender, EventArgs e)
