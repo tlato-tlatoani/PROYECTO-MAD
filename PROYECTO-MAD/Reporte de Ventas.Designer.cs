@@ -43,6 +43,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verEditarRegistrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verHotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,8 +58,13 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verEditarRegistrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hospedaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Servicios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -65,11 +72,25 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Ciudad,
+            this.Hotel,
+            this.Year,
+            this.Mes,
+            this.Hospedaje,
+            this.Servicios,
+            this.Total});
             this.dataGridView1.Location = new System.Drawing.Point(498, 101);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(763, 488);
             this.dataGridView1.TabIndex = 65;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -87,7 +108,7 @@
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Location = new System.Drawing.Point(39, 101);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(440, 299);
             this.panel1.TabIndex = 64;
@@ -164,11 +185,12 @@
             this.button3.Location = new System.Drawing.Point(83, 203);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button3.Padding = new System.Windows.Forms.Padding(5);
             this.button3.Size = new System.Drawing.Size(81, 38);
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label11
             // 
@@ -217,6 +239,20 @@
             this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
             this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
             this.usuarioToolStripMenuItem1.Text = "Usuario";
+            // 
+            // miPerfilToolStripMenuItem
+            // 
+            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
+            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.miPerfilToolStripMenuItem.Text = "Mi Perfil";
+            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            // 
+            // verEditarRegistrarToolStripMenuItem
+            // 
+            this.verEditarRegistrarToolStripMenuItem.Name = "verEditarRegistrarToolStripMenuItem";
+            this.verEditarRegistrarToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.verEditarRegistrarToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
+            this.verEditarRegistrarToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarToolStripMenuItem_Click);
             // 
             // reservacionesToolStripMenuItem
             // 
@@ -318,19 +354,47 @@
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
-            // miPerfilToolStripMenuItem
+            // Ciudad
             // 
-            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
-            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.miPerfilToolStripMenuItem.Text = "Mi Perfil";
-            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            this.Ciudad.HeaderText = "Ciudad";
+            this.Ciudad.Name = "Ciudad";
+            this.Ciudad.ReadOnly = true;
             // 
-            // verEditarRegistrarToolStripMenuItem
+            // Hotel
             // 
-            this.verEditarRegistrarToolStripMenuItem.Name = "verEditarRegistrarToolStripMenuItem";
-            this.verEditarRegistrarToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.verEditarRegistrarToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
-            this.verEditarRegistrarToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarToolStripMenuItem_Click);
+            this.Hotel.HeaderText = "Hotel";
+            this.Hotel.Name = "Hotel";
+            this.Hotel.ReadOnly = true;
+            // 
+            // Year
+            // 
+            this.Year.HeaderText = "Año";
+            this.Year.Name = "Year";
+            this.Year.ReadOnly = true;
+            // 
+            // Mes
+            // 
+            this.Mes.HeaderText = "Mes";
+            this.Mes.Name = "Mes";
+            this.Mes.ReadOnly = true;
+            // 
+            // Hospedaje
+            // 
+            this.Hospedaje.HeaderText = "Hospedaje";
+            this.Hospedaje.Name = "Hospedaje";
+            this.Hospedaje.ReadOnly = true;
+            // 
+            // Servicios
+            // 
+            this.Servicios.HeaderText = "Servicios";
+            this.Servicios.Name = "Servicios";
+            this.Servicios.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // Reporte_de_Ventas
             // 
@@ -345,6 +409,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Reporte_de_Ventas";
             this.Text = "Reporte_de_Ventas";
+            this.Load += new System.EventHandler(this.Reporte_de_Ventas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -385,5 +450,12 @@
         private System.Windows.Forms.ToolStripMenuItem verServiciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miPerfilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEditarRegistrarToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hotel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hospedaje;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Servicios;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }

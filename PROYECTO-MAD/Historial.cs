@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace PROYECTO_MAD
 {
     public partial class Historial : Form
     {
+        public List<EntClientes> m_clientes;
+
         public Historial()
         {
             InitializeComponent();
@@ -102,6 +105,51 @@ namespace PROYECTO_MAD
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
             this.Close();
+        }
+
+        private void Historial_Load(object sender, EventArgs e)
+        {
+            m_clientes = new EnlaceDB().getClientes();
+            foreach (EntClientes _cliente in m_clientes) { listBox1.Items.Add(_cliente.Nombre.Trim() + ":" + _cliente.ApellidoPaterno.Trim() + ":" + _cliente.ApellidoMaterno.Trim()); }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EntClientes l_cliente = null;
+            foreach (EntClientes _cliente in m_clientes) { 
+                if (!_cliente.Nombre.Trim().Equals(listBox1.SelectedItem.ToString().Split(':')[0])) { continue; }
+                l_cliente = _cliente;
+                break;
+            }
+
+            List<EntReservacion> l_reservaciones = new EnlaceDB().getReservaciones(l_cliente.RFC);
+            dataGridView2.Rows.Clear();
+            foreach (EntReservacion _reservacion in l_reservaciones)
+            {
+                dataGridView2.Rows.Add();
+                DataGridViewRow l_row = dataGridView2.Rows[dataGridView2.Rows.Count - 1];
+                l_row.Cells["Nombre"].Value = l_cliente.Nombre;
+                l_row.Cells["Ciudad"].Value = _reservacion.Ciudad;
+                l_row.Cells["Hotel"].Value = _reservacion.HotelNombre;
+                l_row.Cells["TipoHabitacion"].Value = _reservacion.TipoHabitacionNombre;
+                l_row.Cells["NumeroHabitacion"].Value = _reservacion.NoHabitacion;
+                l_row.Cells["Personas"].Value = _reservacion.CantPersonas;
+                l_row.Cells["Codigo"].Value = _reservacion.CodReservacion;
+                l_row.Cells["FechaReservacion"].Value = _reservacion.Entrada;
+                l_row.Cells["Estatus"].Value = _reservacion.Estatus;
+                l_row.Cells["Anticipo"].Value = _reservacion.Anticipo;
+                l_row.Cells["Monto"].Value = _reservacion.Monto;
+                l_row.Cells["Servicios"].Value = _reservacion.Servicios;
+                l_row.Cells["Total"].Value = _reservacion.Total;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            m_clientes = new EnlaceDB().getClientesAp(textBox1.Text, textBox2.Text);
+
+            listBox1.Items.Clear();
+            foreach (EntClientes _cliente in m_clientes) { listBox1.Items.Add(_cliente.Nombre.Trim() + ":" + _cliente.ApellidoPaterno.Trim() + ":" + _cliente.ApellidoMaterno.Trim()); }
         }
     }
 }

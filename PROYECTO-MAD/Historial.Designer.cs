@@ -41,6 +41,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verEditarRegistrarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verHotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,8 +56,19 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verEditarRegistrarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumeroHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaReservacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Anticipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Servicios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -74,11 +87,31 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre,
+            this.Ciudad,
+            this.Hotel,
+            this.TipoHabitacion,
+            this.NumeroHabitacion,
+            this.Personas,
+            this.Codigo,
+            this.FechaReservacion,
+            this.Estatus,
+            this.Anticipo,
+            this.Monto,
+            this.Servicios,
+            this.Total});
             this.dataGridView2.Location = new System.Drawing.Point(123, 285);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(1063, 288);
             this.dataGridView2.TabIndex = 51;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
@@ -94,7 +127,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Location = new System.Drawing.Point(123, 118);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1063, 150);
             this.panel1.TabIndex = 65;
@@ -122,6 +155,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(612, 95);
             this.listBox1.TabIndex = 46;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -142,11 +176,12 @@
             this.button3.Location = new System.Drawing.Point(961, 58);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button3.Padding = new System.Windows.Forms.Padding(5);
             this.button3.Size = new System.Drawing.Size(81, 38);
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label2
             // 
@@ -195,6 +230,20 @@
             this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
             this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
             this.usuarioToolStripMenuItem1.Text = "Usuario";
+            // 
+            // miPerfilToolStripMenuItem
+            // 
+            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
+            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.miPerfilToolStripMenuItem.Text = "Mi Perfil";
+            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            // 
+            // verEditarRegistrarUsuarioToolStripMenuItem
+            // 
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Name = "verEditarRegistrarUsuarioToolStripMenuItem";
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarUsuarioToolStripMenuItem_Click);
             // 
             // reservacionesToolStripMenuItem
             // 
@@ -296,19 +345,83 @@
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
-            // miPerfilToolStripMenuItem
+            // Nombre
             // 
-            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
-            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.miPerfilToolStripMenuItem.Text = "Mi Perfil";
-            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
             // 
-            // verEditarRegistrarUsuarioToolStripMenuItem
+            // Ciudad
             // 
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Name = "verEditarRegistrarUsuarioToolStripMenuItem";
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarUsuarioToolStripMenuItem_Click);
+            this.Ciudad.HeaderText = "Ciudad";
+            this.Ciudad.Name = "Ciudad";
+            this.Ciudad.ReadOnly = true;
+            // 
+            // Hotel
+            // 
+            this.Hotel.HeaderText = "Hotel";
+            this.Hotel.Name = "Hotel";
+            this.Hotel.ReadOnly = true;
+            // 
+            // TipoHabitacion
+            // 
+            this.TipoHabitacion.HeaderText = "Tipo de Habitacion";
+            this.TipoHabitacion.Name = "TipoHabitacion";
+            this.TipoHabitacion.ReadOnly = true;
+            // 
+            // NumeroHabitacion
+            // 
+            this.NumeroHabitacion.HeaderText = "Numero de Habitacion";
+            this.NumeroHabitacion.Name = "NumeroHabitacion";
+            this.NumeroHabitacion.ReadOnly = true;
+            // 
+            // Personas
+            // 
+            this.Personas.HeaderText = "Numero de Personas Hospedadas";
+            this.Personas.Name = "Personas";
+            this.Personas.ReadOnly = true;
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo de Reservacion";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // FechaReservacion
+            // 
+            this.FechaReservacion.HeaderText = "Fecha de Reservacion";
+            this.FechaReservacion.Name = "FechaReservacion";
+            this.FechaReservacion.ReadOnly = true;
+            // 
+            // Estatus
+            // 
+            this.Estatus.HeaderText = "Estatus de la Reservacion";
+            this.Estatus.Name = "Estatus";
+            this.Estatus.ReadOnly = true;
+            // 
+            // Anticipo
+            // 
+            this.Anticipo.HeaderText = "Anticipo";
+            this.Anticipo.Name = "Anticipo";
+            this.Anticipo.ReadOnly = true;
+            // 
+            // Monto
+            // 
+            this.Monto.HeaderText = "Monto de Hospedaje";
+            this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
+            // 
+            // Servicios
+            // 
+            this.Servicios.HeaderText = "Monto de Servicios Adicionales";
+            this.Servicios.Name = "Servicios";
+            this.Servicios.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total Factura";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // Historial
             // 
@@ -323,6 +436,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Historial";
             this.Text = "Historial";
+            this.Load += new System.EventHandler(this.Historial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -361,5 +475,18 @@
         private System.Windows.Forms.ToolStripMenuItem verServiciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miPerfilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEditarRegistrarUsuarioToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hotel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoHabitacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroHabitacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Personas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaReservacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Anticipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Servicios;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }

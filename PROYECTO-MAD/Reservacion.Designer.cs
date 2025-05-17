@@ -56,7 +56,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
@@ -64,6 +63,10 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label14 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,9 +84,9 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -163,6 +166,7 @@
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label3
             // 
@@ -374,23 +378,12 @@
             this.button4.TabIndex = 82;
             this.button4.Text = "Cancelar";
             this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.Plum;
-            this.button5.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button5.Location = new System.Drawing.Point(1170, 549);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(5);
-            this.button5.Size = new System.Drawing.Size(103, 49);
-            this.button5.TabIndex = 83;
-            this.button5.Text = "Editar";
-            this.button5.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.Plum;
+            this.button6.Enabled = false;
             this.button6.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
             this.button6.Location = new System.Drawing.Point(895, 416);
             this.button6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -400,10 +393,12 @@
             this.button6.TabIndex = 85;
             this.button6.Text = "Check  in";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.Plum;
+            this.button7.Enabled = false;
             this.button7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
             this.button7.Location = new System.Drawing.Point(898, 471);
             this.button7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -413,10 +408,12 @@
             this.button7.TabIndex = 86;
             this.button7.Text = "Check out";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // dateTimePicker3
             // 
             this.dateTimePicker3.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.dateTimePicker3.Enabled = false;
             this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker3.Location = new System.Drawing.Point(1013, 433);
             this.dateTimePicker3.Name = "dateTimePicker3";
@@ -464,13 +461,49 @@
             // 
             // dataGridView3
             // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AllowUserToResizeColumns = false;
+            this.dataGridView3.AllowUserToResizeRows = false;
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView3.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Ciudad,
+            this.Hotel,
+            this.Estatus});
             this.dataGridView3.Location = new System.Drawing.Point(22, 221);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(408, 355);
             this.dataGridView3.TabIndex = 92;
+            this.dataGridView3.Click += new System.EventHandler(this.dataGridView3_Click);
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            // 
+            // Ciudad
+            // 
+            this.Ciudad.HeaderText = "Ciudad";
+            this.Ciudad.Name = "Ciudad";
+            this.Ciudad.ReadOnly = true;
+            // 
+            // Hotel
+            // 
+            this.Hotel.HeaderText = "Hotel";
+            this.Hotel.Name = "Hotel";
+            this.Hotel.ReadOnly = true;
+            // 
+            // Estatus
+            // 
+            this.Estatus.HeaderText = "Estatus";
+            this.Estatus.Name = "Estatus";
+            this.Estatus.ReadOnly = true;
             // 
             // menuStrip1
             // 
@@ -613,14 +646,6 @@
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(106, 184);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(188, 21);
-            this.comboBox1.TabIndex = 96;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -628,9 +653,9 @@
             this.label4.Location = new System.Drawing.Point(31, 177);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 44);
+            this.label4.Size = new System.Drawing.Size(94, 44);
             this.label4.TabIndex = 95;
-            this.label4.Text = "CLIENTE";
+            this.label4.Text = "CLIENTE RFC";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // listBox1
@@ -642,14 +667,22 @@
             this.listBox1.Size = new System.Drawing.Size(375, 186);
             this.listBox1.TabIndex = 97;
             // 
+            // textBox3
+            // 
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(124, 184);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(306, 20);
+            this.textBox3.TabIndex = 98;
+            // 
             // Reservacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(1301, 625);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label14);
@@ -660,7 +693,6 @@
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBox2);
@@ -704,7 +736,7 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox3;
+        public System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Panel panel2;
@@ -713,7 +745,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
@@ -735,7 +766,6 @@
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeOcupaciónPorHotelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeVentasToolStripMenuItem;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem verServiciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miPerfilToolStripMenuItem;
@@ -746,5 +776,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Habitaciones;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hotel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estatus;
     }
 }

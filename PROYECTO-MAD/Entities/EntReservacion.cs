@@ -8,10 +8,11 @@ namespace PROYECTO_MAD.Entities
 {
     public class EntReservacion
     {
-        public int CodReservacion;
+        public Guid CodReservacion;
         public string Cliente;
         public string Ciudad;
         public int Hotel;
+        public int TipoHabitacion;
         public int CantHabitaciones;
         public int CantPersonas;
         public DateTime Entrada;
@@ -21,25 +22,36 @@ namespace PROYECTO_MAD.Entities
         public int idCheckOut;
 
         public string HotelNombre;
+        public string TipoHabitacionNombre;
+        public int Dias;
+        public decimal PrecioNoche;
+        public int NoHabitacion;
+
+        public decimal Anticipo;
+        public decimal Monto;
+        public decimal Servicios;
+        public decimal Total;
 
         public EntReservacion(
-            int _CodReservacion,
-        string _Cliente,
-        string _Ciudad,
-        string _Hotel,
-        int _CantHabitaciones,
-        int _CantPersonas,
-        DateTime _Entrada,
-        DateTime _Salida,
-        string _Estatus,
-        int _idCheckIn,
-        int _idCheckOut
+            Guid _CodReservacion,
+            string _Cliente,
+            string _Ciudad,
+            string _Hotel,
+            string _TipoHabitacion,
+            int _CantHabitaciones,
+            int _CantPersonas,
+            DateTime _Entrada,
+            DateTime _Salida,
+            string _Estatus,
+            int _idCheckIn,
+            int _idCheckOut
         )
         {
             CodReservacion = _CodReservacion;
             Cliente = _Cliente;
             Ciudad = _Ciudad;
             HotelNombre = _Hotel;
+            TipoHabitacionNombre = _TipoHabitacion;
             CantHabitaciones = _CantHabitaciones;
             CantPersonas = _CantPersonas;
             Entrada = _Entrada;

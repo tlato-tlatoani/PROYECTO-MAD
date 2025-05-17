@@ -15,9 +15,13 @@ namespace PROYECTO_MAD
 {
     public partial class Reservacion : Form
     {
+        public static Reservacion m_instance;
+
+        public List<EntReservacion> m_reservaciones;
+
         public bool m_registrando = false;
         public bool m_editando = false;
-        public int m_actual = 0;
+        public static Guid m_actual = Guid.Empty;
 
         public static string m_cliente = null;
         public int m_habitaciones = -1;
@@ -66,9 +70,22 @@ namespace PROYECTO_MAD
 
         private void Reservacion_Load(object sender, EventArgs e)
         {
-            foreach (string _ciudad in (new EnlaceDB()).getCiudades())
-            {
+            m_instance = this;
+
+            m_reservaciones = new EnlaceDB().getReservaciones(m_cliente);
+
+            foreach (string _ciudad in (new EnlaceDB()).getCiudades()) {
                 comboBox2.Items.Add(_ciudad);
+            }
+
+            dataGridView3.Rows.Clear();
+            foreach (EntReservacion _reservacion in m_reservaciones) {
+                dataGridView3.Rows.Add();
+                DataGridViewRow l_row = dataGridView3.Rows[dataGridView3.Rows.Count - 1];
+                l_row.Cells["Codigo"].Value = _reservacion.CodReservacion;
+                l_row.Cells["Ciudad"].Value = _reservacion.Ciudad;
+                l_row.Cells["Hotel"].Value = _reservacion.HotelNombre;
+                l_row.Cells["Estatus"].Value = _reservacion.Estatus;
             }
         }
 
@@ -171,6 +188,9 @@ namespace PROYECTO_MAD
             listBox1.Items.Add("Domicilio: " + l_curHotel.Locacion);
             listBox1.Items.Add("Numero de Pisos: " + l_curHotel.NoPisos);
             listBox1.Items.Add("Servicios: ");
+            foreach (string _serv in l_curHotel.Servicios.Split(',')) {
+                listBox1.Items.Add(_serv);
+            }
 
             dataGridView2.Rows.Clear();
             foreach (TipoHab _tipohab in (new EnlaceDB()).getTiposHabitacionesHotel(comboBox3.Text)) {
@@ -187,6 +207,9 @@ namespace PROYECTO_MAD
         private void dataGridView2_Click(object sender, EventArgs e)
         {
             m_habitaciones = int.Parse(dataGridView2.SelectedCells[4].Value.ToString());
+            button6.Enabled = true;
+            button7.Enabled = true;
+            dateTimePicker3.Enabled = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -201,12 +224,12 @@ namespace PROYECTO_MAD
         {
             if (textBox1.Text.Length <= 0) { return; }
             if (textBox2.Text.Length <= 0) { return; }
+            if (dataGridView2.Rows.Count <= 1) { return; }
             int l_curHabits = int.Parse(textBox1.Text);
             int l_curPersons = int.Parse(textBox2.Text);
             int l_clientesHab = int.Parse(dataGridView2.SelectedCells[2].Value.ToString());
 
             if (l_curPersons > l_curHabits * l_clientesHab) { textBox2.Text = (l_curHabits * l_clientesHab).ToString(); }
-
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -215,7 +238,7 @@ namespace PROYECTO_MAD
             {
                 m_registrando = true;
                 m_editando = false;
-                m_actual = -1;
+                m_actual = Guid.Empty;
 
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Crearas una Reservacion.", "Informacion");
             }
@@ -225,10 +248,11 @@ namespace PROYECTO_MAD
                 if (l_editar == DialogResult.Yes)
                 {
                     EntReservacion l_reservacion = new EntReservacion(
-                        0,
+                        Guid.Empty,
                         m_cliente,
                         comboBox2.Text,
                         comboBox3.Text,
+                        dataGridView2.SelectedRows[0].Cells[0].Value.ToString(),
                         int.Parse(textBox1.Text),
                         int.Parse(textBox2.Text),
                         dateTimePicker1.Value,
@@ -238,13 +262,13 @@ namespace PROYECTO_MAD
                         0
                     );
 
-                    //EnlaceDB l_enlace = new EnlaceDB();
-                    //if (l_enlace.RegistrarReservacion(l_hotel, Program.m_usuario.NoNomina))
-                    //{
-                    //    MessageBox.Show(this, "Hotel Registrado con Exito.", "Informacion");
-                    //    Form3_Load(this, new EventArgs());
-                    //    m_registrando = false;
-                    //}
+                    EnlaceDB l_enlace = new EnlaceDB();
+                    if (l_enlace.RegistrarReservacion(l_reservacion, Program.m_usuario.NoNomina))
+                    {
+                        MessageBox.Show(this, "Reservacion Creada con Exito.", "Informacion");
+                        Reservacion_Load(this, new EventArgs());
+                        m_registrando = false;
+                    }
                 }
             }
         }
@@ -254,6 +278,88 @@ namespace PROYECTO_MAD
             Form2 checkoutform = new Form2();
             checkoutform.Show();
             this.Close();
+        }
+
+        private void dataGridView3_Click(object sender, EventArgs e)
+        {
+            EntReservacion l_reservacion = null;
+
+            foreach (EntReservacion _reservacion in m_reservaciones) {
+                if (!dataGridView3.SelectedCells[0].Value.ToString().Equals(_reservacion.CodReservacion.ToString())) { continue; }
+                l_reservacion = _reservacion;
+
+                break;
+            }
+
+            if (l_reservacion == null) { return; }
+
+            m_actual = l_reservacion.CodReservacion;
+
+            if (m_registrando)
+            {
+                m_registrando = false;
+                textBox1.Text = "";
+
+                MessageBox.Show(this, "Has salido del Modo Registro", "Informacion");
+            }
+            if (m_editando)
+            {
+                m_editando = false;
+
+                MessageBox.Show(this, "Has salido del Modo Edicion", "Informacion");
+            }
+
+            comboBox2.Text = l_reservacion.Ciudad;
+            comboBox3.Text = l_reservacion.HotelNombre;
+            dateTimePicker1.Value = l_reservacion.Entrada;
+            dateTimePicker2.Value = l_reservacion.Salida;
+ 
+            dataGridView2.ClearSelection();
+            foreach (DataGridViewRow _row in dataGridView2.Rows)
+            {
+                if (!_row.Cells["Nombre"].Value.ToString().TrimEnd().Equals(l_reservacion.TipoHabitacion)) { continue; }
+                _row.Selected = true;
+                dataGridView2_Click(dataGridView2, new DataGridViewCellEventArgs(0, 0));
+                break;
+            }
+
+            textBox1.Text = l_reservacion.CantHabitaciones.ToString();
+            textBox2.Text = l_reservacion.CantPersonas.ToString();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (m_actual == Guid.Empty) { MessageBox.Show(this, "Debes elegir una Reservacion para Realizar esta Accion.", "Error"); return; }
+
+            DialogResult l_editar = MessageBox.Show(this, "Quieres Cancelar esta Reservacion?", "Advertencia", MessageBoxButtons.YesNo);
+            if (l_editar == DialogResult.Yes) {
+                new EnlaceDB().CancelarReservacion(m_actual, Program.m_usuario.NoNomina);
+                MessageBox.Show(this, "Reservacion Cancelada.", "Informacion");
+                Reservacion_Load(this, new EventArgs());
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (m_actual == Guid.Empty) { MessageBox.Show(this, "Debes elegir una Reservacion para Realizar esta Accion.", "Error"); return; }
+
+            DialogResult l_editar = MessageBox.Show(this, "Quieres realizar el Check In de Esta Reservacion?", "Advertencia", MessageBoxButtons.YesNo);
+            if (l_editar == DialogResult.Yes)
+            {
+                new EnlaceDB().CheckIn(m_actual, dateTimePicker3.Value, Program.m_usuario.NoNomina);
+                MessageBox.Show(this, "CheckIn Realizada.", "Informacion");
+            }
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            Form2 l_checkout = new Form2();
+            l_checkout.ShowDialog(this);
         }
     }
 }

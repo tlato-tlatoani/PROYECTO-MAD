@@ -70,6 +70,10 @@ CREATE TABLE Habitacion(
 	TipoHabitacion INT NOT NULL,
 	FOREIGN KEY (TipoHabitacion) REFERENCES TiposHabitacion(CodTDH),
 );
+ALTER TABLE Habitacion DROP COLUMN Reservacion;
+ALTER TABLE Habitacion ADD Reservacion UNIQUEIDENTIFIER NULL;
+ALTER TABLE Habitacion ADD CONSTRAINT FK_Reservacion_Usuario FOREIGN KEY (Reservacion) REFERENCES Reservacion(CodReservacion);
+ALTER TABLE Habitacion DROP CONSTRAINT FK_Reservacion_Usuario;
 
 CREATE TABLE Reservacion(
 	CodReservacion UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
@@ -86,6 +90,7 @@ CREATE TABLE Reservacion(
 	FOREIGN KEY (Cliente) REFERENCES Cliente(RFC),
 	FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel)
 );
+ALTER TABLE Reservacion ADD TipoHabitacion INT DEFAULT (4);
 
 CREATE TABLE Checks(
 	idCheck INT PRIMARY KEY IDENTITY(1,1),
@@ -109,13 +114,25 @@ CREATE TABLE Factura(
 	Cliente VARCHAR (15) NOT NULL,
 	Hotel INT NOT NULL,
 	Servicios INT NOT NULL,
-	FOREIGN KEY (Servicios) REFERENCES HotelesServicio(idHotelesServicio),
 	FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel),
-	FOREIGN KEY (Cliente) REFERENCES Cliente(RFC),
-	FOREIGN KEY (Salida) REFERENCES Checks(idCheck),
-	FOREIGN KEY (Entrada) REFERENCES Checks(idCheck)
+	FOREIGN KEY (Cliente) REFERENCES Cliente(RFC)
 );
+ALTER TABLE  Factura DROP COLUMN Servicios;
+ALTER TABLE  Factura DROP COLUMN Entrada;
+ALTER TABLE  Factura DROP COLUMN Salida;
+ALTER TABLE  Factura ADD Entrada INT NULL;
+ALTER TABLE  Factura ADD Salida INT NULL;
+ALTER TABLE  Factura ADD Reservacion UNIQUEIDENTIFIER NULL;
+ALTER TABLE  Factura ADD PrecioInicial Money Default(0);
+ALTER TABLE  Factura ADD PrecioServicios Money Default(0);
 
+CREATE TABLE ServiciosAdicionales(
+	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	Reservacion UNIQUEIDENTIFIER NOT NULL,
+	Servicio INT NOT NULL,
+	FOREIGN KEY (Reservacion) REFERENCES Reservacion(CodReservacion),
+	FOREIGN KEY (Servicio) REFERENCES HotelesServicio(idHotelesServicio)
+);
 
 CREATE TABLE Usuario (
 	NoNomina INT PRIMARY KEY,

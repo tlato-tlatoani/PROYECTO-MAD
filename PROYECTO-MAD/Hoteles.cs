@@ -14,7 +14,9 @@ namespace PROYECTO_MAD
 {
     public partial class Hoteles : Form
     {
+        public List<EntServicios> m_servicios;
         public List<Hotel> m_hoteles;
+
         public bool m_registrando = false;
         public bool m_editando = false;
         public int m_actual = 0;
@@ -50,6 +52,7 @@ namespace PROYECTO_MAD
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            m_servicios = new EnlaceDB().getServicios();
             m_hoteles = new EnlaceDB().getHoteles();
 
             dataGridView1.Rows.Clear();
@@ -58,6 +61,11 @@ namespace PROYECTO_MAD
                 DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
                 l_row.Cells["Codigo"].Value = _hotel.CodHotel;
                 l_row.Cells["Nombre"].Value = _hotel.NombreHotel;
+            }
+
+            listBox2.Items.Clear();
+            foreach (EntServicios _serv in m_servicios) {
+                listBox2.Items.Add(_serv.Nombre);
             }
         }
 
@@ -252,6 +260,7 @@ namespace PROYECTO_MAD
                         radioButton1.Checked,
                         textBox3.Text,
                         int.Parse(textBox6.Text),
+                        string.Join(",", listBox2.SelectedItems),
                         dateTimePicker1.Value
                     );
 
@@ -306,6 +315,11 @@ namespace PROYECTO_MAD
             radioButton1.Checked = l_hotel.ZonaTuristica;
             radioButton2.Checked = !l_hotel.ZonaTuristica;
             dateTimePicker1.Value = l_hotel.FechaInicio;
+
+            listBox2.ClearSelected();
+            foreach (string _serv in l_hotel.Servicios.Split(',')) {
+                listBox2.SelectedItems.Add(_serv);
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -327,6 +341,10 @@ namespace PROYECTO_MAD
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Hotel?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
+                    string l_listServicios = "";
+                    foreach(string _serv in listBox2.SelectedItems) { l_listServicios += _serv + ","; }
+                    if (l_listServicios.Length > 0) { l_listServicios = l_listServicios.Remove(l_listServicios.Length - 1); }
+
                     Hotel l_hotel = new Hotel(
                         int.Parse(textBox7.Text),
                         textBox9.Text,
@@ -336,6 +354,7 @@ namespace PROYECTO_MAD
                         radioButton1.Checked,
                         textBox3.Text,
                         int.Parse(textBox6.Text),
+                        l_listServicios,
                         dateTimePicker1.Value
                     );
 

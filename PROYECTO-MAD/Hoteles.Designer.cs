@@ -266,7 +266,8 @@
             this.listBox2.Location = new System.Drawing.Point(450, 454);
             this.listBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(458, 100);
+            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox2.Size = new System.Drawing.Size(458, 148);
             this.listBox2.TabIndex = 30;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 

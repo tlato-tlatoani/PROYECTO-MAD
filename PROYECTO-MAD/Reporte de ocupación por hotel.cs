@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace PROYECTO_MAD
 {
     public partial class Reporte_de_ocupación_por_hotel : Form
     {
+        public List<Hotel> m_hoteles;
         public Reporte_de_ocupación_por_hotel()
         {
             InitializeComponent();
@@ -30,11 +32,44 @@ namespace PROYECTO_MAD
         private void button3_Click(object sender, EventArgs e)
         {
 
+            DataTable l_tabla1 = new EnlaceDB().getOcupaciones1(textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, listBox1.Text);
+            DataTable l_tabla2 = new EnlaceDB().getOcupaciones2(textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, listBox1.Text);
+
+            dataGridView1.Rows.Clear();
+            foreach (DataRow _row in l_tabla1.Rows) {
+                dataGridView1.Rows.Add();
+                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+
+                l_row.Cells["Ciudad"].Value = _row["Ciudad"].ToString();
+                l_row.Cells["Hotel"].Value = _row["NombreHotel"].ToString();
+                l_row.Cells["Year"].Value = _row["Anio"].ToString();
+                l_row.Cells["Mes"].Value = _row["Mes"].ToString();
+                l_row.Cells["TipoHabitacion"].Value = _row["NivelHabitacion"].ToString();
+                l_row.Cells["Cantidad"].Value = _row["Habitaciones"].ToString();
+                l_row.Cells["Porcentaje"].Value = _row["Porcentaje"].ToString();
+                l_row.Cells["Personas"].Value = _row["Personas"].ToString();
+            }
+
+            dataGridView2.Rows.Clear();
+            foreach (DataRow _row in l_tabla2.Rows)
+            {
+                dataGridView2.Rows.Add();
+                DataGridViewRow l_row = dataGridView2.Rows[dataGridView2.Rows.Count - 1];
+
+                l_row.Cells["Ciudad2"].Value = _row["Ciudad"].ToString();
+                l_row.Cells["Hotel2"].Value = _row["NombreHotel"].ToString();
+                l_row.Cells["Year2"].Value = _row["Anio"].ToString();
+                l_row.Cells["Mes2"].Value = _row["Mes"].ToString();
+                l_row.Cells["Porcentaje2"].Value = _row["Porcentaje"].ToString();
+            }
         }
 
         private void Reporte_de_ocupación_por_hotel_Load(object sender, EventArgs e)
         {
+            DataTable l_tabla = new EnlaceDB().getVentas("", 2025, "", "");
+            m_hoteles = new EnlaceDB().getHoteles();
 
+            foreach (Hotel _hotel in m_hoteles) { listBox1.Items.Add(_hotel.NombreHotel); }
         }
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)

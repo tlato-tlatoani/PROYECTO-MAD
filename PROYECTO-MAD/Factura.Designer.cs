@@ -42,6 +42,10 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,10 +54,6 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,6 +69,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
             this.textBox1.Location = new System.Drawing.Point(84, 20);
             this.textBox1.Name = "textBox1";
@@ -195,6 +196,30 @@
             this.dataGridView1.Size = new System.Drawing.Size(1131, 268);
             this.dataGridView1.TabIndex = 78;
             // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Desc
+            // 
+            this.Desc.HeaderText = "Descripción";
+            this.Desc.Name = "Desc";
+            this.Desc.ReadOnly = true;
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -279,30 +304,6 @@
             this.label8.TabIndex = 85;
             this.label8.Text = "Forma de pago:";
             // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // Desc
-            // 
-            this.Desc.HeaderText = "Descripción";
-            this.Desc.Name = "Desc";
-            this.Desc.ReadOnly = true;
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
             // Factura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,6 +334,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Factura";
             this.Text = "Factura";
+            this.Load += new System.EventHandler(this.Factura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

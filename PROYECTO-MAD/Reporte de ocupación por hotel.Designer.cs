@@ -45,6 +45,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verEditarRegistrarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verHotelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,8 +60,19 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.miPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verEditarRegistrarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ciudad2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hotel2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mes2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Porcentaje2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -68,11 +81,23 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Ciudad2,
+            this.Hotel2,
+            this.Year2,
+            this.Mes2,
+            this.Porcentaje2});
             this.dataGridView2.Location = new System.Drawing.Point(39, 476);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(1220, 114);
             this.dataGridView2.TabIndex = 58;
             // 
@@ -111,7 +136,7 @@
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Location = new System.Drawing.Point(42, 97);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(440, 299);
             this.panel1.TabIndex = 61;
@@ -189,7 +214,7 @@
             this.button3.Location = new System.Drawing.Point(83, 203);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button3.Padding = new System.Windows.Forms.Padding(5);
             this.button3.Size = new System.Drawing.Size(81, 38);
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
@@ -209,11 +234,26 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Ciudad,
+            this.Hotel,
+            this.Year,
+            this.Mes,
+            this.TipoHabitacion,
+            this.Cantidad,
+            this.Porcentaje,
+            this.Personas});
             this.dataGridView1.Location = new System.Drawing.Point(529, 97);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(730, 360);
             this.dataGridView1.TabIndex = 62;
             // 
@@ -242,6 +282,20 @@
             this.usuarioToolStripMenuItem1.Name = "usuarioToolStripMenuItem1";
             this.usuarioToolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
             this.usuarioToolStripMenuItem1.Text = "Usuario";
+            // 
+            // miPerfilToolStripMenuItem
+            // 
+            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
+            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.miPerfilToolStripMenuItem.Text = "Mi Perfil";
+            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            // 
+            // verEditarRegistrarUsuarioToolStripMenuItem
+            // 
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Name = "verEditarRegistrarUsuarioToolStripMenuItem";
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
+            this.verEditarRegistrarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarUsuarioToolStripMenuItem_Click);
             // 
             // reservacionesToolStripMenuItem
             // 
@@ -343,19 +397,83 @@
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
-            // miPerfilToolStripMenuItem
+            // Ciudad
             // 
-            this.miPerfilToolStripMenuItem.Name = "miPerfilToolStripMenuItem";
-            this.miPerfilToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.miPerfilToolStripMenuItem.Text = "Mi Perfil";
-            this.miPerfilToolStripMenuItem.Click += new System.EventHandler(this.miPerfilToolStripMenuItem_Click);
+            this.Ciudad.HeaderText = "Ciudad";
+            this.Ciudad.Name = "Ciudad";
+            this.Ciudad.ReadOnly = true;
             // 
-            // verEditarRegistrarUsuarioToolStripMenuItem
+            // Hotel
             // 
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Name = "verEditarRegistrarUsuarioToolStripMenuItem";
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Text = "Ver/Editar/Registrar Usuario";
-            this.verEditarRegistrarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.verEditarRegistrarUsuarioToolStripMenuItem_Click);
+            this.Hotel.HeaderText = "Hotel";
+            this.Hotel.Name = "Hotel";
+            this.Hotel.ReadOnly = true;
+            // 
+            // Year
+            // 
+            this.Year.HeaderText = "Año";
+            this.Year.Name = "Year";
+            this.Year.ReadOnly = true;
+            // 
+            // Mes
+            // 
+            this.Mes.HeaderText = "Mes";
+            this.Mes.Name = "Mes";
+            this.Mes.ReadOnly = true;
+            // 
+            // TipoHabitacion
+            // 
+            this.TipoHabitacion.HeaderText = "Tipo de Habitacion";
+            this.TipoHabitacion.Name = "TipoHabitacion";
+            this.TipoHabitacion.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad de Habitaciones";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Porcentaje
+            // 
+            this.Porcentaje.HeaderText = "Porcentaje de Ocupacion";
+            this.Porcentaje.Name = "Porcentaje";
+            this.Porcentaje.ReadOnly = true;
+            // 
+            // Personas
+            // 
+            this.Personas.HeaderText = "Cantidad de Personas Hospedadas";
+            this.Personas.Name = "Personas";
+            this.Personas.ReadOnly = true;
+            // 
+            // Ciudad2
+            // 
+            this.Ciudad2.HeaderText = "Ciudad";
+            this.Ciudad2.Name = "Ciudad2";
+            this.Ciudad2.ReadOnly = true;
+            // 
+            // Hotel2
+            // 
+            this.Hotel2.HeaderText = "Hotel";
+            this.Hotel2.Name = "Hotel2";
+            this.Hotel2.ReadOnly = true;
+            // 
+            // Year2
+            // 
+            this.Year2.HeaderText = "Año";
+            this.Year2.Name = "Year2";
+            this.Year2.ReadOnly = true;
+            // 
+            // Mes2
+            // 
+            this.Mes2.HeaderText = "Mes";
+            this.Mes2.Name = "Mes2";
+            this.Mes2.ReadOnly = true;
+            // 
+            // Porcentaje2
+            // 
+            this.Porcentaje2.HeaderText = "Porcentaje de Ocupacion";
+            this.Porcentaje2.Name = "Porcentaje2";
+            this.Porcentaje2.ReadOnly = true;
             // 
             // Reporte_de_ocupación_por_hotel
             // 
@@ -370,7 +488,7 @@
             this.Controls.Add(this.Resumen);
             this.Controls.Add(this.dataGridView2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Reporte_de_ocupación_por_hotel";
             this.Text = "Reporte_de_ocupación_por_hotel";
             this.Load += new System.EventHandler(this.Reporte_de_ocupación_por_hotel_Load);
@@ -417,5 +535,18 @@
         private System.Windows.Forms.ToolStripMenuItem verServiciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miPerfilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEditarRegistrarUsuarioToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hotel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoHabitacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Porcentaje;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Personas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hotel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Year2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mes2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Porcentaje2;
     }
 }

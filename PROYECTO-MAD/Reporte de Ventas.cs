@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PROYECTO_MAD
 {
     public partial class Reporte_de_Ventas : Form
     {
+        public List<Hotel> m_hoteles;
+
         public Reporte_de_Ventas()
         {
             InitializeComponent();
@@ -97,6 +101,33 @@ namespace PROYECTO_MAD
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
             this.Close();
+        }
+
+        private void Reporte_de_Ventas_Load(object sender, EventArgs e)
+        {
+            DataTable l_tabla = new EnlaceDB().getVentas("", 2025, "", "");
+            m_hoteles = new EnlaceDB().getHoteles();
+
+            foreach (Hotel _hotel in m_hoteles) { listBox1.Items.Add(_hotel.NombreHotel); }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DataTable l_tabla = new EnlaceDB().getVentas(textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, listBox1.Text);
+            dataGridView1.Rows.Clear();
+            foreach (DataRow _row in l_tabla.Rows)
+            {
+                dataGridView1.Rows.Add();
+                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+
+                l_row.Cells["Ciudad"].Value = _row["Ciudad"].ToString();
+                l_row.Cells["Hotel"].Value = _row["NombreHotel"].ToString();
+                l_row.Cells["Year"].Value = _row["Anio"].ToString();
+                l_row.Cells["Mes"].Value = _row["Mes"].ToString();
+                l_row.Cells["Hospedaje"].Value = _row["PrecioInicial"].ToString();
+                l_row.Cells["Servicios"].Value = _row["PrecioServicios"].ToString();
+                l_row.Cells["Total"].Value = _row["PrecioTotal"].ToString();
+            }
         }
     }
 }
