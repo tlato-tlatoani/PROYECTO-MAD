@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -142,8 +143,17 @@ namespace PROYECTO_MAD
 
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Usuario.", "Informacion");
             } else {
+
+                if (!Regex.IsMatch(textBox1.Text,@"^(?=.[a-z])(?=.[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$")){
+
+                    MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
+                    return;
+                }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Usuario?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes) {
+
+
                     Usuario l_usuario = new Usuario(
                         int.Parse(textBox6.Text),
                         textBox3.Text,
@@ -180,6 +190,13 @@ namespace PROYECTO_MAD
 
                 textBox6.Enabled = false;
             } else {
+
+                if (!Regex.IsMatch(textBox1.Text, @"^(?=.[a-z])(?=.[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$")){
+
+                    MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
+                    return;
+                }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Usuario?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes) {
                     Usuario l_usuario = new Usuario(

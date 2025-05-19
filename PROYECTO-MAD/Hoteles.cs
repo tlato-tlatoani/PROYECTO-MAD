@@ -251,8 +251,12 @@ namespace PROYECTO_MAD
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Hotel?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
+                    string l_listServicios = "";
+                    foreach (string _serv in listBox2.SelectedItems) { l_listServicios += _serv + ","; }
+                    if (l_listServicios.Length > 0) { l_listServicios = l_listServicios.Remove(l_listServicios.Length - 1); }
+
                     Hotel l_hotel = new Hotel(
-                        int.Parse(textBox7.Text),
+                        0,
                         textBox9.Text,
                         textBox1.Text,
                         textBox4.Text,
@@ -260,7 +264,7 @@ namespace PROYECTO_MAD
                         radioButton1.Checked,
                         textBox3.Text,
                         int.Parse(textBox6.Text),
-                        string.Join(",", listBox2.SelectedItems),
+                        l_listServicios,
                         dateTimePicker1.Value
                     );
 

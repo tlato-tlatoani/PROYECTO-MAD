@@ -18,6 +18,7 @@ namespace PROYECTO_MAD
         public static Reservacion m_instance;
 
         public List<EntReservacion> m_reservaciones;
+        public EntReservacion m_reservacionActual;
 
         public bool m_registrando = false;
         public bool m_editando = false;
@@ -215,7 +216,7 @@ namespace PROYECTO_MAD
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (textBox1.Text.Length <= 0) { return; }
-            int l_curValue = int.Parse(textBox1.Text);
+            int l_curValue = 0;  int.TryParse(textBox1.Text, out l_curValue);
 
             if (l_curValue > m_habitaciones) { textBox1.Text = m_habitaciones.ToString(); }
         }
@@ -224,7 +225,7 @@ namespace PROYECTO_MAD
         {
             if (textBox1.Text.Length <= 0) { return; }
             if (textBox2.Text.Length <= 0) { return; }
-            if (dataGridView2.Rows.Count <= 1) { return; }
+            if (dataGridView2.Rows.Count < 1) { return; }
             int l_curHabits = int.Parse(textBox1.Text);
             int l_curPersons = int.Parse(textBox2.Text);
             int l_clientesHab = int.Parse(dataGridView2.SelectedCells[2].Value.ToString());
@@ -294,6 +295,7 @@ namespace PROYECTO_MAD
             if (l_reservacion == null) { return; }
 
             m_actual = l_reservacion.CodReservacion;
+            m_reservacionActual = l_reservacion;
 
             if (m_registrando)
             {
@@ -331,6 +333,12 @@ namespace PROYECTO_MAD
         {
             if (m_actual == Guid.Empty) { MessageBox.Show(this, "Debes elegir una Reservacion para Realizar esta Accion.", "Error"); return; }
 
+            if ((m_reservacionActual.Entrada - DateTime.Now).TotalDays < 3)
+            {
+                MessageBox.Show(this, "Ya no se encuentra en días hábiles para realizar su cancelación.", "Advertencia");
+                return;
+            }
+
             DialogResult l_editar = MessageBox.Show(this, "Quieres Cancelar esta Reservacion?", "Advertencia", MessageBoxButtons.YesNo);
             if (l_editar == DialogResult.Yes) {
                 new EnlaceDB().CancelarReservacion(m_actual, Program.m_usuario.NoNomina);
@@ -360,6 +368,11 @@ namespace PROYECTO_MAD
         {
             Form2 l_checkout = new Form2();
             l_checkout.ShowDialog(this);
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1843,7 +1843,7 @@ namespace PROYECTO_MAD
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@RFC", SqlDbType.NVarChar, 40);
+                var parametro1 = _comandosql.Parameters.Add("@CorreoElectronico", SqlDbType.NVarChar, 40);
                 parametro1.Value = _correo;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -1916,14 +1916,14 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "BuscarClienteRFC";
+                string qry = "BuscarClienteAp";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@ApellidoPaterno", SqlDbType.NVarChar, 15);
+                var parametro1 = _comandosql.Parameters.Add("@ApellidoPaterno", SqlDbType.NVarChar, 50);
                 parametro1.Value = _ap1;
-                var parametro2 = _comandosql.Parameters.Add("@ApellidoMaterno", SqlDbType.NVarChar, 15);
+                var parametro2 = _comandosql.Parameters.Add("@ApellidoMaterno", SqlDbType.NVarChar, 50);
                 parametro2.Value = _ap2;
 
                 _adaptador.SelectCommand = _comandosql;

@@ -184,7 +184,7 @@ namespace PROYECTO_MAD
                     if (l_tipoCamas.Length > 0) { l_tipoCamas.Remove(l_tipoCamas.Length - 1); }
                     
                     TipoHab l_tipoHab = new TipoHab(
-                        int.Parse(textBox3.Text),
+                        0,
                         textBox2.Text,
                         int.Parse(textBox1.Text),
                         l_tipoCamas,
@@ -308,6 +308,11 @@ namespace PROYECTO_MAD
                 dataGridView1_Click(dataGridView1, new DataGridViewCellEventArgs(0, 0));
                 return;
             }
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
