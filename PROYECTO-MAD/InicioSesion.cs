@@ -13,6 +13,7 @@ namespace PROYECTO_MAD
 {
     public partial class InicioDeSesion : Form
     {
+        public static InicioDeSesion m_instance;
         public InicioDeSesion()
         {
             InitializeComponent();
@@ -84,7 +85,7 @@ namespace PROYECTO_MAD
 
         private void InicioDeSesion_Load(object sender, EventArgs e)
         {
-
+            m_instance = this;
         }
     }
 }

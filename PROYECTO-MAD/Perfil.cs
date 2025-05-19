@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace PROYECTO_MAD
 {
@@ -98,6 +100,52 @@ namespace PROYECTO_MAD
             Reporte_de_Ventas reporteventasform = new Reporte_de_Ventas();
             reporteventasform.Show();
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            InicioDeSesion.m_instance.Show();
+        }
+
+        private void Perfil_Load(object sender, EventArgs e)
+        {
+            textBox2.Text = Program.m_usuario.CorreoElectronico;
+            textBox3.Text = Program.m_usuario.Nombre;
+            textBox7.Text = Program.m_usuario.TelCasa;
+            textBox8.Text = Program.m_usuario.TelCelular;
+            textBox4.Text = Program.m_usuario.ApellidoPaterno;
+            textBox5.Text = Program.m_usuario.ApellidoMaterno;
+            dateTimePicker1.Value = Program.m_usuario.FechaNacimiento;
+            textBox6.Text = Program.m_usuario.NoNomina.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Quieres Editar tu Usuario?", "Informacion", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            Usuario l_usuario = new Usuario(
+                Program.m_usuario.NoNomina,
+                textBox3.Text,
+                textBox4.Text,
+                textBox5.Text,
+                textBox2.Text,
+                textBox1.Text.Length > 0 ? textBox1.Text : Program.m_usuario.RealContrasenna,
+                textBox8.Text,
+                textBox7.Text,
+                dateTimePicker1.Value,
+                Program.m_usuario.TipoUsuario
+            );
+
+            EnlaceDB l_enlace = new EnlaceDB();
+            if (l_enlace.Editar(l_usuario))
+            {
+                MessageBox.Show(this, "Usuario Editado con Exito.", "Informacion");
+                Program.m_usuario = l_usuario;
+            }
         }
     }
 }

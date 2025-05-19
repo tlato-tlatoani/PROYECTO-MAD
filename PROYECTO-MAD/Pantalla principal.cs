@@ -104,7 +104,7 @@ namespace PROYECTO_MAD
 
         private void miPerfilToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Usuarios usuariosform = new Usuarios();
+            Perfil usuariosform = new Perfil();
             usuariosform.Show();
             this.Close();
         }

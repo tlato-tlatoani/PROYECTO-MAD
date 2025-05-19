@@ -27,7 +27,8 @@ BEGIN
 		u.TelCasa, 
 		u.FechaNacimiento, 
 		u.TipoUsuario,
-		u.Estado
+		u.Estado,
+		c.Contrasenna AS ContrasennaReal
 	FROM Usuario u
 	JOIN Contrasenna c ON c.idUsuario = u.NoNomina
 	WHERE u.CorreoElectronico = @email AND c.Contrasenna = @contrasenna AND u.Contrasenna = c.idContrasenna AND u.TipoUsuario = @tipousuario AND u.Estado = 1;
@@ -113,14 +114,15 @@ BEGIN
 	DECLARE @TotalContras AS INT;
 
 	SELECT @ContrasIguales = Count(c.Contrasenna) FROM Contrasenna c WHERE c.Contrasenna = @Contrasenna AND c.idUsuario = @NoNomina;
-	IF @ContrasIguales > 0 BEGIN RETURN; END
-	
-	INSERT INTO Contrasenna (idUsuario, Contrasenna) VALUES (@NoNomina, @Contrasenna);
+	IF @ContrasIguales <= 0 BEGIN
+		INSERT INTO Contrasenna (idUsuario, Contrasenna) VALUES (@NoNomina, @Contrasenna);
 
-	SELECT @TotalContras = Count(c.Contrasenna) FROM Contrasenna c WHERE c.idUsuario = @NoNomina;
-	IF @TotalContras > 2 BEGIN
-		DELETE FROM Contrasenna WHERE idUsuario = @NoNomina AND idContrasenna = (SELECT TOP 1 idContrasenna FROM Contrasenna WHERE idUsuario = @NoNomina ORDER BY idContrasenna ASC);
+		SELECT @TotalContras = Count(c.Contrasenna) FROM Contrasenna c WHERE c.idUsuario = @NoNomina;
+		IF @TotalContras > 2 BEGIN
+			DELETE FROM Contrasenna WHERE idUsuario = @NoNomina AND idContrasenna = (SELECT TOP 1 idContrasenna FROM Contrasenna WHERE idUsuario = @NoNomina ORDER BY idContrasenna ASC);
+		END
 	END
+	
 
 	UPDATE Usuario SET
 		Nombre = @Nombre, 
@@ -948,7 +950,7 @@ CREATE OR ALTER PROCEDURE GetReservaciones
 ( @RFC NVARCHAR(15) )
 AS
 BEGIN
-	SELECT
+	SELECT DISTINCT
 		CodReservacion,
 		r.Cliente,
 		r.Ciudad,
@@ -977,21 +979,26 @@ AS
 BEGIN
 	SELECT DISTINCT
 		CodReservacion,
-		Cliente,
+		r.Cliente,
 		r.Ciudad,
-		Hotel,
+		r.Hotel,
 		CantHabitaciones,
 		CantPersonas,
-		Entrada,
-		Salida,
+		r.Entrada,
+		r.Salida,
 		r.Estatus,
 		idCheckIn,
 		idCheckOut,
 		NombreHotel,
 		th.NivelHabitacion,
+		f.Anticipo,
+		f.PrecioInicial,
+		f.PrecioServicios,
+		f.PrecioTotal,
+		hb.NoHabitacion,
 		(ABS(DATEDIFF(DAY, ch1.FechaCheck, ch2.FechaCheck))) AS Dias,
 		th.PrecioNoche
-	FROM Reservacion r JOIN Hotel h ON CodHotel = Hotel JOIN Habitacion hb ON hb.Reservacion = CodReservacion JOIN TiposHabitacion th ON hb.TipoHabitacion = th.CodTDH JOIN Checks ch1 ON ch1.idReservacion = r.CodReservacion AND ch1.Tipo = 'In' JOIN Checks ch2 ON ch2.idReservacion = r.CodReservacion AND ch2.Tipo = 'Out' WHERE r.CodReservacion = @Codigo;
+	FROM Reservacion r JOIN Factura f ON f.Reservacion = r.CodReservacion JOIN Hotel h ON CodHotel = r.Hotel JOIN Habitacion hb ON hb.Reservacion = r.CodReservacion JOIN TiposHabitacion th ON hb.TipoHabitacion = th.CodTDH JOIN Checks ch1 ON ch1.idReservacion = r.CodReservacion AND ch1.Tipo = 'In' JOIN Checks ch2 ON ch2.idReservacion = r.CodReservacion AND ch2.Tipo = 'Out' WHERE r.CodReservacion = @Codigo;
 END
 GO;
 
@@ -1017,8 +1024,14 @@ BEGIN
 		'In',
 		@Reservacion
 	);
+
+	Update Habitacion SET
+		Estatus = 'Ocupado'
+	WHERE Reservacion = @Reservacion;
 		
     INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Check In Realizado', 'Usuario ha realizado un Check In de Reservacion', @NoNomina);
+
+	SELECT NoHabitacion FROM Habitacion WHERE Reservacion = @Reservacion;
 END
 GO;
 
@@ -1051,6 +1064,14 @@ BEGIN
 		Descuento = @Descuento,
 		NombreDescuento = @NombreDescuento
 	WHERE Reservacion = @Reservacion;
+	
+	Update Habitacion SET
+		Estatus = 'Desocupado'
+	WHERE Reservacion = @Reservacion;
+	
+	Update Reservacion SET
+		Estatus = 'Concluido'
+	WHERE CodReservacion = @Reservacion;
 		
     INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Check Out Realizado', 'Usuario ha realizado un Check Out de Reservacion', @NoNomina);
 END
@@ -1195,6 +1216,7 @@ SELECT * FROM Usuario;
 SELECT * FROM Factura;
 SELECT * FROM Servicio;
 SELECT * FROM Habitacion;
+SELECT * FROM Contrasenna;
 SELECT * FROM Reservacion;
 SELECT * FROM HotelesServicio;
 SELECT * FROM TiposHabitacion;

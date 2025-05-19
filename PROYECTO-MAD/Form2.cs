@@ -44,14 +44,11 @@ namespace PROYECTO_MAD
             if (l_editar == DialogResult.Yes)
             {
                 string l_servicios = "";
-                foreach (string _serv in listBox1.SelectedItems)
-                {
-                    l_servicios += _serv.Split(':')[0] + ",";
-                }
-                l_servicios = l_servicios.Remove(l_servicios.Length - 1);
-
+                foreach (string _serv in listBox1.SelectedItems){ l_servicios += _serv.Split(':')[0] + ","; }
+                if (l_servicios.Length > 0) { l_servicios = l_servicios.Remove(l_servicios.Length - 1); }
+                
                 new EnlaceDB().CheckOut(Reservacion.m_actual, dateTimePicker3.Value, decimal.Parse(textBox6.Text), textBox1.Text, Program.m_usuario.NoNomina);
-                new EnlaceDB().FacturarServicios(Reservacion.m_actual, l_servicios);
+                if (l_servicios.Length > 0) { new EnlaceDB().FacturarServicios(Reservacion.m_actual, l_servicios); }
 
                 MessageBox.Show(this, "Check Out Realizada.", "Informacion");
             }

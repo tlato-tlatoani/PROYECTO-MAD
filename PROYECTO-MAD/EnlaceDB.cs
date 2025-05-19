@@ -96,7 +96,7 @@ namespace PROYECTO_MAD
                             _row["ApellidoPaterno"].ToString(),
                             _row["ApellidoMaterno"].ToString(),
                             _row["CorreoElectronico"].ToString(),
-                            "1",
+                            _row["ContrasennaReal"].ToString(),
                             _row["TelCelular"].ToString(),
                             _row["TelCasa"].ToString(),
                             DateTime.Parse(_row["FechaNacimiento"].ToString()),
@@ -785,7 +785,10 @@ namespace PROYECTO_MAD
                 desconectar();
             }
         }
-        public void CheckIn(Guid _codigo, DateTime _fecha, int _admin) {
+        public string CheckIn(Guid _codigo, DateTime _fecha, int _admin) {
+            DataTable tabla = new DataTable();
+            string l_toReturn = "";
+
             try
             {
                 conectar();
@@ -801,8 +804,13 @@ namespace PROYECTO_MAD
                 var parametro3 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
                 parametro3.Value = _admin;
 
-                _adaptador.InsertCommand = _comandosql;
-                _comandosql.ExecuteNonQuery();
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+                foreach (DataRow _row in tabla.Rows) {
+                    l_toReturn += "- Habitacion [" + _row["NoHabitacion"].ToString() + "]\n";
+                }
+                l_toReturn = l_toReturn.Remove(l_toReturn.Length - 1);
             }
             catch (SqlException e)
             {
@@ -814,6 +822,8 @@ namespace PROYECTO_MAD
             {
                 desconectar();
             }
+
+            return l_toReturn;
         }
         public void CheckOut(Guid _codigo, DateTime _fecha, decimal _descuento, string _nombredescuento, int _admin)
         {
@@ -1721,8 +1731,11 @@ namespace PROYECTO_MAD
                 _adaptador.Fill(tabla);
 
                 List<EntReservacion> l_Habs = new List<EntReservacion>();
+                Guid l_lastCode = Guid.Empty;
                 foreach (DataRow _row in tabla.Rows)
                 {
+                    if (l_lastCode == Guid.Parse(_row["CodReservacion"].ToString())) { continue; }
+
                     l_Habs.Add(new EntReservacion(
                         Guid.Parse(_row["CodReservacion"].ToString()),
                         _row["Cliente"].ToString(),
@@ -1744,6 +1757,8 @@ namespace PROYECTO_MAD
                     l_Habs[l_Habs.Count - 1].Monto = decimal.Parse(_row["PrecioInicial"].ToString());
                     l_Habs[l_Habs.Count - 1].Servicios = decimal.Parse(_row["PrecioServicios"].ToString());
                     l_Habs[l_Habs.Count - 1].Total = decimal.Parse(_row["PrecioTotal"].ToString());
+
+                    l_lastCode = Guid.Parse(_row["CodReservacion"].ToString());
                 }
 
                 desconectar();
@@ -1812,6 +1827,7 @@ namespace PROYECTO_MAD
                 }
 
                 desconectar();
+                if (l_Habs.Count <= 0) { return null; }
                 return l_Habs[0];
             }
             catch (SqlException e)

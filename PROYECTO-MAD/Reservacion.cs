@@ -226,6 +226,8 @@ namespace PROYECTO_MAD
             if (textBox1.Text.Length <= 0) { return; }
             if (textBox2.Text.Length <= 0) { return; }
             if (dataGridView2.Rows.Count < 1) { return; }
+            if (dataGridView2.ColumnCount < 1) { return; }
+            if (dataGridView2.SelectedCells.Count < 1) { return; }
             int l_curHabits = int.Parse(textBox1.Text);
             int l_curPersons = int.Parse(textBox2.Text);
             int l_clientesHab = int.Parse(dataGridView2.SelectedCells[2].Value.ToString());
@@ -359,8 +361,8 @@ namespace PROYECTO_MAD
             DialogResult l_editar = MessageBox.Show(this, "Quieres realizar el Check In de Esta Reservacion?", "Advertencia", MessageBoxButtons.YesNo);
             if (l_editar == DialogResult.Yes)
             {
-                new EnlaceDB().CheckIn(m_actual, dateTimePicker3.Value, Program.m_usuario.NoNomina);
-                MessageBox.Show(this, "CheckIn Realizada.", "Informacion");
+                string l_checks = new EnlaceDB().CheckIn(m_actual, dateTimePicker3.Value, Program.m_usuario.NoNomina);
+                MessageBox.Show(this, "Check-In Realizada!\n\nCodigo de Reservacion: " + m_actual.ToString() + "\nHabitaciones Ocupadas:\n"+ l_checks, "Informacion");
             }
         }
 
