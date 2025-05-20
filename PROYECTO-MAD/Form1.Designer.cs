@@ -43,9 +43,10 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox1.Location = new System.Drawing.Point(12, 187);
+            this.textBox1.Location = new System.Drawing.Point(51, 230);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(179, 23);
+            this.textBox1.Size = new System.Drawing.Size(237, 26);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -53,10 +54,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label5.Location = new System.Drawing.Point(33, 140);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(44, 172);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(362, 44);
+            this.label5.Size = new System.Drawing.Size(797, 39);
             this.label5.TabIndex = 73;
             this.label5.Text = "INGRESA TU CLIENTE CON EL TIPO DE DATO QUE ELEGISTE:";
             // 
@@ -64,10 +64,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label1.Location = new System.Drawing.Point(33, 37);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(44, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(620, 44);
+            this.label1.Size = new System.Drawing.Size(1398, 39);
             this.label1.TabIndex = 74;
             this.label1.Text = "INGRESA EL TIPO DE DATO POR EL QUE VAS A IDENTIFICAR A TU CLIENTE PARA CREAR SU R" +
     "ESERVACIÓN:";
@@ -80,17 +79,19 @@
             "Correo Electronico",
             "RFC",
             "Apellidos"});
-            this.comboBox1.Location = new System.Drawing.Point(179, 84);
+            this.comboBox1.Location = new System.Drawing.Point(51, 89);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(312, 21);
+            this.comboBox1.Size = new System.Drawing.Size(415, 24);
             this.comboBox1.TabIndex = 75;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(475, 144);
+            this.pictureBox1.Location = new System.Drawing.Point(1041, 128);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(178, 172);
+            this.pictureBox1.Size = new System.Drawing.Size(237, 212);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 76;
             this.pictureBox1.TabStop = false;
@@ -100,11 +101,11 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Plum;
             this.button2.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button2.Location = new System.Drawing.Point(161, 280);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.button2.Location = new System.Drawing.Point(690, 358);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(5);
-            this.button2.Size = new System.Drawing.Size(111, 49);
+            this.button2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.button2.Size = new System.Drawing.Size(299, 60);
             this.button2.TabIndex = 77;
             this.button2.Text = "Continuar";
             this.button2.UseVisualStyleBackColor = false;
@@ -113,29 +114,29 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox2.Location = new System.Drawing.Point(245, 187);
+            this.textBox2.Location = new System.Drawing.Point(395, 230);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(179, 23);
+            this.textBox2.Size = new System.Drawing.Size(237, 26);
             this.textBox2.TabIndex = 78;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Sans Serif Collection", 5.5F);
-            this.label2.Location = new System.Drawing.Point(213, 213);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(391, 260);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(259, 27);
+            this.label2.Size = new System.Drawing.Size(455, 24);
             this.label2.TabIndex = 79;
             this.label2.Text = "*usar en caso de necesitar apellidos.  Espacio  para  Apellido Materno";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(687, 350);
+            this.ClientSize = new System.Drawing.Size(1453, 431);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
@@ -145,6 +146,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Identifica Cliente";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

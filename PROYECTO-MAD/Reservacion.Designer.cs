@@ -117,16 +117,16 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(775, 361);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Location = new System.Drawing.Point(847, 364);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(287, 22);
             this.dateTimePicker1.TabIndex = 65;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(775, 321);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker2.Location = new System.Drawing.Point(847, 324);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(287, 22);
             this.dateTimePicker2.TabIndex = 67;
@@ -201,8 +201,8 @@
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(775, 281);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox2.Location = new System.Drawing.Point(757, 282);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(285, 24);
             this.comboBox2.TabIndex = 73;
@@ -232,8 +232,8 @@
             // 
             this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(1277, 226);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox3.Location = new System.Drawing.Point(1311, 224);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(385, 24);
             this.comboBox3.TabIndex = 76;
@@ -265,7 +265,7 @@
             this.Precio,
             this.Habitaciones});
             this.dataGridView2.Location = new System.Drawing.Point(20, 52);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -319,7 +319,7 @@
             this.panel2.Controls.Add(this.dataGridView2);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Location = new System.Drawing.Point(617, 415);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(540, 332);
             this.panel2.TabIndex = 80;
@@ -372,7 +372,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.Plum;
             this.button4.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button4.Location = new System.Drawing.Point(1417, 676);
+            this.button4.Location = new System.Drawing.Point(1523, 676);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
             this.button4.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
@@ -391,7 +391,7 @@
             this.button6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.button6.Size = new System.Drawing.Size(127, 60);
+            this.button6.Size = new System.Drawing.Size(177, 60);
             this.button6.TabIndex = 85;
             this.button6.Text = "Check  in";
             this.button6.UseVisualStyleBackColor = false;
@@ -402,11 +402,11 @@
             this.button7.BackColor = System.Drawing.Color.Plum;
             this.button7.Enabled = false;
             this.button7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button7.Location = new System.Drawing.Point(1197, 580);
+            this.button7.Location = new System.Drawing.Point(1193, 580);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button7.Name = "button7";
             this.button7.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.button7.Size = new System.Drawing.Size(151, 60);
+            this.button7.Size = new System.Drawing.Size(180, 60);
             this.button7.TabIndex = 86;
             this.button7.Text = "Check out";
             this.button7.UseVisualStyleBackColor = false;
@@ -417,8 +417,8 @@
             this.dateTimePicker3.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.dateTimePicker3.Enabled = false;
             this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker3.Location = new System.Drawing.Point(1351, 533);
-            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker3.Location = new System.Drawing.Point(1377, 528);
+            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(345, 26);
             this.dateTimePicker3.TabIndex = 87;
@@ -428,11 +428,11 @@
             // 
             this.button8.BackColor = System.Drawing.Color.Plum;
             this.button8.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button8.Location = new System.Drawing.Point(1275, 676);
+            this.button8.Location = new System.Drawing.Point(1332, 676);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button8.Name = "button8";
             this.button8.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.button8.Size = new System.Drawing.Size(137, 60);
+            this.button8.Size = new System.Drawing.Size(165, 60);
             this.button8.TabIndex = 89;
             this.button8.Text = "Registrar";
             this.button8.UseVisualStyleBackColor = false;
@@ -442,7 +442,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(1176, 695);
+            this.linkLabel1.Location = new System.Drawing.Point(1221, 697);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(78, 25);
@@ -477,7 +477,7 @@
             this.Hotel,
             this.Estatus});
             this.dataGridView3.Location = new System.Drawing.Point(29, 272);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -671,7 +671,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(1197, 268);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(499, 228);
             this.listBox1.TabIndex = 97;
@@ -679,8 +679,8 @@
             // textBox3
             // 
             this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(165, 226);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Location = new System.Drawing.Point(280, 226);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(407, 22);
             this.textBox3.TabIndex = 98;
@@ -716,7 +716,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Reservacion";
             this.Text = "CLIENTES:";
             this.Load += new System.EventHandler(this.Reservacion_Load);
