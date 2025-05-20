@@ -563,7 +563,7 @@
             // verHotelesToolStripMenuItem
             // 
             this.verHotelesToolStripMenuItem.Name = "verHotelesToolStripMenuItem";
-            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.verHotelesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.verHotelesToolStripMenuItem.Text = "Ver Hoteles";
             this.verHotelesToolStripMenuItem.Click += new System.EventHandler(this.verHotelesToolStripMenuItem_Click);
             // 
@@ -573,8 +573,9 @@
             this.habitacionesToolStripMenuItem1,
             this.tiposDeHabitacionesToolStripMenuItem});
             this.habitacionesToolStripMenuItem.Name = "habitacionesToolStripMenuItem";
-            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.habitacionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.habitacionesToolStripMenuItem.Text = "Habitaciones";
+            this.habitacionesToolStripMenuItem.Click += new System.EventHandler(this.habitacionesToolStripMenuItem_Click);
             // 
             // habitacionesToolStripMenuItem1
             // 
@@ -593,7 +594,7 @@
             // verServiciosToolStripMenuItem
             // 
             this.verServiciosToolStripMenuItem.Name = "verServiciosToolStripMenuItem";
-            this.verServiciosToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.verServiciosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.verServiciosToolStripMenuItem.Text = "Ver Servicios";
             this.verServiciosToolStripMenuItem.Click += new System.EventHandler(this.verServiciosToolStripMenuItem_Click);
             // 

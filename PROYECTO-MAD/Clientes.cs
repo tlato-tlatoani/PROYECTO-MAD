@@ -132,6 +132,8 @@ namespace PROYECTO_MAD
 
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
+
             Hoteles hotelesform = new Hoteles();
             hotelesform.Show();
             this.Close();
@@ -139,6 +141,8 @@ namespace PROYECTO_MAD
 
         private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
+
             Habitacion habitacionform = new Habitacion();
             habitacionform.Show();
             this.Close();
@@ -146,6 +150,8 @@ namespace PROYECTO_MAD
 
         private void tiposDeHabitacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
+
             TIPO_DE_HAB tiposhabitacionform = new TIPO_DE_HAB();
             tiposhabitacionform.Show();
             this.Close();
@@ -160,6 +166,8 @@ namespace PROYECTO_MAD
 
         private void verHistorialDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
+
             Historial historialform = new Historial();
             historialform.Show();
             this.Close();
@@ -167,6 +175,8 @@ namespace PROYECTO_MAD
 
         private void reporteDeOcupaciónPorHotelToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
+
             Reporte_de_ocupación_por_hotel reportehotelform = new Reporte_de_ocupación_por_hotel();
             reportehotelform.Show();
             this.Close();
@@ -174,6 +184,8 @@ namespace PROYECTO_MAD
 
         private void reporteDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
+
             Reporte_de_Ventas reporteventasform = new Reporte_de_Ventas();
             reporteventasform.Show();
             this.Close();
@@ -181,6 +193,8 @@ namespace PROYECTO_MAD
 
         private void verServiciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
+
             Servicios serviciosform = new Servicios();
             serviciosform.Show();
             this.Close();
@@ -242,6 +256,8 @@ namespace PROYECTO_MAD
 
         private void verEditarRegistrarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
+
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
             this.Close();
@@ -341,6 +357,11 @@ namespace PROYECTO_MAD
                     }
                 }
             }
+        }
+
+        private void habitacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

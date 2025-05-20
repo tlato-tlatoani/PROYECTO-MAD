@@ -106,7 +106,8 @@ CREATE OR ALTER PROCEDURE Editar
 	@TelCelular NVARCHAR (10),
 	@TelCasa NVARCHAR (10) ,
 	@FechaNacimiento DATE ,
-	@TipoUsuario NVARCHAR(15)
+	@TipoUsuario NVARCHAR(15),
+	@Estado BiT
 )
 AS
 BEGIN
@@ -133,7 +134,8 @@ BEGIN
 		TelCelular = @TelCelular, 
 		TelCasa = @TelCasa, 
 		FechaNacimiento = @FechaNacimiento, 
-		TipoUsuario = @TipoUsuario
+		TipoUsuario = @TipoUsuario,
+		Estado = @Estado
 	WHERE NoNomina = @NoNomina;
 	
 	INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Usuario [Administrador]', 'Administrador ha Editado un Usuario', @NoNomina);
@@ -238,13 +240,14 @@ BEGIN
 		ApellidoPaterno, 
 		ApellidoMaterno, 
 		CorreoElectronico, 
-		Contrasenna, 
+		u.Contrasenna, 
 		TelCelular, 
 		TelCasa, 
 		FechaNacimiento, 
 		TipoUsuario,
-		Estado
-	FROM Usuario;
+		Estado,
+		c.Contrasenna AS ContrasennaReal
+	FROM Usuario u JOIN Contrasenna c ON c.idUsuario = NoNomina AND c.idContrasenna = u.Contrasenna;
 END
 GO
 
@@ -799,6 +802,7 @@ CREATE OR ALTER PROCEDURE RegistrarReservacion
 	@Entrada DATE,
 	@Salida DATE,
 	@Estatus NVARCHAR(11),
+	@Anticipo Money,
 	@NoNomina INT
 )
 AS
@@ -812,7 +816,8 @@ BEGIN
 		CantPersonas,
 		Entrada,
 		Salida,
-		Estatus
+		Estatus,
+		Anticipo
     )
     VALUES
     (
@@ -824,7 +829,8 @@ BEGIN
 		@CantPersonas,
 		@Entrada,
 		@Salida,
-		@Estatus
+		@Estatus,
+		@Anticipo
     );
 
     INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Reservacion', 'Usuario ha creado una Reservacion', @NoNomina);
@@ -1135,7 +1141,7 @@ BEGIN
 		Estatus = 'Reservado',
 		Reservacion = (SELECT i.CodReservacion FROM inserted i)
 	WHERE NoHabitacion IN (
-		SELECT TOP 3 NoHabitacion FROM Habitacion WHERE Estatus = 'Desocupado' AND TipoHabitacion = (SELECT i.TipoHabitacion FROM inserted i) ORDER BY NoHabitacion 
+		SELECT TOP (SELECT i.CantHabitaciones FROM inserted i) NoHabitacion FROM Habitacion WHERE Estatus = 'Desocupado' AND TipoHabitacion = (SELECT i.TipoHabitacion FROM inserted i) ORDER BY NoHabitacion 
 	);
 
 	INSERT INTO Factura (
@@ -1152,10 +1158,10 @@ BEGIN
 	) SELECT
 		i.CantHabitaciones * ABS(DATEDIFF(DAY, i.Entrada, i.Salida)) * th.PrecioNoche AS PrecioInicial,
 		0 AS PrecioServicios,
-		i.CantHabitaciones * ABS(DATEDIFF(DAY, i.Entrada, i.Salida)) * th.PrecioNoche AS PrecioTotal,
+		(i.CantHabitaciones * ABS(DATEDIFF(DAY, i.Entrada, i.Salida)) * th.PrecioNoche - i.Anticipo) AS PrecioTotal,
 		'NA' AS NombreDescuento,
 		0 AS Descuento,
-		10 AS Anticipo,
+		i.Anticipo AS Anticipo,
 		'Desconocido' AS FormaPago,
 		i.Cliente,
 		i.Hotel,
@@ -1185,7 +1191,7 @@ AFTER INSERT
 AS
 BEGIN
 	UPDATE f SET f.PrecioServicios = ISNULL(f.PrecioServicios, 0) + ISNULL(s.Precio, 0) FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion JOIN HotelesServicio hs ON hs.idHotelesServicio = i.Servicio JOIN Servicio s ON s.CodServicio = hs.Servicio WHERE f.Reservacion = i.Reservacion;
-	UPDATE f SET f.PrecioTotal = (ISNULL(f.PrecioInicial, 0) + ISNULL(f.PrecioServicios, 0)) * (1 - (ISNULL(f.Descuento, 0) / 100)) FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion WHERE f.Reservacion = i.Reservacion;
+	UPDATE f SET f.PrecioTotal = ((ISNULL(f.PrecioInicial, 0) + ISNULL(f.PrecioServicios, 0)) * (1 - (ISNULL(f.Descuento, 0) / 100))) - f.Anticipo FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion WHERE f.Reservacion = i.Reservacion;
 END
 GO;
 
@@ -1229,6 +1235,9 @@ TRUNCATE TABLE ServiciosAdicionales;
 DELETE FROM Reservacion WHERE Hotel = 2;
 DELETE FROM Factura WHERE NoFactura = 1;
 DELETE FROM Checks WHERE idCheck = 8;
+DELETE FROM Contrasenna WHERE idContrasenna = 9;
+
+Update Usuario SET Contrasenna = 8 WHERE NoNomina = 1995031;
 
 UPDATE Habitacion SET Estatus = 'Desocupado', Reservacion = NULL;
 

@@ -44,7 +44,8 @@ namespace PROYECTO_MAD.Entities
             DateTime _Salida,
             string _Estatus,
             int _idCheckIn,
-            int _idCheckOut
+            int _idCheckOut,
+            decimal _anticipo
         )
         {
             CodReservacion = _CodReservacion;
@@ -59,6 +60,7 @@ namespace PROYECTO_MAD.Entities
             Estatus = _Estatus;
             idCheckIn = _idCheckIn;
             idCheckOut = _idCheckOut;
+            Anticipo = _anticipo;
         }
         public EntReservacion() { }
     }

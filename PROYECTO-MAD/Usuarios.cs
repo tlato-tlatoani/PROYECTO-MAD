@@ -18,6 +18,7 @@ namespace PROYECTO_MAD
         public bool m_registrando = false;
         public bool m_editando = false;
         public int m_usuarioActual = -1;
+        Usuario m_curUsuario;
 
         public Usuarios()
         {
@@ -144,7 +145,8 @@ namespace PROYECTO_MAD
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Usuario.", "Informacion");
             } else {
 
-                if (!Regex.IsMatch(textBox1.Text,@"^(?=.[a-z])(?=.[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$")){
+                if (textBox1.Text.Length > 0 && !Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$"))
+                {
 
                     MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
                     return;
@@ -191,7 +193,7 @@ namespace PROYECTO_MAD
                 textBox6.Enabled = false;
             } else {
 
-                if (!Regex.IsMatch(textBox1.Text, @"^(?=.[a-z])(?=.[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$")){
+                if (textBox1.Text.Length > 0 && !Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$")){
 
                     MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
                     return;
@@ -205,12 +207,14 @@ namespace PROYECTO_MAD
                         textBox4.Text,
                         textBox5.Text,
                         textBox2.Text,
-                        textBox1.Text,
+                        textBox1.Text.Length > 0 ? textBox1.Text : m_curUsuario.RealContrasenna,
                         textBox8.Text,
                         textBox7.Text,
                         dateTimePicker1.Value,
                         radioButton1.Checked
                     );
+
+                    l_usuario.Estado = comboBox1.Text == "Activo";
 
                     EnlaceDB l_enlace = new EnlaceDB();
                     if (l_enlace.Editar(l_usuario)) {
@@ -245,7 +249,7 @@ namespace PROYECTO_MAD
 
         private void miPerfilToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Usuarios usuariosform = new Usuarios();
+            Perfil usuariosform = new Perfil();
             usuariosform.Show();
             this.Close();
         }
@@ -345,6 +349,7 @@ namespace PROYECTO_MAD
             }
 
             if (l_usuario == null) { return; }
+            m_curUsuario = l_usuario;
 
             m_usuarioActual = l_usuario.NoNomina;
 

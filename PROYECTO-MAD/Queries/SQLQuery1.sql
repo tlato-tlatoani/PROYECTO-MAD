@@ -91,6 +91,7 @@ CREATE TABLE Reservacion(
 	FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel)
 );
 ALTER TABLE Reservacion ADD TipoHabitacion INT DEFAULT (4);
+ALTER TABLE Reservacion ADD Anticipo MONEY DEFAULT (0);
 
 CREATE TABLE Checks(
 	idCheck INT PRIMARY KEY IDENTITY(1,1),

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,6 +33,13 @@ namespace PROYECTO_MAD.Resources
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$"))
+            {
+
+                MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
+                return;
+            }
+
             Usuario l_usuario = new Usuario(
                 int.Parse(textBox6.Text),
                 textBox3.Text,
@@ -48,9 +56,7 @@ namespace PROYECTO_MAD.Resources
             EnlaceDB l_enlace = new EnlaceDB();
             if (l_enlace.Registrar(l_usuario, false))
             {
-                Pantalla_principal pantallaprincipalform = new Pantalla_principal();
-                pantallaprincipalform.Show();
-                this.Close();
+                MessageBox.Show(this, "Usuario Registrado Correctamente.\nEspere a que un Administrador lo Active.", "Informacion");
             }
         }
     }

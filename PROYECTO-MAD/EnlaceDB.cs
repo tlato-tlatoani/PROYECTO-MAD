@@ -359,6 +359,8 @@ namespace PROYECTO_MAD
                 parametro9.Value = _usuario.FechaNacimiento;
                 var parametro10 = _comandosql.Parameters.Add("@TipoUsuario", SqlDbType.Bit);
                 parametro10.Value = _usuario.TipoUsuario;
+                var parametro11 = _comandosql.Parameters.Add("@Estado", SqlDbType.Bit);
+                parametro11.Value = _usuario.Estado;
 
                 _adaptador.InsertCommand = _comandosql;
                 _comandosql.ExecuteNonQuery();
@@ -733,6 +735,8 @@ namespace PROYECTO_MAD
                 parametro8.Value = _reservacion.Salida;
                 var parametro9 = _comandosql.Parameters.Add("@Estatus", SqlDbType.NVarChar, 11);
                 parametro9.Value = _reservacion.Estatus;
+                var parametro10 = _comandosql.Parameters.Add("@Anticipo", SqlDbType.Money);
+                parametro10.Value = _reservacion.Anticipo;
                 var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
                 parametro13.Value = _admin;
 
@@ -965,7 +969,7 @@ namespace PROYECTO_MAD
                         _row["ApellidoPaterno"].ToString(),
                         _row["ApellidoMaterno"].ToString(),
                         _row["CorreoElectronico"].ToString(),
-                        "1",
+                        _row["ContrasennaReal"].ToString(),
                         _row["TelCelular"].ToString(),
                         _row["TelCasa"].ToString(),
                         DateTime.Parse(_row["FechaNacimiento"].ToString()),
