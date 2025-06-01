@@ -18,8 +18,8 @@ namespace PROYECTO_MAD.Entities
         public DateTime Entrada;
         public DateTime Salida;
         public string Estatus;
-        public int idCheckIn;
-        public int idCheckOut;
+        public DateTime CheckIn;
+        public DateTime CheckOut;
 
         public string HotelNombre;
         public string TipoHabitacionNombre;
@@ -43,8 +43,8 @@ namespace PROYECTO_MAD.Entities
             DateTime _Entrada,
             DateTime _Salida,
             string _Estatus,
-            int _idCheckIn,
-            int _idCheckOut,
+            DateTime _CheckIn,
+            DateTime _CheckOut,
             decimal _anticipo
         )
         {
@@ -58,8 +58,8 @@ namespace PROYECTO_MAD.Entities
             Entrada = _Entrada;
             Salida = _Salida;
             Estatus = _Estatus;
-            idCheckIn = _idCheckIn;
-            idCheckOut = _idCheckOut;
+            CheckIn = _CheckIn;
+            CheckOut = _CheckOut;
             Anticipo = _anticipo;
         }
         public EntReservacion() { }

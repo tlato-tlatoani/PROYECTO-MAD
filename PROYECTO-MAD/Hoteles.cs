@@ -52,7 +52,6 @@ namespace PROYECTO_MAD
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            m_servicios = new EnlaceDB().getServicios();
             m_hoteles = new EnlaceDB().getHoteles();
 
             dataGridView1.Rows.Clear();
@@ -61,11 +60,6 @@ namespace PROYECTO_MAD
                 DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
                 l_row.Cells["Codigo"].Value = _hotel.CodHotel;
                 l_row.Cells["Nombre"].Value = _hotel.NombreHotel;
-            }
-
-            listBox2.Items.Clear();
-            foreach (EntServicios _serv in m_servicios) {
-                listBox2.Items.Add(_serv.Nombre);
             }
         }
 
@@ -323,6 +317,14 @@ namespace PROYECTO_MAD
             listBox2.ClearSelected();
             foreach (string _serv in l_hotel.Servicios.Split(',')) {
                 listBox2.SelectedItems.Add(_serv);
+            }
+
+            m_servicios = new EnlaceDB().getServicios(l_hotel.CodHotel);
+
+            listBox2.Items.Clear();
+            foreach (EntServicios _serv in m_servicios)
+            {
+                listBox2.Items.Add(_serv.Nombre);
             }
         }
 

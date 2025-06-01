@@ -61,7 +61,7 @@ namespace PROYECTO_MAD
             l_row1.Cells["Cantidad"].Value = m_reservacion.Dias;
             l_row1.Cells["Desc"].Value = "Noches de Hospedaje en " + m_reservacion.TipoHabitacionNombre;
             l_row1.Cells["PrecioUnitario"].Value = "$ " + m_reservacion.PrecioNoche;
-            l_row1.Cells["Total"].Value = "$ " + (m_reservacion.PrecioNoche * m_reservacion.Dias);
+            l_row1.Cells["Total"].Value = "$ " + m_factura.PrecioInicial;
 
             foreach (EntServicios _servicio in m_servicios)
             {

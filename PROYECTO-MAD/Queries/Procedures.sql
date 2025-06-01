@@ -310,12 +310,12 @@ BEGIN
     SELECT 
 		r.Ciudad,
 		h.NombreHotel,
-		YEAR(ch.FechaCheck) AS Anio,
-		MONTH(ch.FechaCheck) AS Mes,
+		YEAR(r.CheckIn) AS Anio,
+		MONTH(r.CheckIn) AS Mes,
 		f.PrecioInicial,
 		f.PrecioServicios,
 		f.PrecioTotal
-	FROM Factura f JOIN Reservacion r on f.Reservacion = r.CodReservacion JOIN Hotel h ON r.Hotel = h.CodHotel JOIN Checks ch ON ch.idCheck = f.Entrada
+	FROM Factura f JOIN Reservacion r on f.Reservacion = r.CodReservacion JOIN Hotel h ON r.Hotel = h.CodHotel
 	WHERE 
 		h.Pais = @Pais AND
 		YEAR(f.Entrada) = @Year AND
@@ -324,8 +324,8 @@ BEGIN
 	GROUP BY
 		r.Ciudad,
 		h.NombreHotel,
-		YEAR(ch.FechaCheck),
-		MONTH(ch.FechaCheck),
+		YEAR(r.CheckIn),
+		MONTH(r.CheckIn),
 		f.PrecioInicial,
 		f.PrecioServicios,
 		f.PrecioTotal;
@@ -444,8 +444,8 @@ BEGIN
 		STUFF(
 			(
 				SELECT ',' + Nombre
-				FROM HotelesServicio hs JOIN Servicio s ON s.CodServicio = hs.Servicio
-				WHERE hs.Hotel = CodHotel
+				FROM Servicio s 
+				WHERE s.Hotel = CodHotel
 				FOR XML PATH(''), 
 				TYPE
 			).value('.', 'VARCHAR(1000)'), 
@@ -494,8 +494,6 @@ BEGIN
     @FechaInicio
     );
 	
-	INSERT INTO HotelesServicio (Hotel, Servicio, CostoExtra) SELECT (SELECT TOP 1 CodHotel FROM Hotel WHERE NombreHotel = @NombreHotel), CodServicio, 0 FROM STRING_SPLIT(@Servicios, ',') JOIN Servicio on LTRIM(RTRIM(value)) = Nombre;
-
     INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Hotel', 'Administrador ha Registrado un Hotel', @NoNomina);
 END
 GO;
@@ -527,9 +525,6 @@ BEGIN
 		FechaInicio = @FechaInicio
 	WHERE CodHotel = @CodHotel;
 
-	DELETE FROM HotelesServicio WHERE Hotel = @CodHotel;
-	INSERT INTO HotelesServicio (Hotel, Servicio, CostoExtra) SELECT @CodHotel, CodServicio, 0 FROM STRING_SPLIT(@Servicios, ',') JOIN Servicio on LTRIM(RTRIM(value)) = Nombre;
-	
 	INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Hotel [Administrador]', 'Administrador ha Editado un Hotel', @NoNomina);
 END
 GO
@@ -751,6 +746,7 @@ CREATE OR ALTER PROCEDURE RegistrarServicio
 	@Nombre VARCHAR (50),
 	@Descripcion VARCHAR(200),
 	@Precio MONEY,
+	@Hotel INT,
     @NoNomina INT
 )
 AS
@@ -758,13 +754,15 @@ BEGIN
     INSERT INTO Servicio(
 		Nombre,
 		Descripcion,
-		Precio
+		Precio,
+		Hotel
     )
     VALUES
     (
 		@Nombre,
 		@Descripcion,
-		@Precio
+		@Precio,
+		@Hotel
     );
 
     INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Servicio', 'Administrador ha Registrado un Servicio', @NoNomina);
@@ -903,8 +901,7 @@ BEGIN
 		STUFF(
 			(
 				SELECT ', - ' + Nombre + ': ' + CONVERT(VARCHAR(50), Precio) + '$'
-				FROM HotelesServicio hs JOIN Servicio s ON s.CodServicio = hs.Servicio
-				WHERE hs.Hotel = CodHotel
+				FROM Servicio s WHERE s.Hotel = CodHotel
 				FOR XML PATH(''), 
 				TYPE
 			).value('.', 'VARCHAR(1000)'), 
@@ -966,8 +963,8 @@ BEGIN
 		r.Entrada,
 		r.Salida,
 		r.Estatus,
-		idCheckIn,
-		idCheckOut,
+		r.CheckIn,
+		r.CheckOut,
 		NombreHotel,
 		th.NivelHabitacion,
 		hb.NoHabitacion,
@@ -978,6 +975,8 @@ BEGIN
 	FROM Reservacion r JOIN Hotel h ON CodHotel = Hotel JOIN Habitacion hb ON hb.Reservacion = CodReservacion JOIN TiposHabitacion th ON hb.TipoHabitacion = th.CodTDH JOIN Factura f ON f.Reservacion = r.CodReservacion WHERE r.Cliente = @RFC;
 END
 GO;
+
+EXEC GetReservaciones @RFC =199 ;
 
 CREATE OR ALTER PROCEDURE GetReservacion
 ( @Codigo UNIQUEIDENTIFIER )
@@ -993,8 +992,8 @@ BEGIN
 		r.Entrada,
 		r.Salida,
 		r.Estatus,
-		idCheckIn,
-		idCheckOut,
+		CheckIn,
+		CheckOut,
 		NombreHotel,
 		th.NivelHabitacion,
 		f.Anticipo,
@@ -1002,9 +1001,9 @@ BEGIN
 		f.PrecioServicios,
 		f.PrecioTotal,
 		hb.NoHabitacion,
-		(ABS(DATEDIFF(DAY, ch1.FechaCheck, ch2.FechaCheck))) AS Dias,
+		(ABS(DATEDIFF(DAY, r.Entrada, r.Salida))) AS Dias,
 		th.PrecioNoche
-	FROM Reservacion r JOIN Factura f ON f.Reservacion = r.CodReservacion JOIN Hotel h ON CodHotel = r.Hotel JOIN Habitacion hb ON hb.Reservacion = r.CodReservacion JOIN TiposHabitacion th ON hb.TipoHabitacion = th.CodTDH JOIN Checks ch1 ON ch1.idReservacion = r.CodReservacion AND ch1.Tipo = 'In' JOIN Checks ch2 ON ch2.idReservacion = r.CodReservacion AND ch2.Tipo = 'Out' WHERE r.CodReservacion = @Codigo;
+	FROM Reservacion r JOIN Factura f ON f.Reservacion = r.CodReservacion JOIN Hotel h ON CodHotel = r.Hotel JOIN Habitacion hb ON hb.Reservacion = r.CodReservacion JOIN TiposHabitacion th ON hb.TipoHabitacion = th.CodTDH WHERE r.CodReservacion = @Codigo;
 END
 GO;
 
@@ -1016,20 +1015,11 @@ CREATE OR ALTER PROCEDURE CheckIn
 )
 AS
 BEGIN
-	DECLARE @CheksEncontrados AS INT;
-
-	SELECT @CheksEncontrados = Count(c.idCheck) FROM Checks c WHERE c.idReservacion = @Reservacion AND c.Tipo = 'In';
-	IF @CheksEncontrados > 0 BEGIN RETURN; END
-
-	INSERT INTO Checks (
-		FechaCheck, 
-		Tipo, 
-		idReservacion
-	) VALUES (
-		@Fecha,
-		'In',
-		@Reservacion
-	);
+	IF EXISTS (SELECT 1 FROM Reservacion WHERE CheckIn IS NOT NULL AND CodReservacion = @Reservacion) BEGIN RETURN; END
+	
+	Update Reservacion SET
+		CheckIn = @Fecha
+	WHERE CodReservacion = @Reservacion;
 
 	Update Habitacion SET
 		Estatus = 'Ocupado'
@@ -1051,21 +1041,8 @@ CREATE OR ALTER PROCEDURE CheckOut
 )
 AS
 BEGIN
-	DECLARE @CheksEncontrados AS INT;
-
-	SELECT @CheksEncontrados = Count(c.idCheck) FROM Checks c WHERE c.idReservacion = @Reservacion AND c.Tipo = 'Out';
-	IF @CheksEncontrados > 0 BEGIN RETURN; END
-
-	INSERT INTO Checks (
-		FechaCheck, 
-		Tipo, 
-		idReservacion
-	) VALUES (
-		@Fecha,
-		'Out',
-		@Reservacion
-	);
-
+	IF EXISTS (SELECT 1 FROM Reservacion WHERE CheckOUT IS NOT NULL AND CodReservacion = @Reservacion) BEGIN RETURN; END
+	
 	UPDATE Factura SET
 		Descuento = @Descuento,
 		NombreDescuento = @NombreDescuento
@@ -1076,10 +1053,15 @@ BEGIN
 	WHERE Reservacion = @Reservacion;
 	
 	Update Reservacion SET
+		CheckOut = @Fecha,
 		Estatus = 'Concluido'
 	WHERE CodReservacion = @Reservacion;
 		
     INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Check Out Realizado', 'Usuario ha realizado un Check Out de Reservacion', @NoNomina);
+	
+	UPDATE f SET f.PrecioTotal = ((ISNULL(f.PrecioInicial, 0) + ISNULL(f.PrecioServicios, 0)) * (1 - (ISNULL(f.Descuento, 0) / 100))) - f.Anticipo FROM Factura f WHERE f.Reservacion = @Reservacion;
+
+	SELECT NoHabitacion FROM Habitacion WHERE Reservacion = @Reservacion;
 END
 GO;
 
@@ -1093,7 +1075,7 @@ BEGIN
 	INSERT INTO ServiciosAdicionales (Reservacion, Servicio)
     SELECT 
 		@Reservacion AS Reservacion,
-		(SELECT idHotelesServicio FROM HotelesServicio hs JOIN Servicio s ON hs.Servicio = s.CodServicio WHERE s.Nombre = LTRIM(RTRIM(value))) AS Servicio
+		(SELECT s.CodServicio FROM Servicio s WHERE s.Nombre = LTRIM(RTRIM(value))) AS Servicio
     FROM STRING_SPLIT(@Lista, ',');
 END
 GO;
@@ -1104,7 +1086,8 @@ SELECT
 	Nombre,
 	Descripcion,
 	Precio,
-	CodServicio
+	CodServicio,
+	Hotel
 FROM Servicio;
 
 CREATE OR ALTER PROCEDURE GetServicios
@@ -1114,8 +1097,23 @@ BEGIN
 		Nombre,
 		Descripcion,
 		Precio,
-		CodServicio
+		CodServicio,
+		Hotel
 	FROM ViewServicios;
+END
+GO;
+
+CREATE OR ALTER PROCEDURE GetServiciosHotel
+( @Hotel Int )
+AS
+BEGIN
+	SELECT 
+		Nombre,
+		Descripcion,
+		Precio,
+		CodServicio,
+		Hotel
+	FROM ViewServicios WHERE Hotel = @Hotel;
 END
 GO;
 
@@ -1128,7 +1126,7 @@ BEGIN
 		s.Descripcion,
 		s.Precio,
 		s.CodServicio
-	FROM ServiciosAdicionales sa JOIN HotelesServicio hs ON hs.idHotelesServicio = sa.Servicio JOIN Servicio s ON s.CodServicio = hs.Servicio WHERE sa.Reservacion = @Codigo;
+	FROM ServiciosAdicionales sa JOIN Servicio s ON s.CodServicio = sa.Servicio WHERE sa.Reservacion = @Codigo;
 END
 GO;
 
@@ -1190,7 +1188,7 @@ ON ServiciosAdicionales
 AFTER INSERT
 AS
 BEGIN
-	UPDATE f SET f.PrecioServicios = ISNULL(f.PrecioServicios, 0) + ISNULL(s.Precio, 0) FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion JOIN HotelesServicio hs ON hs.idHotelesServicio = i.Servicio JOIN Servicio s ON s.CodServicio = hs.Servicio WHERE f.Reservacion = i.Reservacion;
+	UPDATE f SET f.PrecioServicios = ISNULL(f.PrecioServicios, 0) + ISNULL(s.Precio, 0) FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion JOIN Servicio s ON s.CodServicio = i.Servicio WHERE f.Reservacion = i.Reservacion;
 	UPDATE f SET f.PrecioTotal = ((ISNULL(f.PrecioInicial, 0) + ISNULL(f.PrecioServicios, 0)) * (1 - (ISNULL(f.Descuento, 0) / 100))) - f.Anticipo FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion WHERE f.Reservacion = i.Reservacion;
 END
 GO;
@@ -1216,7 +1214,6 @@ END
 GO;
 
 SELECT * FROM Hotel;
-SELECT * FROM Checks;
 SELECT * FROM Cliente;
 SELECT * FROM Usuario;
 SELECT * FROM Factura;
@@ -1230,6 +1227,7 @@ SELECT * FROM ServiciosAdicionales;
 
 TRUNCATE TABLE Checks;
 TRUNCATE TABLE Factura;
+TRUNCATE TABLE Servicio;
 TRUNCATE TABLE Reservacion;
 TRUNCATE TABLE ServiciosAdicionales;
 DELETE FROM Reservacion WHERE Hotel = 2;

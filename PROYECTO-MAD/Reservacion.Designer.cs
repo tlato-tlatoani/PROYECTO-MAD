@@ -58,7 +58,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.button8 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label14 = new System.Windows.Forms.Label();
@@ -151,7 +150,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox9);
             this.panel1.Location = new System.Drawing.Point(184, 86);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(939, 67);
             this.panel1.TabIndex = 68;
@@ -163,7 +162,7 @@
             this.button3.Location = new System.Drawing.Point(765, 18);
             this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button3.Padding = new System.Windows.Forms.Padding(5);
             this.button3.Size = new System.Drawing.Size(81, 38);
             this.button3.TabIndex = 42;
             this.button3.Text = "Buscar";
@@ -381,7 +380,7 @@
             this.button4.Location = new System.Drawing.Point(1142, 549);
             this.button4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button4.Padding = new System.Windows.Forms.Padding(5);
             this.button4.Size = new System.Drawing.Size(103, 49);
             this.button4.TabIndex = 82;
             this.button4.Text = "Cancelar";
@@ -396,7 +395,7 @@
             this.button6.Location = new System.Drawing.Point(895, 416);
             this.button6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button6.Padding = new System.Windows.Forms.Padding(5);
             this.button6.Size = new System.Drawing.Size(133, 49);
             this.button6.TabIndex = 85;
             this.button6.Text = "Check  in";
@@ -411,23 +410,12 @@
             this.button7.Location = new System.Drawing.Point(895, 471);
             this.button7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button7.Name = "button7";
-            this.button7.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button7.Padding = new System.Windows.Forms.Padding(5);
             this.button7.Size = new System.Drawing.Size(135, 49);
             this.button7.TabIndex = 86;
             this.button7.Text = "Check out";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click_1);
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.dateTimePicker3.Enabled = false;
-            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker3.Location = new System.Drawing.Point(1033, 429);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(260, 22);
-            this.dateTimePicker3.TabIndex = 87;
-            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
             // 
             // button8
             // 
@@ -436,7 +424,7 @@
             this.button8.Location = new System.Drawing.Point(999, 549);
             this.button8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button8.Name = "button8";
-            this.button8.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button8.Padding = new System.Windows.Forms.Padding(5);
             this.button8.Size = new System.Drawing.Size(124, 49);
             this.button8.TabIndex = 89;
             this.button8.Text = "Registrar";
@@ -719,7 +707,6 @@
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
@@ -777,7 +764,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label14;

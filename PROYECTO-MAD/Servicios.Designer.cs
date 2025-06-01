@@ -66,6 +66,8 @@
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -227,7 +229,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(422, 329);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(549, 245);
+            this.richTextBox1.Size = new System.Drawing.Size(295, 245);
             this.richTextBox1.TabIndex = 65;
             this.richTextBox1.Text = "";
             // 
@@ -435,12 +437,33 @@
             this.textBox6.Size = new System.Drawing.Size(140, 23);
             this.textBox6.TabIndex = 55;
             // 
+            // lblDesc
+            // 
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
+            this.lblDesc.Location = new System.Drawing.Point(730, 294);
+            this.lblDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(80, 48);
+            this.lblDesc.TabIndex = 70;
+            this.lblDesc.Text = "HOTELES";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(738, 329);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(263, 251);
+            this.listBox1.TabIndex = 71;
+            // 
             // Servicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(1301, 625);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
@@ -509,5 +532,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

@@ -29,7 +29,7 @@ namespace PROYECTO_MAD
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            m_servicios = new EnlaceDB().getServicios();
+            m_servicios = new EnlaceDB().getServicios(Reservacion.m_instance.m_reservacionActual.Hotel);
 
             listBox1.Items.Clear();
             foreach (EntServicios _serv in m_servicios) {
@@ -47,7 +47,8 @@ namespace PROYECTO_MAD
                 foreach (string _serv in listBox1.SelectedItems){ l_servicios += _serv.Split(':')[0] + ","; }
                 if (l_servicios.Length > 0) { l_servicios = l_servicios.Remove(l_servicios.Length - 1); }
                 
-                new EnlaceDB().CheckOut(Reservacion.m_actual, dateTimePicker3.Value, decimal.Parse(textBox6.Text), textBox1.Text, Program.m_usuario.NoNomina);
+                bool l_ischecked = new EnlaceDB().CheckOut(Reservacion.m_actual, DateTime.Now, decimal.Parse(textBox6.Text), textBox1.Text, Program.m_usuario.NoNomina);
+                if (!l_ischecked) { MessageBox.Show(this, "Check Out Realizado Anteriormente.", "Error"); return; }
                 if (l_servicios.Length > 0) { new EnlaceDB().FacturarServicios(Reservacion.m_actual, l_servicios); }
 
                 MessageBox.Show(this, "Check Out Realizada.", "Informacion");

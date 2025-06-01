@@ -88,6 +88,8 @@ namespace PROYECTO_MAD
                 l_row.Cells["Hotel"].Value = _reservacion.HotelNombre;
                 l_row.Cells["Estatus"].Value = _reservacion.Estatus;
             }
+
+            textBox3.Text = m_cliente;
         }
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -224,9 +226,6 @@ namespace PROYECTO_MAD
         private void dataGridView2_Click(object sender, EventArgs e)
         {
             m_habitaciones = int.Parse(dataGridView2.SelectedCells[4].Value.ToString());
-            button6.Enabled = true;
-            button7.Enabled = true;
-            dateTimePicker3.Enabled = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -277,9 +276,9 @@ namespace PROYECTO_MAD
                         dateTimePicker1.Value,
                         dateTimePicker2.Value,
                         "Vigente",
-                        0,
-                        0,
-                         decimal.Parse(textBox4.Text)
+                        DateTime.Now,
+                        DateTime.Now,
+                        decimal.Parse(textBox4.Text)
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
@@ -312,6 +311,9 @@ namespace PROYECTO_MAD
             }
 
             if (l_reservacion == null) { return; }
+
+            button6.Enabled = true;
+            button7.Enabled = true;
 
             m_actual = l_reservacion.CodReservacion;
             m_reservacionActual = l_reservacion;
@@ -378,8 +380,13 @@ namespace PROYECTO_MAD
             DialogResult l_editar = MessageBox.Show(this, "Quieres realizar el Check In de Esta Reservacion?", "Advertencia", MessageBoxButtons.YesNo);
             if (l_editar == DialogResult.Yes)
             {
-                string l_checks = new EnlaceDB().CheckIn(m_actual, dateTimePicker3.Value, Program.m_usuario.NoNomina);
-                MessageBox.Show(this, "Check-In Realizada!\n\nCodigo de Reservacion: " + m_actual.ToString() + "\nHabitaciones Ocupadas:\n"+ l_checks, "Informacion");
+                string l_checks = new EnlaceDB().CheckIn(m_actual, DateTime.Now, Program.m_usuario.NoNomina);
+
+                if (l_checks == "Error") {
+                    MessageBox.Show(this, "Check-In realizada anteriormente", "Error");
+                } else {
+                    MessageBox.Show(this, "Check-In Realizada!\n\nCodigo de Reservacion: " + m_actual.ToString() + "\nHabitaciones Ocupadas:\n" + l_checks, "Informacion");
+                }
             }
         }
 

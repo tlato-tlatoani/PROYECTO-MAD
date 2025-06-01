@@ -15,6 +15,8 @@ namespace PROYECTO_MAD
     public partial class Servicios : Form
     {
         public List<EntServicios> m_servicios;
+        public List<Hotel> m_hoteles;
+
         EntServicios m_curServicio = null;
 
         public bool m_registrando = false;
@@ -121,7 +123,8 @@ namespace PROYECTO_MAD
                         0,
                         textBox9.Text,
                         decimal.Parse(textBox6.Text),
-                        richTextBox1.Text
+                        richTextBox1.Text,
+                        m_hoteles[listBox1.SelectedIndex].CodHotel
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
@@ -138,14 +141,19 @@ namespace PROYECTO_MAD
         private void Servicios_Load(object sender, EventArgs e)
         {
             m_servicios = new EnlaceDB().getServicios();
+            m_hoteles = new EnlaceDB().getHoteles();
 
             dataGridView1.Rows.Clear();
-            foreach (EntServicios _tipoHab in m_servicios)
-            {
+            foreach (EntServicios _tipoHab in m_servicios) {
                 dataGridView1.Rows.Add();
                 DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
                 l_row.Cells["Codigo"].Value = _tipoHab.CodServicio;
                 l_row.Cells["Nombre"].Value = _tipoHab.Nombre;
+            }
+
+            listBox1.Items.Clear();
+            foreach (Hotel _hotel in m_hoteles) {
+                listBox1.Items.Add(_hotel.NombreHotel);
             }
         }
 
@@ -172,7 +180,8 @@ namespace PROYECTO_MAD
                         m_curServicio.CodServicio,
                         textBox9.Text,
                         decimal.Parse(textBox6.Text),
-                        richTextBox1.Text
+                        richTextBox1.Text,
+                        m_hoteles[listBox1.SelectedIndex].CodHotel
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
@@ -218,6 +227,10 @@ namespace PROYECTO_MAD
             textBox9.Text = m_curServicio.Nombre;
             textBox6.Text = m_curServicio.Precio.ToString();
             richTextBox1.Text = m_curServicio.Descripcion;
+
+            int l_i = 0;
+            listBox1.ClearSelected();
+            foreach (Hotel _hotel in m_hoteles) { if (_hotel.CodHotel != m_curServicio.Hotel) { l_i++; continue; } listBox1.SelectedIndex = l_i; }
         }
 
         private void button3_Click(object sender, EventArgs e)

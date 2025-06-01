@@ -19,8 +19,11 @@ CREATE TABLE Servicio(
 	CodServicio INT PRIMARY KEY IDENTITY(1,1),
 	Nombre VARCHAR (50) NOT NULL,
 	Precio MONEY NOT NULL,
-	Descripcion VARCHAR (200) NOT NULL
+	Descripcion VARCHAR (200) NOT NULL,
+	Hotel INT NOT NULL,
+	FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel)
 );
+ALTER TABLE Servicio ADD Hotel INT;
 
 CREATE TABLE Hotel(
 	CodHotel INT PRIMARY KEY IDENTITY(1,1),
@@ -62,6 +65,7 @@ CREATE TABLE HotelesServicio(
 	FOREIGN KEY (Servicio) REFERENCES Servicio(CodServicio),
 	FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel)
 );
+DROP TABLE HotelesServicio;
 
 CREATE TABLE Habitacion(
 	NoHabitacion INT PRIMARY KEY,
@@ -85,13 +89,17 @@ CREATE TABLE Reservacion(
 	Entrada DATE NULL,
 	Salida DATE NULL,
 	Estatus VARCHAR(11) NULL,
-	idCheckIn INT NULL,
-	idCheckOut INT NULL,
+	CheckIn DATE NULL,
+	CheckOut DATE NULL,
 	FOREIGN KEY (Cliente) REFERENCES Cliente(RFC),
 	FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel)
 );
 ALTER TABLE Reservacion ADD TipoHabitacion INT DEFAULT (4);
 ALTER TABLE Reservacion ADD Anticipo MONEY DEFAULT (0);
+ALTER TABLE Reservacion DROP COLUMN idCheckIn;
+ALTER TABLE Reservacion DROP COLUMN idCheckOut;
+ALTER TABLE Reservacion ADD CheckIn DATE DEFAULT (GETDATE());
+ALTER TABLE Reservacion ADD CheckOut DATE DEFAULT (GETDATE());
 
 CREATE TABLE Checks(
 	idCheck INT PRIMARY KEY IDENTITY(1,1),
@@ -100,6 +108,7 @@ CREATE TABLE Checks(
 	idReservacion UNIQUEIDENTIFIER NOT NULL,
 	FOREIGN KEY (idReservacion) REFERENCES Reservacion(CodReservacion)
 );
+DROP TABLE Checks;
 
 DROP TABLE Factura;
 CREATE TABLE Factura(

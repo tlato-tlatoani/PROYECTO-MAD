@@ -31,11 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -64,15 +62,6 @@
             this.label2.Size = new System.Drawing.Size(222, 44);
             this.label2.TabIndex = 65;
             this.label2.Text = "SERVICIOS ADICIONALES USADOS:";
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker3.Location = new System.Drawing.Point(458, 119);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(260, 22);
-            this.dateTimePicker3.TabIndex = 88;
             // 
             // label3
             // 
@@ -104,17 +93,6 @@
             this.label7.Size = new System.Drawing.Size(107, 48);
             this.label7.TabIndex = 91;
             this.label7.Text = "DESCUENTO:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.label4.Location = new System.Drawing.Point(377, 113);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 48);
-            this.label4.TabIndex = 92;
-            this.label4.Text = "FECHA:";
             // 
             // button8
             // 
@@ -185,11 +163,9 @@
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -204,11 +180,9 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ListBox listBox1;
