@@ -96,10 +96,10 @@ CREATE TABLE Reservacion(
 );
 ALTER TABLE Reservacion ADD TipoHabitacion INT DEFAULT (4);
 ALTER TABLE Reservacion ADD Anticipo MONEY DEFAULT (0);
-ALTER TABLE Reservacion DROP COLUMN idCheckIn;
-ALTER TABLE Reservacion DROP COLUMN idCheckOut;
-ALTER TABLE Reservacion ADD CheckIn DATE DEFAULT (GETDATE());
-ALTER TABLE Reservacion ADD CheckOut DATE DEFAULT (GETDATE());
+ALTER TABLE Reservacion DROP COLUMN CheckIn;
+ALTER TABLE Reservacion DROP COLUMN CheckOut;
+ALTER TABLE Reservacion ADD CheckIn DATE DEFAULT (NULL);
+ALTER TABLE Reservacion ADD CheckOut DATE DEFAULT (NULL);
 
 CREATE TABLE Checks(
 	idCheck INT PRIMARY KEY IDENTITY(1,1),
