@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROYECTO_MAD.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,7 +31,7 @@ namespace PROYECTO_MAD
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string l_rfc = null;
+            EntClientes l_rfc = null;
             switch (comboBox1.SelectedIndex) {
                 case 0: {
                     l_rfc = new EnlaceDB().BuscarClientePorCorreo(textBox1.Text);

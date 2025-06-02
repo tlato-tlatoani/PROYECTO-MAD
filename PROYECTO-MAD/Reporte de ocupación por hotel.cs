@@ -14,6 +14,7 @@ namespace PROYECTO_MAD
     public partial class Reporte_de_ocupación_por_hotel : Form
     {
         public List<Hotel> m_hoteles;
+        public Hotel m_curHotel;
         public Reporte_de_ocupación_por_hotel()
         {
             InitializeComponent();
@@ -147,6 +148,48 @@ namespace PROYECTO_MAD
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
             this.Close();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_curHotel = m_hoteles[listBox1.SelectedIndex];
+            if (m_curHotel == null) { return; }
+
+            textBox1.Text = m_curHotel.Pais;
+            textBox2.Text = DateTime.Now.Year.ToString();
+            textBox3.Text = m_curHotel.Ciudad;
+
+            DataTable l_tabla1 = new EnlaceDB().getOcupaciones1(m_curHotel.Pais, DateTime.Now.Year, m_curHotel.Ciudad, m_curHotel.NombreHotel);
+            DataTable l_tabla2 = new EnlaceDB().getOcupaciones2(m_curHotel.Pais, DateTime.Now.Year, m_curHotel.Ciudad, m_curHotel.NombreHotel);
+
+            dataGridView1.Rows.Clear();
+            foreach (DataRow _row in l_tabla1.Rows)
+            {
+                dataGridView1.Rows.Add();
+                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+
+                l_row.Cells["Ciudad"].Value = _row["Ciudad"].ToString();
+                l_row.Cells["Hotel"].Value = _row["NombreHotel"].ToString();
+                l_row.Cells["Year"].Value = _row["Anio"].ToString();
+                l_row.Cells["Mes"].Value = _row["Mes"].ToString();
+                l_row.Cells["TipoHabitacion"].Value = _row["NivelHabitacion"].ToString();
+                l_row.Cells["Cantidad"].Value = _row["Habitaciones"].ToString();
+                l_row.Cells["Porcentaje"].Value = _row["Porcentaje"].ToString();
+                l_row.Cells["Personas"].Value = _row["Personas"].ToString();
+            }
+
+            dataGridView2.Rows.Clear();
+            foreach (DataRow _row in l_tabla2.Rows)
+            {
+                dataGridView2.Rows.Add();
+                DataGridViewRow l_row = dataGridView2.Rows[dataGridView2.Rows.Count - 1];
+
+                l_row.Cells["Ciudad2"].Value = _row["Ciudad"].ToString();
+                l_row.Cells["Hotel2"].Value = _row["NombreHotel"].ToString();
+                l_row.Cells["Year2"].Value = _row["Anio"].ToString();
+                l_row.Cells["Mes2"].Value = _row["Mes"].ToString();
+                l_row.Cells["Porcentaje2"].Value = _row["Porcentaje"].ToString();
+            }
         }
     }
 }

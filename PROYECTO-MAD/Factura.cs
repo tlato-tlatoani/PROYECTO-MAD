@@ -42,7 +42,7 @@ namespace PROYECTO_MAD
         {
             m_hotel = new EnlaceDB().getHotel(Reservacion.m_instance.comboBox3.Text);
             m_reservacion = new EnlaceDB().getReservacion(Reservacion.m_actual);
-            m_cliente = new EnlaceDB().getCliente(Reservacion.m_cliente);
+            m_cliente = new EnlaceDB().getCliente(Reservacion.m_cliente.RFC);
             m_factura = new EnlaceDB().GetFactura(Reservacion.m_actual);
             m_servicios = new EnlaceDB().GetFacturaServicios(Reservacion.m_actual);
 

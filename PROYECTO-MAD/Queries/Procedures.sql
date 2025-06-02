@@ -229,8 +229,48 @@ END
 GO
 
 insert into Contrasenna(FechaCreacion, Contrasenna, idUsuario) values ('07-05-2025', 'Flordecerezo01*', 1023);
+GO;
 
+CREATE OR ALTER VIEW ViewUsuarios
+AS
+SELECT 
+	NoNomina, 
+	Nombre, 
+	ApellidoPaterno, 
+	ApellidoMaterno, 
+	CorreoElectronico, 
+	u.Contrasenna, 
+	TelCelular, 
+	TelCasa, 
+	FechaNacimiento, 
+	TipoUsuario,
+	Estado,
+	c.Contrasenna AS ContrasennaReal
+FROM Usuario u JOIN Contrasenna c ON c.idUsuario = NoNomina AND c.idContrasenna = u.Contrasenna;
+GO;
+
+CREATE OR ALTER FUNCTION FGetUsuarios ()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT 
+		NoNomina, 
+		Nombre, 
+		ApellidoPaterno, 
+		ApellidoMaterno, 
+		CorreoElectronico, 
+		Contrasenna, 
+		TelCelular, 
+		TelCasa, 
+		FechaNacimiento, 
+		TipoUsuario,
+		Estado,
+		ContrasennaReal
+	FROM ViewUsuarios
+);
 GO
+
 CREATE OR ALTER PROCEDURE GetUsuarios
 AS
 BEGIN
@@ -240,18 +280,58 @@ BEGIN
 		ApellidoPaterno, 
 		ApellidoMaterno, 
 		CorreoElectronico, 
-		u.Contrasenna, 
+		Contrasenna, 
 		TelCelular, 
 		TelCasa, 
 		FechaNacimiento, 
 		TipoUsuario,
 		Estado,
-		c.Contrasenna AS ContrasennaReal
-	FROM Usuario u JOIN Contrasenna c ON c.idUsuario = NoNomina AND c.idContrasenna = u.Contrasenna;
+		ContrasennaReal
+	FROM FGetUsuarios()
 END
 GO
 
 EXEC GetUsuarios;
+GO
+
+CREATE OR ALTER VIEW ViewClientes
+AS
+SELECT 
+	RFC, 
+	Nombre, 
+	ApellidoPaterno, 
+	ApellidoMaterno, 
+	Ciudad, 
+	Estado, 
+	Pais, 
+	CorreoElectronico, 
+	TelCelular, 
+	TelCasa,
+	FechaNacimiento,
+	EstadoCivil
+FROM Cliente;
+GO;
+
+CREATE OR ALTER FUNCTION FGetClientes ()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT 
+		RFC, 
+		Nombre, 
+		ApellidoPaterno, 
+		ApellidoMaterno, 
+		Ciudad, 
+		Estado, 
+		Pais, 
+		CorreoElectronico, 
+		TelCelular, 
+		TelCasa,
+		FechaNacimiento,
+		EstadoCivil
+	FROM Cliente
+);
 GO
 
 CREATE OR ALTER PROCEDURE GetClientes
@@ -270,7 +350,7 @@ BEGIN
 		TelCasa,
 		FechaNacimiento,
 		EstadoCivil
-	FROM Cliente;
+	FROM FGetClientes();
 END
 GO
 
@@ -318,7 +398,7 @@ BEGIN
 	FROM Factura f JOIN Reservacion r on f.Reservacion = r.CodReservacion JOIN Hotel h ON r.Hotel = h.CodHotel
 	WHERE 
 		h.Pais = @Pais AND
-		YEAR(f.Entrada) = @Year AND
+		YEAR(r.Entrada) = @Year AND
 		r.Ciudad = @Ciudad AND
 		h.NombreHotel = @Hotel
 	GROUP BY
@@ -331,6 +411,8 @@ BEGIN
 		f.PrecioTotal;
 END
 GO
+
+EXEC GetVentas @Pais = 'Wakanda', @Year = 2025, @Ciudad = 'Monterrey', @Hotel = 'Pepillotel';
 
 CREATE OR ALTER PROCEDURE GetOcupaciones
 (
@@ -354,11 +436,11 @@ BEGIN
 		JOIN Hotel h ON r.Hotel = h.CodHotel 
 		JOIN TiposHabitacion th ON r.TipoHabitacion = th.CodTDH 
 		JOIN Habitacion hb ON hb.TipoHabitacion = th.CodTDH
-		JOIN Habitacion hba ON hba.TipoHabitacion = th.CodTDH AND hba.Estatus != 'Desocupado'
+		LEFT JOIN Habitacion hba ON hba.TipoHabitacion = th.CodTDH AND hba.Estatus != 'Desocupado'
 	WHERE 
 		h.Pais = @Pais AND
 		YEAR(r.Entrada) = @Year AND
-		r.Ciudad = @Ciudad AND
+		h.Ciudad = @Ciudad AND
 		h.NombreHotel = @Hotel
 	GROUP BY
 		r.Ciudad,
@@ -369,6 +451,10 @@ BEGIN
 		th.NivelHabitacion;
 END
 GO
+
+EXEC GetOcupaciones @Pais = 'Wakanda', @Year = 2025, @Ciudad = 'Monterrey', @Hotel = 'Pepillotel';
+SELECT * FROM Hotel;
+SELECT * FROM Reservacion;
 
 CREATE OR ALTER PROCEDURE GetOcupaciones2
 (
@@ -389,7 +475,7 @@ BEGIN
 		JOIN Hotel h ON r.Hotel = h.CodHotel 
 		JOIN TiposHabitacion th ON h.CodHotel = th.idHotel 
 		JOIN Habitacion hb ON hb.TipoHabitacion = th.CodTDH
-		JOIN Habitacion hba ON hba.TipoHabitacion = th.CodTDH AND hba.Estatus != 'Desocupado'
+		LEFT JOIN Habitacion hba ON hba.TipoHabitacion = th.CodTDH AND hba.Estatus != 'Desocupado'
 	WHERE 
 		h.Pais = @Pais AND
 		YEAR(r.Entrada) = @Year AND
@@ -862,6 +948,20 @@ BEGIN
 END
 GO;
 
+CREATE OR ALTER VIEW ViewHotel
+AS
+SELECT 
+	CodHotel,
+	NombreHotel,
+	Ciudad,
+	Estado,
+	Pais,
+	ZonaTuristica,
+	Locacion,
+	NoPisos,
+	FechaInicio
+FROM Hotel;
+
 CREATE OR ALTER PROCEDURE GetHotelesCiudad
 (
 	@Ciudad NVarchar (30)
@@ -878,7 +978,7 @@ BEGIN
 		Locacion,
 		NoPisos,
 		FechaInicio
-	FROM Hotel WHERE Ciudad = @Ciudad;
+	FROM ViewHotel WHERE Ciudad = @Ciudad;
 END
 GO;
 
@@ -931,6 +1031,7 @@ BEGIN
 	FROM Hotel JOIN TiposHabitacion on idHotel = CodHotel WHERE NombreHotel = @Hotel;
 END
 GO;
+
 CREATE OR ALTER VIEW ViewHabitaciones
 AS
 SELECT 
@@ -945,7 +1046,14 @@ FROM Habitacion JOIN TiposHabitacion ON CodTDH = TipoHabitacion JOIN Hotel ON Co
 CREATE OR ALTER PROCEDURE GetHabitaciones
 AS
 BEGIN
-	SELECT * FROM ViewHabitaciones;
+	SELECT 
+	NoHabitacion,
+	Estatus,
+	Piso,
+	TipoHabitacion,
+	NivelHabitacion,
+	NombreHotel
+	FROM ViewHabitaciones;
 END
 GO;
 
@@ -1089,6 +1197,22 @@ SELECT
 	CodServicio,
 	Hotel
 FROM Servicio;
+GO;
+
+CREATE OR ALTER FUNCTION FGetServicios()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT 
+		Nombre,
+		Descripcion,
+		Precio,
+		CodServicio,
+		Hotel
+	FROM Servicio
+);
+GO
 
 CREATE OR ALTER PROCEDURE GetServicios
 AS
@@ -1099,7 +1223,7 @@ BEGIN
 		Precio,
 		CodServicio,
 		Hotel
-	FROM ViewServicios;
+	FROM FGetServicios();
 END
 GO;
 
@@ -1193,6 +1317,21 @@ BEGIN
 END
 GO;
 
+CREATE OR ALTER VIEW ViewFactura
+AS
+SELECT 
+		NoFactura,
+		PrecioTotal,
+		NombreDescuento,
+		Descuento,
+		FechaCreacion,
+		FormaPago,
+		PrecioInicial,
+		PrecioServicios,
+		Anticipo,
+		Reservacion
+FROM Factura;
+
 CREATE OR ALTER PROCEDURE GetFactura
 ( 
 	@Reservacion UNIQUEIDENTIFIER
@@ -1209,7 +1348,7 @@ BEGIN
 		PrecioInicial,
 		PrecioServicios,
 		Anticipo
-	FROM Factura WHERE Reservacion = @Reservacion
+	FROM ViewFactura WHERE Reservacion = @Reservacion
 END
 GO;
 

@@ -24,7 +24,7 @@ namespace PROYECTO_MAD
         public bool m_editando = false;
         public static Guid m_actual = Guid.Empty;
 
-        public static string m_cliente = null;
+        public static EntClientes m_cliente = null;
         public int m_habitaciones = -1;
 
         public Reservacion()
@@ -73,7 +73,7 @@ namespace PROYECTO_MAD
         {
             m_instance = this;
 
-            m_reservaciones = new EnlaceDB().getReservaciones(m_cliente);
+            m_reservaciones = new EnlaceDB().getReservaciones(m_cliente.RFC);
 
             foreach (string _ciudad in (new EnlaceDB()).getCiudades()) {
                 comboBox2.Items.Add(_ciudad);
@@ -89,7 +89,7 @@ namespace PROYECTO_MAD
                 l_row.Cells["Estatus"].Value = _reservacion.Estatus;
             }
 
-            textBox3.Text = m_cliente;
+            textBox3.Text = m_cliente.Nombre.Trim() + " " + m_cliente.ApellidoPaterno.Trim() + " " + m_cliente.ApellidoMaterno.Trim();
         }
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -267,7 +267,7 @@ namespace PROYECTO_MAD
                 {
                     EntReservacion l_reservacion = new EntReservacion(
                         Guid.Empty,
-                        m_cliente,
+                        m_cliente.RFC,
                         comboBox2.Text,
                         comboBox3.Text,
                         dataGridView2.SelectedRows[0].Cells[0].Value.ToString(),

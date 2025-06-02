@@ -1914,11 +1914,11 @@ namespace PROYECTO_MAD
             return null;
         }
 
-        public string BuscarClientePorCorreo(string _correo)
+        public EntClientes BuscarClientePorCorreo(string _correo)
         {
             var msg = "";
             DataTable tabla = new DataTable();
-            string l_return = null;
+            EntClientes l_return = null;
 
             try
             {
@@ -1937,7 +1937,20 @@ namespace PROYECTO_MAD
 
                 foreach (DataRow _row in tabla.Rows)
                 {
-                    l_return = _row["RFC"].ToString();
+                    l_return = new EntClientes(
+                        _row["RFC"].ToString(),
+                        _row["Nombre"].ToString(),
+                        _row["ApellidoPaterno"].ToString(),
+                        _row["ApellidoMaterno"].ToString(),
+                        _row["Ciudad"].ToString(),
+                        _row["Estado"].ToString(),
+                        _row["Pais"].ToString(),
+                        _row["CorreoElectronico"].ToString(),
+                        _row["TelCelular"].ToString(),
+                        _row["TelCasa"].ToString(),
+                        DateTime.Parse(_row["FechaNacimiento"].ToString()),
+                        _row["EstadoCivil"].ToString()
+                    );
                 }
             }
             catch (SqlException e)
@@ -1953,11 +1966,11 @@ namespace PROYECTO_MAD
 
             return l_return;
         }
-        public string BuscarClientePorRFC(string _rfc)
+        public EntClientes BuscarClientePorRFC(string _rfc)
         {
             var msg = "";
             DataTable tabla = new DataTable();
-            string l_return = null;
+            EntClientes l_return = null;
 
             try
             {
@@ -1976,7 +1989,20 @@ namespace PROYECTO_MAD
 
                 foreach (DataRow _row in tabla.Rows)
                 {
-                    l_return = _row["RFC"].ToString();
+                    l_return = new EntClientes(
+                        _row["RFC"].ToString(),
+                        _row["Nombre"].ToString(),
+                        _row["ApellidoPaterno"].ToString(),
+                        _row["ApellidoMaterno"].ToString(),
+                        _row["Ciudad"].ToString(),
+                        _row["Estado"].ToString(),
+                        _row["Pais"].ToString(),
+                        _row["CorreoElectronico"].ToString(),
+                        _row["TelCelular"].ToString(),
+                        _row["TelCasa"].ToString(),
+                        DateTime.Parse(_row["FechaNacimiento"].ToString()),
+                        _row["EstadoCivil"].ToString()
+                    );
                 }
             }
             catch (SqlException e)
@@ -1992,11 +2018,11 @@ namespace PROYECTO_MAD
 
             return l_return;
         }
-        public string BuscarClientePorApellidos(string _ap1, string _ap2)
+        public EntClientes BuscarClientePorApellidos(string _ap1, string _ap2)
         {
             var msg = "";
             DataTable tabla = new DataTable();
-            string l_return = null;
+            EntClientes l_return = null;
 
             try
             {
@@ -2017,7 +2043,20 @@ namespace PROYECTO_MAD
 
                 foreach (DataRow _row in tabla.Rows)
                 {
-                    l_return = _row["RFC"].ToString();
+                    l_return =  new EntClientes(
+                        _row["RFC"].ToString(),
+                        _row["Nombre"].ToString(),
+                        _row["ApellidoPaterno"].ToString(),
+                        _row["ApellidoMaterno"].ToString(),
+                        _row["Ciudad"].ToString(),
+                        _row["Estado"].ToString(),
+                        _row["Pais"].ToString(),
+                        _row["CorreoElectronico"].ToString(),
+                        _row["TelCelular"].ToString(),
+                        _row["TelCasa"].ToString(),
+                        DateTime.Parse(_row["FechaNacimiento"].ToString()),
+                        _row["EstadoCivil"].ToString()
+                    );
                 }
             }
             catch (SqlException e)
