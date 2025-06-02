@@ -56,7 +56,6 @@ namespace PROYECTO_MAD
         {
             Factura facturaform = new Factura();
             facturaform.Show();
-            this.Close();
         }
 
         private void label14_Click(object sender, EventArgs e)
