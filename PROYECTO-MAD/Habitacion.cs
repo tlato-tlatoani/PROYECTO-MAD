@@ -253,5 +253,10 @@ namespace PROYECTO_MAD
                 }
             }
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox1.Text = m_tiposHabitaciones[comboBox1.SelectedIndex].nombreHotel;
+        }
     }
 }
