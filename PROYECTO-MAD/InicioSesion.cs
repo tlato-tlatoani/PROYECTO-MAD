@@ -39,6 +39,11 @@ namespace PROYECTO_MAD
                 pantallaprincipalform.Show();
                 this.Hide();
             }
+
+            else
+            {
+                MessageBox.Show(this, "Usuario no encontrado");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

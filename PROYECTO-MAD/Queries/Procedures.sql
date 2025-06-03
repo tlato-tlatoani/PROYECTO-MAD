@@ -271,24 +271,7 @@ RETURN
 );
 GO
 
-CREATE OR ALTER PROCEDURE GetUsuarios
-AS
-BEGIN
-    SELECT 
-		NoNomina, 
-		Nombre, 
-		ApellidoPaterno, 
-		ApellidoMaterno, 
-		CorreoElectronico, 
-		Contrasenna, 
-		TelCelular, 
-		TelCasa, 
-		FechaNacimiento, 
-		TipoUsuario,
-		Estado,
-		ContrasennaReal
-	FROM FGetUsuarios()
-END
+
 GO
 
 EXEC GetUsuarios;
@@ -1294,18 +1277,6 @@ BEGIN
 END
 GO;
 
-CREATE OR ALTER TRIGGER CheckFactura
-ON Checks
-AFTER INSERT
-AS
-BEGIN
-	IF (SELECT Tipo FROM inserted) = 'In' BEGIN 
-		UPDATE Factura SET Entrada = (SELECT idCheck FROM inserted) WHERE Reservacion = (SELECT Reservacion FROM inserted);
-	END ELSE BEGIN 
-		UPDATE Factura SET Salida = (SELECT idCheck FROM inserted) WHERE Reservacion = (SELECT Reservacion FROM inserted);
-	END
-END
-GO;
 
 CREATE OR ALTER TRIGGER CalcularFactura
 ON ServiciosAdicionales

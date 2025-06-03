@@ -24,6 +24,9 @@ CREATE TABLE Servicio(
 	FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel)
 );
 ALTER TABLE Servicio ADD Hotel INT;
+ALTER TABLE Servicio
+ADD CONSTRAINT FK_Servicio_Hotel
+FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel);
 
 CREATE TABLE Hotel(
 	CodHotel INT PRIMARY KEY IDENTITY(1,1),
@@ -140,8 +143,7 @@ CREATE TABLE ServiciosAdicionales(
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	Reservacion UNIQUEIDENTIFIER NOT NULL,
 	Servicio INT NOT NULL,
-	FOREIGN KEY (Reservacion) REFERENCES Reservacion(CodReservacion),
-	FOREIGN KEY (Servicio) REFERENCES HotelesServicio(idHotelesServicio)
+	FOREIGN KEY (Reservacion) REFERENCES Reservacion(CodReservacion)
 );
 
 CREATE TABLE Usuario (
