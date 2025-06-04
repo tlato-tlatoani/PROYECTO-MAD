@@ -144,37 +144,48 @@ namespace PROYECTO_MAD
 
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Usuario.", "Informacion");
             } else {
+                if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Correo Electronico.", "Validacion"); return; }
+                if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar una Contraseña.", "Validacion"); return; }
+                if (textBox3.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Nombre.", "Validacion"); return; }
+                if (textBox7.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono de Casa.", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Paterno.", "Validacion"); return; }
+                if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Materno.", "Validacion"); return; }
+                if (textBox8.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono Celular.", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Numero de Nomina.", "Validacion"); return; }
 
-                if (textBox1.Text.Length > 0 && !Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$"))
-                {
-
+                if (!Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$")) {
                     MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
                     return;
                 }
 
-                DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Usuario?", "Advertencia", MessageBoxButtons.YesNo);
-                if (l_editar == DialogResult.Yes) {
+                int l_nomina = -1;
+                if (!int.TryParse(textBox6.Text, out l_nomina)) { MessageBox.Show(this, "El Numero de Nomina debe ser un Numero Valido.", "Validacion"); return; }
 
+                if (dateTimePicker1.Value.Year < DateTime.Now.Year - 100 || dateTimePicker1.Value.Year > DateTime.Now.Year) { MessageBox.Show(this, "Debe Colocar una Fecha de Nacimiento Valida.", "Validacion"); return; }
+                if (dateTimePicker1.Value.Year > DateTime.Now.Year - 17) { MessageBox.Show(this, "Debe ser Mayor de Edad.", "Validacion"); return; }
 
-                    Usuario l_usuario = new Usuario(
-                        int.Parse(textBox6.Text),
-                        textBox3.Text,
-                        textBox4.Text,
-                        textBox5.Text,
-                        textBox2.Text,
-                        textBox1.Text,
-                        textBox8.Text,
-                        textBox7.Text,
-                        dateTimePicker1.Value,
-                        radioButton1.Checked
-                    );
+                if (MessageBox.Show(this, "Quiere Registrarse con estos Datos?", "Informacion", MessageBoxButtons.YesNo) != DialogResult.Yes) { return; }
 
-                    EnlaceDB l_enlace = new EnlaceDB();
-                    if (l_enlace.Registrar(l_usuario, true)) {
-                        MessageBox.Show(this, "Usuario Registrado con Exito.", "Informacion");
-                        Usuarios_Load(this, new EventArgs());
-                        m_registrando = false;
-                    }
+                Usuario l_usuario = new Usuario(
+                    l_nomina,
+                    textBox3.Text,
+                    textBox4.Text,
+                    textBox5.Text,
+                    textBox2.Text,
+                    textBox1.Text,
+                    textBox8.Text,
+                    textBox7.Text,
+                    dateTimePicker1.Value,
+                    radioButton1.Checked
+                );
+
+                EnlaceDB l_enlace = new EnlaceDB();
+                if (l_enlace.Registrar(l_usuario, true)) {
+                    MessageBox.Show(this, "Usuario Registrado Correctamente!!!", "Informacion");
+                    Usuarios_Load(this, new EventArgs());
+                    m_registrando = false;
+                } else {
+                    MessageBox.Show(this, "El Correo que intenta colocar ya se encuentra en uso...", "Error");
                 }
             }
         }
@@ -192,37 +203,39 @@ namespace PROYECTO_MAD
 
                 textBox6.Enabled = false;
             } else {
+                if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Correo Electronico.", "Validacion"); return; }
+                if (textBox7.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono de Casa.", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Paterno.", "Validacion"); return; }
+                if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Materno.", "Validacion"); return; }
+                if (textBox8.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono Celular.", "Validacion"); return; }
+                if (textBox3.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Nombre.", "Validacion"); return; }
 
-                if (textBox1.Text.Length > 0 && !Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$")){
+                if (dateTimePicker1.Value.Year < DateTime.Now.Year - 100 || dateTimePicker1.Value.Year > DateTime.Now.Year) { MessageBox.Show(this, "Debe Colocar una Fecha de Nacimiento Valida.", "Validacion"); return; }
+                if (dateTimePicker1.Value.Year > DateTime.Now.Year - 17) { MessageBox.Show(this, "Debe ser Mayor de Edad.", "Validacion"); return; }
 
-                    MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
-                    return;
-                }
+                if (MessageBox.Show(this, "Quieres Editar este Usuario?", "Informacion", MessageBoxButtons.YesNo) != DialogResult.Yes) { return; }
 
-                DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Usuario?", "Advertencia", MessageBoxButtons.YesNo);
-                if (l_editar == DialogResult.Yes) {
-                    Usuario l_usuario = new Usuario(
-                        int.Parse(textBox6.Text),
-                        textBox3.Text,
-                        textBox4.Text,
-                        textBox5.Text,
-                        textBox2.Text,
-                        textBox1.Text.Length > 0 ? textBox1.Text : m_curUsuario.RealContrasenna,
-                        textBox8.Text,
-                        textBox7.Text,
-                        dateTimePicker1.Value,
-                        radioButton1.Checked
-                    );
+                Usuario l_usuario = new Usuario(
+                    int.Parse(textBox6.Text),
+                    textBox3.Text,
+                    textBox4.Text,
+                    textBox5.Text,
+                    textBox2.Text,
+                    "",
+                    textBox8.Text,
+                    textBox7.Text,
+                    dateTimePicker1.Value,
+                    radioButton1.Checked
+                );
 
-                    l_usuario.Estado = comboBox1.Text == "Activo";
+                l_usuario.Estado = comboBox1.SelectedIndex == 1;
 
-                    EnlaceDB l_enlace = new EnlaceDB();
-                    if (l_enlace.Editar(l_usuario)) {
-                        MessageBox.Show(this, "Usuario Editado con Exito.", "Informacion");
-                        Usuarios_Load(this, new EventArgs());
-                        textBox6.Enabled = true;
-                        m_editando = false;
-                    }
+                EnlaceDB l_enlace = new EnlaceDB();
+                if (l_enlace.Editar(l_usuario)) {
+                    MessageBox.Show(this, "Usuario Editado con Exito.", "Informacion");
+                    Usuarios_Load(this, new EventArgs());
+                    m_editando = false;
+                    textBox6.Enabled = true;
                 }
             }
         }
@@ -263,7 +276,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -277,7 +290,7 @@ namespace PROYECTO_MAD
 
         private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -378,6 +391,23 @@ namespace PROYECTO_MAD
             radioButton1.Checked = l_usuario.TipoUsuario;
             radioButton2.Checked = !l_usuario.TipoUsuario;
             comboBox1.SelectedIndex = l_usuario.Estado ? 1 : 0;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar una Contraseña.", "Validacion"); return; }
+
+            if (!Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$")) {
+                MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
+                return;
+            }
+
+            if (MessageBox.Show(this, "Quieres Actualizar la Contraseña de este Usuario?", "Informacion", MessageBoxButtons.YesNo) != DialogResult.Yes) { return; }
+
+            EnlaceDB l_enlace = new EnlaceDB();
+            if (l_enlace.ActualizarContra(int.Parse(textBox6.Text), textBox1.Text)) {
+                MessageBox.Show(this, "Contraseña Actualizada con Exito.", "Informacion");
+            }
         }
     }
 }

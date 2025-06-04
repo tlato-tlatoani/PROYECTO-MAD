@@ -43,7 +43,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -61,7 +61,7 @@ namespace PROYECTO_MAD
         {
             if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
 
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -127,29 +127,29 @@ namespace PROYECTO_MAD
 
         private void Perfil_Load(object sender, EventArgs e)
         {
-            textBox2.Text = Program.m_usuario.CorreoElectronico;
-            textBox3.Text = Program.m_usuario.Nombre;
-            textBox7.Text = Program.m_usuario.TelCasa;
-            textBox8.Text = Program.m_usuario.TelCelular;
-            textBox4.Text = Program.m_usuario.ApellidoPaterno;
-            textBox5.Text = Program.m_usuario.ApellidoMaterno;
+            textBox2.Text = Program.m_usuario.CorreoElectronico.Trim();
+            textBox3.Text = Program.m_usuario.Nombre.Trim();
+            textBox7.Text = Program.m_usuario.TelCasa.Trim();
+            textBox8.Text = Program.m_usuario.TelCelular.Trim();
+            textBox4.Text = Program.m_usuario.ApellidoPaterno.Trim();
+            textBox5.Text = Program.m_usuario.ApellidoMaterno.Trim();
             dateTimePicker1.Value = Program.m_usuario.FechaNacimiento;
             textBox6.Text = Program.m_usuario.NoNomina.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length > 0 && !Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$"))
-            {
+            if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Correo Electronico.", "Validacion"); return; }
+            if (textBox3.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Nombre.", "Validacion"); return; }
+            if (textBox7.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono de Casa.", "Validacion"); return; }
+            if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Paterno.", "Validacion"); return; }
+            if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Materno.", "Validacion"); return; }
+            if (textBox8.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono Celular.", "Validacion"); return; }
 
-                MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
-                return;
-            }
+            if (dateTimePicker1.Value.Year < DateTime.Now.Year - 100 || dateTimePicker1.Value.Year > DateTime.Now.Year) { MessageBox.Show(this, "Debe Colocar una Fecha de Nacimiento Valida.", "Validacion"); return; }
+            if (dateTimePicker1.Value.Year > DateTime.Now.Year - 17) { MessageBox.Show(this, "Debe ser Mayor de Edad.", "Validacion"); return; }
 
-            if (MessageBox.Show(this, "Quieres Editar tu Usuario?", "Informacion", MessageBoxButtons.YesNo) != DialogResult.Yes)
-            {
-                return;
-            }
+            if (MessageBox.Show(this, "Quieres Editar tu Usuario?", "Informacion", MessageBoxButtons.YesNo) != DialogResult.Yes) { return; }
 
             Usuario l_usuario = new Usuario(
                 Program.m_usuario.NoNomina,
@@ -157,7 +157,7 @@ namespace PROYECTO_MAD
                 textBox4.Text,
                 textBox5.Text,
                 textBox2.Text,
-                textBox1.Text.Length > 0 ? textBox1.Text : Program.m_usuario.RealContrasenna,
+                "",
                 textBox8.Text,
                 textBox7.Text,
                 dateTimePicker1.Value,
@@ -165,11 +165,30 @@ namespace PROYECTO_MAD
             );
 
             EnlaceDB l_enlace = new EnlaceDB();
-            if (l_enlace.Editar(l_usuario))
-            {
+            if (l_enlace.Editar(l_usuario)) {
                 MessageBox.Show(this, "Usuario Editado con Exito.", "Informacion");
                 Program.m_usuario = l_usuario;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e) {
+            if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar una Contraseña.", "Validacion"); return; }
+
+            if (!Regex.IsMatch(textBox1.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$")) {
+                MessageBox.Show(this, "La contraseña debe tener minimo 8 caracteres, 1 caracter especial, 1 minúscula y 1 mayúsucula", "Formato Incorrecto");
+                return;
+            }
+
+            EnlaceDB l_enlace = new EnlaceDB();
+            if (l_enlace.ActualizarContra(Program.m_usuario.NoNomina, textBox1.Text)) {
+                MessageBox.Show(this, "Contraseña Actualizada con Exito.", "Informacion");
+                Program.m_usuario.RealContrasenna = textBox1.Text;
+            }
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

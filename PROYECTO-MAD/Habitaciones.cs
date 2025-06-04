@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PROYECTO_MAD
 {
-    public partial class Habitacion : Form
+    public partial class Habitaciones : Form
     {
         public List<TipoHab> m_tiposHabitaciones;
         public List<EntHabitacion> m_habitaciones;
@@ -20,7 +20,7 @@ namespace PROYECTO_MAD
         public bool m_registrando = false;
         public bool m_editando = false;
         public int m_actual = 0;
-        public Habitacion()
+        public Habitaciones()
         {
             InitializeComponent();
         }
@@ -51,7 +51,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -65,7 +65,7 @@ namespace PROYECTO_MAD
 
         private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -145,13 +145,21 @@ namespace PROYECTO_MAD
             }
             else
             {
+                if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar el Numero de Habitacion", "Validacion"); return; }
+                if (comboBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe elegir el Tipo de Habitacion", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debe elegir el Piso en el que esta la Habitacion", "Validacion"); return; }
+
+                int l_piso = -1;
+                if (!int.TryParse(textBox6.Text, out l_piso)) { MessageBox.Show(this, "El Piso debe ser un Numero Entero Valido", "Validacion"); return; }
+                if (l_piso <= 0) { MessageBox.Show(this, "El Piso de la Habitacion no puede ser Menor o Igual a 0", "Validacion"); return; }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar esta Habitacion?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
                     EntHabitacion l_habitacion = new EntHabitacion(
-                        int.Parse(textBox2.Text),
+                        textBox2.Text,
                         comboBox2.Text,
-                        int.Parse(textBox6.Text),
+                        l_piso,
                         comboBox1.Text,
                         ""
                     );
@@ -181,7 +189,7 @@ namespace PROYECTO_MAD
 
             if (l_TipoHab == null) { return; }
 
-            m_actual = l_TipoHab.NoHabitacion;
+            m_actual = l_TipoHab.Codigo;
 
             if (m_registrando)
             {
@@ -194,6 +202,8 @@ namespace PROYECTO_MAD
             {
                 m_editando = false;
 
+                textBox2.Enabled = true;
+
                 MessageBox.Show(this, "Has salido del Modo Edicion", "Informacion");
             }
 
@@ -201,6 +211,7 @@ namespace PROYECTO_MAD
             comboBox1.Text = l_TipoHab.TipoHabitacionNombre;
             textBox6.Text = l_TipoHab.Piso.ToString();
             comboBox2.Text = l_TipoHab.Estatus;
+            textBox3.Text = l_TipoHab.Codigo.ToString();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -228,17 +239,27 @@ namespace PROYECTO_MAD
 
                 m_editando = true;
 
+                textBox2.Enabled = false;
+
                 MessageBox.Show(this, "Estas en Modo Edicion.\nSi Presionas este Boton de Nuevo Editaras la Habitacion Seleccionada.", "Informacion");
             }
             else
             {
+                if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar el Numero de Habitacion", "Validacion"); return; }
+                if (comboBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe elegir el Tipo de Habitacion", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debe elegir el Piso en el que esta la Habitacion", "Validacion"); return; }
+
+                int l_piso = -1;
+                if (!int.TryParse(textBox6.Text, out l_piso)) { MessageBox.Show(this, "El Piso debe ser un Numero Entero Valido", "Validacion"); return; }
+                if (l_piso <= 0) { MessageBox.Show(this, "El Piso de la Habitacion no puede ser Menor o Igual a 0", "Validacion"); return; }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Editar esta Habitacion?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
                     EntHabitacion l_habitacion = new EntHabitacion(
-                        int.Parse(textBox2.Text),
+                        textBox2.Text,
                         comboBox2.Text,
-                        int.Parse(textBox6.Text),
+                        l_piso,
                         comboBox1.Text,
                         ""
                     );
@@ -246,8 +267,9 @@ namespace PROYECTO_MAD
                     EnlaceDB l_enlace = new EnlaceDB();
                     if (l_enlace.EditarHabitacion(l_habitacion, Program.m_usuario.NoNomina))
                     {
-                        MessageBox.Show(this, "Cliente Editado con Exito.", "Informacion");
+                        MessageBox.Show(this, "Habitacion Editada con Exito.", "Informacion");
                         Habitacion_Load(this, new EventArgs());
+                        textBox2.Enabled = true;
                         m_editando = false;
                     }
                 }

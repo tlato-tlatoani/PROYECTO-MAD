@@ -96,20 +96,20 @@ namespace PROYECTO_MAD
                             _row["ApellidoPaterno"].ToString(),
                             _row["ApellidoMaterno"].ToString(),
                             _row["CorreoElectronico"].ToString(),
-                            _row["ContrasennaReal"].ToString(),
+                            _row["Contrasenna"].ToString(),
                             _row["TelCelular"].ToString(),
                             _row["TelCasa"].ToString(),
                             DateTime.Parse(_row["FechaNacimiento"].ToString()),
-                            (bool) _row["TipoUsuario"]
+                            _row["TipoUsuario"].ToString() == "1"
                         );
 
-                        l_usuario.Contrasenna = int.Parse(_row["Contrasenna"].ToString());
                         l_usuario.Estado = (bool) _row["Estado"];
                     }
                 }
             }
             catch(SqlException e)
             {
+                MessageBox.Show(null, e.Message, "Error");
             }
             finally
             {
@@ -235,7 +235,7 @@ namespace PROYECTO_MAD
             try
             {
                 conectar();
-                string qry = "RegistrarHoteles";
+                string qry = "RegistrarHotel";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 9000;
@@ -256,8 +256,6 @@ namespace PROYECTO_MAD
                 parametro8.Value = _hotel.NoPisos;
                 var parametro9 = _comandosql.Parameters.Add("@FechaInicio", SqlDbType.Date);
                 parametro9.Value = _hotel.FechaInicio;
-                var parametro10 = _comandosql.Parameters.Add("@Servicios", SqlDbType.NVarChar, 1000);
-                parametro10.Value = _hotel.Servicios;
                 var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
                 parametro13.Value = _admin;
 
@@ -349,18 +347,12 @@ namespace PROYECTO_MAD
                 parametro4.Value = _usuario.ApellidoMaterno;
                 var parametro5 = _comandosql.Parameters.Add("@CorreoElectronico", SqlDbType.NVarChar, 40);
                 parametro5.Value = _usuario.CorreoElectronico;
-                var parametro6 = _comandosql.Parameters.Add("@Contrasenna", SqlDbType.NVarChar, 20);
-                parametro6.Value = _usuario.RealContrasenna;
                 var parametro7 = _comandosql.Parameters.Add("@TelCelular", SqlDbType.NVarChar, 10);
                 parametro7.Value = _usuario.TelCelular;
                 var parametro8 = _comandosql.Parameters.Add("@TelCasa", SqlDbType.NVarChar, 10);
                 parametro8.Value = _usuario.TelCasa;
                 var parametro9 = _comandosql.Parameters.Add("@FechaNacimiento", SqlDbType.Date);
                 parametro9.Value = _usuario.FechaNacimiento;
-                var parametro10 = _comandosql.Parameters.Add("@TipoUsuario", SqlDbType.Bit);
-                parametro10.Value = _usuario.TipoUsuario;
-                var parametro11 = _comandosql.Parameters.Add("@Estado", SqlDbType.Bit);
-                parametro11.Value = _usuario.Estado;
 
                 _adaptador.InsertCommand = _comandosql;
                 _comandosql.ExecuteNonQuery();
@@ -369,6 +361,39 @@ namespace PROYECTO_MAD
             }
             catch (SqlException e)
             {
+                isValid = false;
+                string msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return isValid;
+        }
+        public bool ActualizarContra(int _nomina, string _contra) {
+            bool isValid = false;
+            try
+            {
+                conectar();
+                string qry = "ActualizarContra";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 9000;
+
+                var parametro1 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
+                parametro1.Value = _nomina;
+                var parametro2 = _comandosql.Parameters.Add("@Contrasenna", SqlDbType.NVarChar, 20);
+                parametro2.Value = _contra;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+
+                isValid = true;
+            }
+            catch (SqlException e) {
                 isValid = false;
                 string msg = "Excepción de base de datos: \n";
                 msg += e.Message;
@@ -467,8 +492,6 @@ namespace PROYECTO_MAD
                 parametro9.Value = _hotel.FechaInicio;
                 var parametro12 = _comandosql.Parameters.Add("@CodHotel", SqlDbType.Int);
                 parametro12.Value = _hotel.CodHotel;
-                var parametro14 = _comandosql.Parameters.Add("@Servicios", SqlDbType.NVarChar, 1000);
-                parametro14.Value = _hotel.Servicios;
                 var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
                 parametro13.Value = _admin;
 
@@ -553,10 +576,8 @@ namespace PROYECTO_MAD
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 9000;
 
-                var parametro2 = _comandosql.Parameters.Add("@NoHabitacion", SqlDbType.Int);
+                var parametro2 = _comandosql.Parameters.Add("@NoHabitacion", SqlDbType.NVarChar, 100);
                 parametro2.Value = _habitacion.NoHabitacion;
-                var parametro3 = _comandosql.Parameters.Add("@Estatus", SqlDbType.NVarChar, 50);
-                parametro3.Value = _habitacion.Estatus;
                 var parametro4 = _comandosql.Parameters.Add("@Piso", SqlDbType.Int);
                 parametro4.Value = _habitacion.Piso;
                 var parametro5 = _comandosql.Parameters.Add("@TipoHabitacion", SqlDbType.NVarChar, 20);
@@ -708,9 +729,11 @@ namespace PROYECTO_MAD
 
             return isValid;
         }
-        public bool RegistrarReservacion(EntReservacion _reservacion, int _admin)
+        public Guid RegistrarReservacion(EntReservacion _reservacion, int _admin)
         {
-            bool isValid = false;
+            DataTable tabla = new DataTable();
+            Guid isValid = Guid.Empty;
+
             try
             {
                 conectar();
@@ -725,12 +748,6 @@ namespace PROYECTO_MAD
                 parametro3.Value = _reservacion.Ciudad;
                 var parametro4 = _comandosql.Parameters.Add("@Hotel", SqlDbType.NVarChar, 100);
                 parametro4.Value = _reservacion.HotelNombre;
-                var parametro11 = _comandosql.Parameters.Add("@TipoHabitacion", SqlDbType.NVarChar, 20);
-                parametro11.Value = _reservacion.TipoHabitacionNombre;
-                var parametro5 = _comandosql.Parameters.Add("@CantHabitaciones", SqlDbType.Int);
-                parametro5.Value = _reservacion.CantHabitaciones;
-                var parametro6 = _comandosql.Parameters.Add("@CantPersonas", SqlDbType.Int);
-                parametro6.Value = _reservacion.CantPersonas;
                 var parametro7 = _comandosql.Parameters.Add("@Entrada", SqlDbType.Date);
                 parametro7.Value = _reservacion.Entrada;
                 var parametro8 = _comandosql.Parameters.Add("@Salida", SqlDbType.Date);
@@ -742,14 +759,19 @@ namespace PROYECTO_MAD
                 var parametro13 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
                 parametro13.Value = _admin;
 
+                SqlParameter resIdParam = new SqlParameter("@ResId", SqlDbType.UniqueIdentifier)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                _comandosql.Parameters.Add(resIdParam);
+
                 _adaptador.InsertCommand = _comandosql;
                 _comandosql.ExecuteNonQuery();
 
-                isValid = true;
+                isValid = (Guid)resIdParam.Value;
             }
             catch (SqlException e)
             {
-                isValid = false;
                 string msg = "Excepción de base de datos: \n";
                 msg += e.Message;
                 MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -791,9 +813,8 @@ namespace PROYECTO_MAD
                 desconectar();
             }
         }
-        public string CheckIn(Guid _codigo, DateTime _fecha, int _admin) {
+        public void CheckIn(Guid _codigo, DateTime _fecha, int _admin) {
             DataTable tabla = new DataTable();
-            string l_toReturn = "";
 
             try
             {
@@ -810,19 +831,8 @@ namespace PROYECTO_MAD
                 var parametro3 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
                 parametro3.Value = _admin;
 
-                _adaptador.SelectCommand = _comandosql;
-                _adaptador.Fill(tabla);
-
-                if (tabla.Rows.Count <= 0)
-                {
-                    desconectar();
-                    return "Error";
-                }
-
-                foreach (DataRow _row in tabla.Rows) {
-                    l_toReturn += "- Habitacion [" + _row["NoHabitacion"].ToString() + "]\n";
-                }
-                l_toReturn = l_toReturn.Remove(l_toReturn.Length - 1);
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
             }
             catch (SqlException e)
             {
@@ -834,13 +844,10 @@ namespace PROYECTO_MAD
             {
                 desconectar();
             }
-
-            return l_toReturn;
         }
-        public bool CheckOut(Guid _codigo, DateTime _fecha, decimal _descuento, string _nombredescuento, int _admin)
+        public void CheckOut(Guid _codigo, DateTime _fecha, decimal _descuento, string _nombredescuento, int _admin)
         {
             DataTable tabla = new DataTable();
-            bool l_return = false;
 
             try
             {
@@ -861,10 +868,8 @@ namespace PROYECTO_MAD
                 var parametro3 = _comandosql.Parameters.Add("@NoNomina", SqlDbType.Int);
                 parametro3.Value = _admin;
 
-                _adaptador.SelectCommand = _comandosql;
-                _adaptador.Fill(tabla);
-
-                l_return = tabla.Rows.Count > 0;
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
             }
             catch (SqlException e)
             {
@@ -876,8 +881,6 @@ namespace PROYECTO_MAD
             {
                 desconectar();
             }
-
-            return l_return;
         }
         public void FacturarServicios(Guid _codigo, string _servicios)
         {
@@ -968,9 +971,9 @@ namespace PROYECTO_MAD
             try {
                 conectar();
 
-                string qry = "GetUsuarios";
+                string qry = "SELECT NoNomina, \r\n\tNombre, \r\n\tApellidoPaterno, \r\n\tApellidoMaterno, \r\n\tCorreoElectronico, \r\n\tContrasenna, \r\n\tTelCelular, \r\n\tTelCasa, \r\n\tFechaNacimiento, \r\n\tTipoUsuario,\r\n\tEstado FROM ViewUsuarios;";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -984,14 +987,13 @@ namespace PROYECTO_MAD
                         _row["ApellidoPaterno"].ToString(),
                         _row["ApellidoMaterno"].ToString(),
                         _row["CorreoElectronico"].ToString(),
-                        _row["ContrasennaReal"].ToString(),
+                        _row["Contrasenna"].ToString(),
                         _row["TelCelular"].ToString(),
                         _row["TelCasa"].ToString(),
                         DateTime.Parse(_row["FechaNacimiento"].ToString()),
-                        (bool) _row["TipoUsuario"]
+                        _row["TipoUsuario"].ToString() == "1"
                     ));
 
-                    l_usuarios[l_usuarios.Count() - 1].Contrasenna = int.Parse(_row["Contrasenna"].ToString());
                     l_usuarios[l_usuarios.Count() - 1].Estado = (bool) _row["Estado"];
                 }
 
@@ -1022,9 +1024,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetClientes";
+                string qry = "SELECT RFC, \r\n\tNombre, \r\n\tApellidoPaterno, \r\n\tApellidoMaterno, \r\n\tCiudad, \r\n\tEstado, \r\n\tPais, \r\n\tCorreoElectronico, \r\n\tTelCelular, \r\n\tTelCasa,\r\n\tFechaNacimiento,\r\n\tEstadoCivil FROM ViewClientes";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -1129,9 +1131,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetVentas";
+                string qry = "SELECT Ciudad, Hotel, Año, Mes, Hospedaje, Servicios, Total FROM FuncVentas(@Pais, @Year, @Ciudad, @Hotel)";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 var parametro1 = _comandosql.Parameters.Add("@Pais", SqlDbType.NVarChar, 100);
@@ -1213,9 +1215,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetOcupaciones2";
+                string qry = "SELECT Ciudad, Hotel, Año, Mes, [Porcentaje de Ocupacion], [Cantidad de Personas Hospedadas] FROM FuncOcupaciones(@Pais, @Year, @Ciudad, @Hotel)";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 var parametro1 = _comandosql.Parameters.Add("@Pais", SqlDbType.NVarChar, 100);
@@ -1309,9 +1311,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetHoteles";
+                string qry = "SELECT CodHotel,\r\n\tNombreHotel,\r\n\tCiudad,\r\n\tEstado,\r\n\tPais,\r\n\tZonaTuristica,\r\n\tLocacion,\r\n\tNoPisos,\r\n\tFechaInicio, Servicios FROM ViewHoteles";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -1329,9 +1331,10 @@ namespace PROYECTO_MAD
                         (bool) _row["ZonaTuristica"],
                         _row["Locacion"].ToString(),
                         int.Parse(_row["NoPisos"].ToString()),
-                        _row["Servicios"].ToString(),
                         DateTime.Parse(_row["FechaInicio"].ToString())
                     ));
+
+                    l_hoteles[l_hoteles.Count - 1].Servicios = _row["Servicios"].ToString().Replace("\\n", "\n");
                 }
 
                 desconectar();
@@ -1359,9 +1362,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetHotelesCiudad";
+                string qry = "SELECT \r\n\t\tCodHotel,\r\n\t\tNombreHotel,\r\n\t\tCiudad,\r\n\t\tEstado,\r\n\t\tPais,\r\n\t\tZonaTuristica,\r\n\t\tLocacion,\r\n\t\tNoPisos,\r\n\t\tFechaInicio\r\n\tFROM ViewHoteles WHERE Ciudad = @Ciudad;";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 var parametro1 = _comandosql.Parameters.Add("@Ciudad", SqlDbType.NVarChar, 30);
@@ -1382,7 +1385,6 @@ namespace PROYECTO_MAD
                         (bool)_row["ZonaTuristica"],
                         _row["Locacion"].ToString(),
                         int.Parse(_row["NoPisos"].ToString()),
-                        "",
                         DateTime.Parse(_row["FechaInicio"].ToString())
                     ));
                 }
@@ -1435,9 +1437,10 @@ namespace PROYECTO_MAD
                         (bool)_row["ZonaTuristica"],
                         _row["Locacion"].ToString(),
                         int.Parse(_row["NoPisos"].ToString()),
-                        _row["Servicios"].ToString(),
                         DateTime.Parse(_row["FechaInicio"].ToString())
                     ));
+
+                    l_hoteles[l_hoteles.Count - 1].Servicios = _row["Servicios"].ToString();
                 }
 
                 desconectar();
@@ -1465,9 +1468,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetTiposHabitaciones";
+                string qry = "SELECT CodTDH,\r\n\tNivelHabitacion,\r\n\tNoCamas,\r\n\tTipoCama,\r\n\tPrecioNoche,\r\n\tCantPersonasMax,\r\n\tLocacion,\r\n\tAmenidades,\r\n\tidHotel,\r\n\tNombreHotel FROM ViewTipoHabitaciones";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -1504,7 +1507,7 @@ namespace PROYECTO_MAD
 
             return new List<TipoHab>();
         }
-        public List<TipoHab> getTiposHabitacionesHotel(string _hotel)
+        public List<EntHabitacion> getHabitacionesHotel(string _hotel)
         {
             var msg = "";
             DataTable tabla = new DataTable();
@@ -1513,7 +1516,7 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetTiposHabitacionHotel";
+                string qry = "GetHabitacionesHotel";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
@@ -1524,22 +1527,26 @@ namespace PROYECTO_MAD
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(tabla);
 
-                List<TipoHab> l_tipoHabs = new List<TipoHab>();
+                List<EntHabitacion> l_tipoHabs = new List<EntHabitacion>();
                 foreach (DataRow _row in tabla.Rows)
                 {
-                    l_tipoHabs.Add(new TipoHab(
-                        int.Parse(_row["CodTDH"].ToString()),
+                    l_tipoHabs.Add(new EntHabitacion(
+                        _row["NoHabitacion"].ToString(),
+                        _row["Estatus"].ToString(),
+                        int.Parse(_row["Piso"].ToString()),
                         _row["NivelHabitacion"].ToString(),
-                        int.Parse(_row["NoCamas"].ToString()),
-                        _row["TipoCama"].ToString(),
-                        int.Parse(_row["CantPersonasMax"].ToString()),
-                        "",
-                        _row["Amenidades"].ToString(),
-                        "",
-                        decimal.Parse(_row["PrecioNoche"].ToString())
+                        _row["NombreHotel"].ToString()
                     ));
 
-                    l_tipoHabs[l_tipoHabs.Count - 1].Habitaciones = int.Parse(_row["Habitaciones"].ToString());
+                    if (_row["Hospedaje"] != DBNull.Value) { l_tipoHabs[l_tipoHabs.Count - 1].Hospedaje = int.Parse(_row["Hospedaje"].ToString()); }
+                    
+                    l_tipoHabs[l_tipoHabs.Count - 1].Codigo = int.Parse(_row["Codigo"].ToString());
+
+                    l_tipoHabs[l_tipoHabs.Count - 1].Camas = int.Parse(_row["NoCamas"].ToString());
+                    l_tipoHabs[l_tipoHabs.Count - 1].Clientes = int.Parse(_row["CantPersonasMax"].ToString());
+                    l_tipoHabs[l_tipoHabs.Count - 1].Precio = decimal.Parse(_row["PrecioNoche"].ToString());
+
+                    if (_row["Reservacion"] != DBNull.Value) { l_tipoHabs[l_tipoHabs.Count - 1].Reservacion = (Guid)_row["Reservacion"]; }                    
                 }
 
                 return l_tipoHabs;
@@ -1555,8 +1562,44 @@ namespace PROYECTO_MAD
                 desconectar();
             }
 
-            return new List<TipoHab>();
+            return new List<EntHabitacion>();
         }
+        public void ReservarHabitacion(Guid _reservacion, int _habitacion, int _personas)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "ReservarHabitacion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Reservacion", SqlDbType.UniqueIdentifier);
+                parametro1.Value = _reservacion;
+                var parametro2 = _comandosql.Parameters.Add("@Habitacion", SqlDbType.Int);
+                parametro2.Value = _habitacion;
+                var parametro3 = _comandosql.Parameters.Add("@Personas", SqlDbType.Int);
+                parametro3.Value = _personas;
+
+                _adaptador.InsertCommand = _comandosql;
+                _comandosql.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+        }
+
         public List<EntHabitacion> getHabitaciones()
         {
             var msg = "";
@@ -1566,9 +1609,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetHabitaciones";
+                string qry = "SELECT NoHabitacion, Codigo,\r\n\tEstatus,\r\n\tPiso,\r\n\tTipoHabitacion,\r\n\tNivelHabitacion,\r\n\tNombreHotel FROM ViewHabitaciones";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -1578,12 +1621,14 @@ namespace PROYECTO_MAD
                 foreach (DataRow _row in tabla.Rows)
                 {
                     l_Habs.Add(new EntHabitacion(
-                        int.Parse(_row["NoHabitacion"].ToString()),
+                        _row["NoHabitacion"].ToString(),
                         _row["Estatus"].ToString(),
                         int.Parse(_row["Piso"].ToString()),
                         _row["NivelHabitacion"].ToString(),
                         _row["NombreHotel"].ToString()
                     ));
+
+                    l_Habs[l_Habs.Count - 1].Codigo = int.Parse(_row["Codigo"].ToString());
                 }
 
                 return l_Habs;
@@ -1610,9 +1655,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetServicios";
+                string qry = "SELECT Nombre,\r\n\tDescripcion,\r\n\tPrecio,\r\n\tCodServicio,\r\n\tHotel FROM ViewServicios";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -1748,9 +1793,9 @@ namespace PROYECTO_MAD
             {
                 conectar();
 
-                string qry = "GetCiudades";
+                string qry = "SELECT DISTINCT Ciudad FROM Hotel;";
                 _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandType = CommandType.Text;
                 _comandosql.CommandTimeout = 1200;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -1809,16 +1854,14 @@ namespace PROYECTO_MAD
                         _row["Cliente"].ToString(),
                         _row["Ciudad"].ToString(),
                         _row["NombreHotel"].ToString(),
-                        _row["NivelHabitacion"].ToString(),
-                        int.Parse(_row["CantHabitaciones"].ToString()),
-                        int.Parse(_row["CantPersonas"].ToString()),
                         DateTime.Parse(_row["Entrada"].ToString()),
                         DateTime.Parse(_row["Salida"].ToString()),
                         _row["Estatus"].ToString(),
-                        _row["CheckIn"] != DBNull.Value ? DateTime.Parse(_row["CheckIn"].ToString()) : DateTime.Now,
-                        _row["CheckOut"] != DBNull.Value ? DateTime.Parse(_row["CheckOut"].ToString()) : DateTime.Now,
                         0
                     ));
+                        
+                    if (_row["CheckIn"] != DBNull.Value) { l_Habs[l_Habs.Count - 1].CheckIn = DateTime.Parse(_row["CheckIn"].ToString()); }
+                    if (_row["CheckOut"] != DBNull.Value) { l_Habs[l_Habs.Count - 1].CheckIn = DateTime.Parse(_row["CheckOut"].ToString()); }
 
                     l_Habs[l_Habs.Count - 1].Hotel = int.Parse(_row["Hotel"].ToString());
 
@@ -1874,16 +1917,14 @@ namespace PROYECTO_MAD
                         _row["Cliente"].ToString(),
                         _row["Ciudad"].ToString(),
                         _row["NombreHotel"].ToString(),
-                        _row["NivelHabitacion"].ToString(),
-                        int.Parse(_row["CantHabitaciones"].ToString()),
-                        int.Parse(_row["CantPersonas"].ToString()),
                         DateTime.Parse(_row["Entrada"].ToString()),
                         DateTime.Parse(_row["Salida"].ToString()),
                         _row["Estatus"].ToString(),
-                        DateTime.Parse(_row["CheckIn"].ToString()),
-                        DateTime.Parse(_row["CheckOut"].ToString()),
                         0
                     ));
+
+                    l_Habs[l_Habs.Count - 1].CheckIn = DateTime.Parse(_row["CheckIn"].ToString());
+                    l_Habs[l_Habs.Count - 1].CheckOut = DateTime.Parse(_row["CheckOut"].ToString());
 
                     l_Habs[l_Habs.Count - 1].Hotel = int.Parse(_row["Hotel"].ToString());
                     l_Habs[l_Habs.Count - 1].Dias = int.Parse(_row["Dias"].ToString());
@@ -2071,6 +2112,39 @@ namespace PROYECTO_MAD
             }
 
             return l_return;
+        }
+        public DataTable getHistorialCliente(string _rfc)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "HistorialCliente";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@RFC", SqlDbType.NVarChar, 15);
+                parametro1.Value = _rfc;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
         }
 
     }

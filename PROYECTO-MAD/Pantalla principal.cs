@@ -34,7 +34,7 @@ namespace PROYECTO_MAD
 
             if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
             //CambiarFormulario(new Reservacion(), true);
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -52,7 +52,7 @@ namespace PROYECTO_MAD
         {
             if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
 
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -129,6 +129,16 @@ namespace PROYECTO_MAD
             Usuarios usuariosform = new Usuarios();
             usuariosform.Show();
             this.Close();
+        }
+
+        private void Pantalla_principal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -156,23 +156,23 @@
     <Compile Include="Factura.Designer.cs">
       <DependentUpon>Factura.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="FiltrarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FiltrarCliente.Designer.cs">
+      <DependentUpon>FiltrarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="Checks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="Checks.Designer.cs">
+      <DependentUpon>Checks.cs</DependentUpon>
     </Compile>
-    <Compile Include="Habitacion.cs">
+    <Compile Include="Habitaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Habitacion.Designer.cs">
-      <DependentUpon>Habitacion.cs</DependentUpon>
+    <Compile Include="Habitaciones.Designer.cs">
+      <DependentUpon>Habitaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Historial.cs">
       <SubType>Form</SubType>
@@ -204,10 +204,10 @@
     <Compile Include="Reporte de Ventas.Designer.cs">
       <DependentUpon>Reporte de Ventas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Registro.cs">
+    <Compile Include="Registro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Resources\Registro.Designer.cs">
+    <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
     <Compile Include="Servicios.cs">
@@ -242,11 +242,11 @@
     <Compile Include="Reservacion.Designer.cs">
       <DependentUpon>Reservacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="TIPO-DE-HAB.cs">
+    <Compile Include="TipoHabitaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TIPO-DE-HAB.Designer.cs">
-      <DependentUpon>TIPO-DE-HAB.cs</DependentUpon>
+    <Compile Include="TipoHabitaciones.Designer.cs">
+      <DependentUpon>TipoHabitaciones.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
@@ -254,14 +254,14 @@
     <EmbeddedResource Include="Factura.resx">
       <DependentUpon>Factura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FiltrarCliente.resx">
+      <DependentUpon>FiltrarCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="Checks.resx">
+      <DependentUpon>Checks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Habitacion.resx">
-      <DependentUpon>Habitacion.cs</DependentUpon>
+    <EmbeddedResource Include="Habitaciones.resx">
+      <DependentUpon>Habitaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>
@@ -278,7 +278,7 @@
     <EmbeddedResource Include="Reporte de Ventas.resx">
       <DependentUpon>Reporte de Ventas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Registro.resx">
+    <EmbeddedResource Include="Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Servicios.resx">
@@ -306,8 +306,8 @@
     <EmbeddedResource Include="Reservacion.resx">
       <DependentUpon>Reservacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TIPO-DE-HAB.resx">
-      <DependentUpon>TIPO-DE-HAB.cs</DependentUpon>
+    <EmbeddedResource Include="TipoHabitaciones.resx">
+      <DependentUpon>TipoHabitaciones.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

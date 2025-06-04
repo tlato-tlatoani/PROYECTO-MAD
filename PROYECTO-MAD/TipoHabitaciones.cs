@@ -89,7 +89,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -103,7 +103,7 @@ namespace PROYECTO_MAD
 
         private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -176,6 +176,24 @@ namespace PROYECTO_MAD
             }
             else
             {
+                if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar el Nivel de Habitacion.", "Validacion"); return; }
+                if (comboBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Elegir el Hotel.", "Validacion"); return; }
+                if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar el Numero de Camas.", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar la Cantidad de Personas por Habitacion.", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar el Precio de Noche por Persona.", "Validacion"); return; }
+                if (textBox7.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar la Localizacion.", "Validacion"); return; }
+                if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar las Amenidades.", "Validacion"); return; }
+                if (listBox1.SelectedItems.Count <= 0) { MessageBox.Show(this, "Debe Elegir almenos un Tipo de Cama.", "Validacion"); return; }
+
+                int l_camas = -1;
+                if (!int.TryParse(textBox1.Text, out l_camas)) { MessageBox.Show(this, "El Numero de Camas debe ser un Entero Valido.", "Validacion"); return; }
+
+                int l_personas = -1;
+                if (!int.TryParse(textBox6.Text, out l_personas)) { MessageBox.Show(this, "La Cantidad de Personas debe ser un Entero Valido.", "Validacion"); return; }
+
+                decimal l_precio = -1;
+                if (!decimal.TryParse(textBox4.Text, out l_precio)) { MessageBox.Show(this, "El Precio de Persona por Noche debe ser un Decimal Valido.", "Validacion"); return; }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Tipo de Habitacion?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
@@ -186,13 +204,13 @@ namespace PROYECTO_MAD
                     TipoHab l_tipoHab = new TipoHab(
                         0,
                         textBox2.Text,
-                        int.Parse(textBox1.Text),
+                        l_camas,
                         l_tipoCamas,
-                        int.Parse(textBox6.Text),
+                        l_personas,
                         textBox7.Text,
                         textBox5.Text,
                         comboBox2.Text,
-                        decimal.Parse(textBox4.Text)
+                        l_precio
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
@@ -222,6 +240,24 @@ namespace PROYECTO_MAD
             }
             else
             {
+                if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar el Nivel de Habitacion.", "Validacion"); return; }
+                if (comboBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Elegir el Hotel.", "Validacion"); return; }
+                if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar el Numero de Camas.", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar la Cantidad de Personas por Habitacion.", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar el Precio de Noche por Persona.", "Validacion"); return; }
+                if (textBox7.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar la Localizacion.", "Validacion"); return; }
+                if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar las Amenidades.", "Validacion"); return; }
+                if (listBox1.SelectedItems.Count <= 0) { MessageBox.Show(this, "Debe Elegir almenos un Tipo de Cama.", "Validacion"); return; }
+
+                int l_camas = -1;
+                if (!int.TryParse(textBox1.Text, out l_camas)) { MessageBox.Show(this, "El Numero de Camas debe ser un Entero Valido.", "Validacion"); return; }
+
+                int l_personas = -1;
+                if (!int.TryParse(textBox6.Text, out l_personas)) { MessageBox.Show(this, "La Cantidad de Personas debe ser un Entero Valido.", "Validacion"); return; }
+
+                decimal l_precio = -1;
+                if (!decimal.TryParse(textBox4.Text, out l_precio)) { MessageBox.Show(this, "El Precio de Persona por Noche debe ser un Decimal Valido.", "Validacion"); return; }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Tipo de Habitacion?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
@@ -232,13 +268,13 @@ namespace PROYECTO_MAD
                     TipoHab l_tipoHab = new TipoHab(
                         int.Parse(textBox3.Text),
                         textBox2.Text,
-                        int.Parse(textBox1.Text),
+                        l_camas,
                         l_tipoCamas,
-                        int.Parse(textBox6.Text),
+                        l_personas,
                         textBox7.Text,
                         textBox5.Text,
                         comboBox2.Text,
-                        decimal.Parse(textBox4.Text)
+                        l_precio
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
@@ -313,6 +349,11 @@ namespace PROYECTO_MAD
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

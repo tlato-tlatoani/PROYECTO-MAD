@@ -50,7 +50,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -64,7 +64,7 @@ namespace PROYECTO_MAD
 
         private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -116,6 +116,14 @@ namespace PROYECTO_MAD
             }
             else
             {
+                if (textBox9.Text.Length <= 0) { MessageBox.Show(this, "Debes colocar un Nombre.", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debes colocar un Precio.", "Validacion"); return; }
+                if (richTextBox1.Text.Length <= 0) { MessageBox.Show(this, "Debes colocar una Descripcion.", "Validacion"); return; }
+                if (listBox1.SelectedIndex < 0) { MessageBox.Show(this, "Debes seleccionar un Hotel para este Servicio.", "Validacion"); return; }
+
+                decimal l_precio = -1;
+                if (!decimal.TryParse(textBox6.Text, out l_precio)) { MessageBox.Show(this, "El Precio debe ser un Numero Decimal Valido.", "Validacion"); return; }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Servicio?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
@@ -173,7 +181,15 @@ namespace PROYECTO_MAD
             }
             else
             {
-                DialogResult l_editar = MessageBox.Show(this, "Quieres Editar esta Habitacion?", "Advertencia", MessageBoxButtons.YesNo);
+                if (textBox9.Text.Length <= 0) { MessageBox.Show(this, "Debes colocar un Nombre.", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debes colocar un Precio.", "Validacion"); return; }
+                if (richTextBox1.Text.Length <= 0) { MessageBox.Show(this, "Debes colocar una Descripcion.", "Validacion"); return; }
+                if (listBox1.SelectedIndex < 0) { MessageBox.Show(this, "Debes seleccionar un Hotel para este Servicio.", "Validacion"); return; }
+
+                decimal l_precio = -1;
+                if (!decimal.TryParse(textBox6.Text, out l_precio)) { MessageBox.Show(this, "El Precio debe ser un Numero Decimal Valido.", "Validacion"); return; }
+
+                DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Servicio?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
                     EntServicios l_servicio = new EntServicios(
@@ -187,7 +203,7 @@ namespace PROYECTO_MAD
                     EnlaceDB l_enlace = new EnlaceDB();
                     if (l_enlace.EditarServicio(l_servicio, Program.m_usuario.NoNomina))
                     {
-                        MessageBox.Show(this, "Cliente Editado con Exito.", "Informacion");
+                        MessageBox.Show(this, "Servicio Editado con Exito.", "Informacion");
                         Servicios_Load(this, new EventArgs());
                         m_editando = false;
                     }
@@ -244,6 +260,11 @@ namespace PROYECTO_MAD
                 dataGridView1_Click(dataGridView1, new DataGridViewCellEventArgs(0, 0));
                 return;
             }
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

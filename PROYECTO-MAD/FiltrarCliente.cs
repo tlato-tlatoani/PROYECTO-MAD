@@ -12,9 +12,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PROYECTO_MAD
 {
-    public partial class Form1 : Form
+    public partial class FiltrarCliente : Form
     {
-        public Form1()
+        public FiltrarCliente()
         {
             InitializeComponent();
         }
@@ -54,12 +54,19 @@ namespace PROYECTO_MAD
 
             Reservacion reservacionform = new Reservacion();
             reservacionform.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Pantalla_principal reservacionform = new Pantalla_principal();
+            reservacionform.Show();
+            this.Close();
         }
     }
 }

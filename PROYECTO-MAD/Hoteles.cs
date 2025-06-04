@@ -150,7 +150,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -164,7 +164,7 @@ namespace PROYECTO_MAD
 
         private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -242,13 +242,19 @@ namespace PROYECTO_MAD
             }
             else
             {
-                DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Hotel?", "Advertencia", MessageBoxButtons.YesNo);
-                if (l_editar == DialogResult.Yes)
-                {
-                    string l_listServicios = "";
-                    foreach (string _serv in listBox2.SelectedItems) { l_listServicios += _serv + ","; }
-                    if (l_listServicios.Length > 0) { l_listServicios = l_listServicios.Remove(l_listServicios.Length - 1); }
+                if (textBox9.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Nombre para el Hotel.", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Numero de Pisos.", "Validacion"); return; }
+                if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar una Ciudad.", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Estado.", "Validacion"); return; }
+                if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Pais.", "Validacion"); return; }
+                if (textBox3.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Domicilio.", "Validacion"); return; }
 
+                int l_pisos = -1;
+                if (!int.TryParse(textBox6.Text, out l_pisos)) { MessageBox.Show(this, "El Numero de Pisos debe ser un Valor Entero Valido.", "Validacion"); return; }
+                if (l_pisos <= 0) { MessageBox.Show(this, "El Hotel no puede tener 0 o Menos Pisos.", "Validacion"); return; }
+
+                DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Hotel?", "Advertencia", MessageBoxButtons.YesNo);
+                if (l_editar == DialogResult.Yes) {
                     Hotel l_hotel = new Hotel(
                         0,
                         textBox9.Text,
@@ -258,13 +264,11 @@ namespace PROYECTO_MAD
                         radioButton1.Checked,
                         textBox3.Text,
                         int.Parse(textBox6.Text),
-                        l_listServicios,
                         dateTimePicker1.Value
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
-                    if (l_enlace.RegistrarHotel(l_hotel, Program.m_usuario.NoNomina))
-                    {
+                    if (l_enlace.RegistrarHotel(l_hotel, Program.m_usuario.NoNomina)) {
                         MessageBox.Show(this, "Hotel Registrado con Exito.", "Informacion");
                         Form3_Load(this, new EventArgs());
                         m_registrando = false;
@@ -314,18 +318,8 @@ namespace PROYECTO_MAD
             radioButton2.Checked = !l_hotel.ZonaTuristica;
             dateTimePicker1.Value = l_hotel.FechaInicio;
 
-            listBox2.ClearSelected();
-            foreach (string _serv in l_hotel.Servicios.Split(',')) {
-                listBox2.SelectedItems.Add(_serv);
-            }
-
-            m_servicios = new EnlaceDB().getServicios(l_hotel.CodHotel);
-
-            listBox2.Items.Clear();
-            foreach (EntServicios _serv in m_servicios)
-            {
-                listBox2.Items.Add(_serv.Nombre);
-            }
+            richTextBox1.Text = l_hotel.Servicios;
+            if (richTextBox1.Text.Length <= 0) { richTextBox1.Text = "Este Hotel no Incluye Ningun Servicio..."; }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -344,13 +338,20 @@ namespace PROYECTO_MAD
             }
             else
             {
+                if (textBox9.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Nombre para el Hotel.", "Validacion"); return; }
+                if (textBox6.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Numero de Pisos.", "Validacion"); return; }
+                if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar una Ciudad.", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Estado.", "Validacion"); return; }
+                if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Pais.", "Validacion"); return; }
+                if (textBox3.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Domicilio.", "Validacion"); return; }
+
+                int l_pisos = -1;
+                if (!int.TryParse(textBox6.Text, out l_pisos)) { MessageBox.Show(this, "El Numero de Pisos debe ser un Valor Entero Valido.", "Validacion"); return; }
+                if (l_pisos <= 0) { MessageBox.Show(this, "El Hotel no puede tener 0 o Menos Pisos.", "Validacion"); return; }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Hotel?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
-                    string l_listServicios = "";
-                    foreach(string _serv in listBox2.SelectedItems) { l_listServicios += _serv + ","; }
-                    if (l_listServicios.Length > 0) { l_listServicios = l_listServicios.Remove(l_listServicios.Length - 1); }
-
                     Hotel l_hotel = new Hotel(
                         int.Parse(textBox7.Text),
                         textBox9.Text,
@@ -359,15 +360,14 @@ namespace PROYECTO_MAD
                         textBox5.Text,
                         radioButton1.Checked,
                         textBox3.Text,
-                        int.Parse(textBox6.Text),
-                        l_listServicios,
+                        l_pisos,
                         dateTimePicker1.Value
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
                     if (l_enlace.EditarHotel(l_hotel, Program.m_usuario.NoNomina))
                     {
-                        MessageBox.Show(this, "Cliente Editado con Exito.", "Informacion");
+                        MessageBox.Show(this, "Hotel Editado con Exito.", "Informacion");
                         Form3_Load(this, new EventArgs());
                         m_editando = false;
                     }
@@ -389,6 +389,16 @@ namespace PROYECTO_MAD
         }
 
         private void label11_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

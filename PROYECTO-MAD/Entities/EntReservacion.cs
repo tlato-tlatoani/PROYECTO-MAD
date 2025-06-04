@@ -37,14 +37,9 @@ namespace PROYECTO_MAD.Entities
             string _Cliente,
             string _Ciudad,
             string _Hotel,
-            string _TipoHabitacion,
-            int _CantHabitaciones,
-            int _CantPersonas,
             DateTime _Entrada,
             DateTime _Salida,
             string _Estatus,
-            DateTime _CheckIn,
-            DateTime _CheckOut,
             decimal _anticipo
         )
         {
@@ -52,14 +47,9 @@ namespace PROYECTO_MAD.Entities
             Cliente = _Cliente;
             Ciudad = _Ciudad;
             HotelNombre = _Hotel;
-            TipoHabitacionNombre = _TipoHabitacion;
-            CantHabitaciones = _CantHabitaciones;
-            CantPersonas = _CantPersonas;
             Entrada = _Entrada;
             Salida = _Salida;
             Estatus = _Estatus;
-            CheckIn = _CheckIn;
-            CheckOut = _CheckOut;
             Anticipo = _anticipo;
         }
         public EntReservacion() { }

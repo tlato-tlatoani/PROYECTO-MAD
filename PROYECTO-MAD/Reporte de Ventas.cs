@@ -29,7 +29,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -43,7 +43,7 @@ namespace PROYECTO_MAD
 
         private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -115,20 +115,7 @@ namespace PROYECTO_MAD
         private void button3_Click(object sender, EventArgs e)
         {
             DataTable l_tabla = new EnlaceDB().getVentas(textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, listBox1.Text);
-            dataGridView1.Rows.Clear();
-            foreach (DataRow _row in l_tabla.Rows)
-            {
-                dataGridView1.Rows.Add();
-                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
-
-                l_row.Cells["Ciudad"].Value = _row["Ciudad"].ToString();
-                l_row.Cells["Hotel"].Value = _row["NombreHotel"].ToString();
-                l_row.Cells["Year"].Value = _row["Anio"].ToString();
-                l_row.Cells["Mes"].Value = _row["Mes"].ToString();
-                l_row.Cells["Hospedaje"].Value = _row["PrecioInicial"].ToString();
-                l_row.Cells["Servicios"].Value = _row["PrecioServicios"].ToString();
-                l_row.Cells["Total"].Value = _row["PrecioTotal"].ToString();
-            }
+            dataGridView1.DataSource = l_tabla;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,19 +128,7 @@ namespace PROYECTO_MAD
             textBox3.Text = m_curHotel.Ciudad;
 
             DataTable l_tabla = new EnlaceDB().getVentas(textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, listBox1.Text);
-            dataGridView1.Rows.Clear();
-            foreach (DataRow _row in l_tabla.Rows) {
-                dataGridView1.Rows.Add();
-                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
-
-                l_row.Cells["Ciudad"].Value = _row["Ciudad"].ToString();
-                l_row.Cells["Hotel"].Value = _row["NombreHotel"].ToString();
-                l_row.Cells["Year"].Value = _row["Anio"].ToString();
-                l_row.Cells["Mes"].Value = _row["Mes"].ToString();
-                l_row.Cells["Hospedaje"].Value = _row["PrecioInicial"].ToString();
-                l_row.Cells["Servicios"].Value = _row["PrecioServicios"].ToString();
-                l_row.Cells["Total"].Value = _row["PrecioTotal"].ToString();
-            }
+            dataGridView1.DataSource = l_tabla;
         }
     }
 }

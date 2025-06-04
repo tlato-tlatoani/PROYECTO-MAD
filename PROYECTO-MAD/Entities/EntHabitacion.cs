@@ -8,16 +8,24 @@ namespace PROYECTO_MAD.Entities
 {
     public class EntHabitacion
     {
-        public int NoHabitacion;
+        public string NoHabitacion;
         public string Estatus;
         public int Piso;
         public int TipoHabitacion;
 
         public string TipoHabitacionNombre;
         public string NombreHotel;
+        public int Codigo;
+
+        public int Camas;
+        public int Clientes;
+        public decimal Precio;
+
+        public Guid Reservacion;
+        public int Hospedaje;
 
         public EntHabitacion (
-        int     _NoHabitacion,
+        string _NoHabitacion,
         string  _Estatus,
         int     _Piso,
         string     _TipoHabitacion,

@@ -31,7 +31,6 @@ namespace PROYECTO_MAD.Entities
             bool _ZonaTuristica, 
             string _Locacion,
             int    _NoPisos,
-            string _Servicios,
             DateTime _FechaInicio
 
             )
@@ -44,7 +43,6 @@ namespace PROYECTO_MAD.Entities
             ZonaTuristica = _ZonaTuristica;
             Locacion = _Locacion;
             NoPisos = _NoPisos;
-            Servicios = _Servicios;
             FechaInicio = _FechaInicio;
         }
 

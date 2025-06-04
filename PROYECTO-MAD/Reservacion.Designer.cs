@@ -45,19 +45,15 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Camas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Clientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Habitaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hospedaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label14 = new System.Windows.Forms.Label();
@@ -83,6 +79,7 @@
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeOcupaciónPorHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -90,6 +87,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -126,14 +125,14 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(635, 296);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(216, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(300, 20);
             this.dateTimePicker1.TabIndex = 65;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(635, 263);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(216, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(300, 20);
             this.dateTimePicker2.TabIndex = 67;
             // 
             // label2
@@ -211,7 +210,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(568, 229);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(215, 21);
+            this.comboBox2.Size = new System.Drawing.Size(367, 21);
             this.comboBox2.TabIndex = 73;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -230,7 +229,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label6.Location = new System.Drawing.Point(890, 177);
+            this.label6.Location = new System.Drawing.Point(975, 175);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 44);
@@ -241,9 +240,9 @@
             // 
             this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(983, 182);
+            this.comboBox3.Location = new System.Drawing.Point(1043, 182);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(290, 21);
+            this.comboBox3.Size = new System.Drawing.Size(230, 21);
             this.comboBox3.TabIndex = 76;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
@@ -268,25 +267,33 @@
             this.dataGridView2.BackgroundColor = System.Drawing.Color.MistyRose;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre,
+            this.Tipo,
+            this.Numero,
             this.Camas,
             this.Clientes,
             this.Precio,
-            this.Habitaciones});
+            this.Hospedaje,
+            this.Id});
             this.dataGridView2.Location = new System.Drawing.Point(15, 42);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(373, 158);
+            this.dataGridView2.Size = new System.Drawing.Size(457, 217);
             this.dataGridView2.TabIndex = 79;
             this.dataGridView2.Click += new System.EventHandler(this.dataGridView2_Click);
             // 
-            // Nombre
+            // Tipo
             // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // Numero
+            // 
+            this.Numero.HeaderText = "Numero";
+            this.Numero.MinimumWidth = 6;
+            this.Numero.Name = "Numero";
+            this.Numero.ReadOnly = true;
             // 
             // Camas
             // 
@@ -309,79 +316,26 @@
             this.Precio.Name = "Precio";
             this.Precio.ReadOnly = true;
             // 
-            // Habitaciones
+            // Hospedaje
             // 
-            this.Habitaciones.HeaderText = "Habitaciones";
-            this.Habitaciones.MinimumWidth = 6;
-            this.Habitaciones.Name = "Habitaciones";
-            this.Habitaciones.ReadOnly = true;
-            this.Habitaciones.Visible = false;
+            this.Hospedaje.HeaderText = "Hospedaje";
+            this.Hospedaje.Name = "Hospedaje";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightPink;
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.dataGridView2);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Location = new System.Drawing.Point(463, 337);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(405, 270);
+            this.panel2.Size = new System.Drawing.Size(489, 270);
             this.panel2.TabIndex = 80;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label9.Location = new System.Drawing.Point(10, 229);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(170, 44);
-            this.label9.TabIndex = 83;
-            this.label9.Text = "CANTIDAD DE PERSONAS:";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
-            this.textBox2.Location = new System.Drawing.Point(323, 236);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(28, 22);
-            this.textBox2.TabIndex = 82;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Sans Serif Collection", 9.5F);
-            this.label8.Location = new System.Drawing.Point(10, 203);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(195, 44);
-            this.label8.TabIndex = 44;
-            this.label8.Text = "CANTIDAD DE HABITACIONES:";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
-            this.textBox1.Location = new System.Drawing.Point(359, 206);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(29, 22);
-            this.textBox1.TabIndex = 43;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Plum;
             this.button4.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button4.Location = new System.Drawing.Point(1142, 549);
+            this.button4.Location = new System.Drawing.Point(1187, 549);
             this.button4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button4.Name = "button4";
             this.button4.Padding = new System.Windows.Forms.Padding(5);
@@ -394,42 +348,26 @@
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button6.Enabled = false;
             this.button6.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button6.Location = new System.Drawing.Point(200, 22);
+            this.button6.Location = new System.Drawing.Point(24, 22);
             this.button6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(5);
-            this.button6.Size = new System.Drawing.Size(133, 49);
+            this.button6.Size = new System.Drawing.Size(255, 49);
             this.button6.TabIndex = 85;
-            this.button6.Text = "Check  in";
+            this.button6.Text = "Realizar Checks";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.LavenderBlush;
-            this.button7.Enabled = false;
-            this.button7.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button7.Location = new System.Drawing.Point(38, 22);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.button7.Name = "button7";
-            this.button7.Padding = new System.Windows.Forms.Padding(5);
-            this.button7.Size = new System.Drawing.Size(135, 49);
-            this.button7.TabIndex = 86;
-            this.button7.Text = "Check out";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.Plum;
             this.button8.Font = new System.Drawing.Font("Sans Serif Collection", 9.8F);
-            this.button8.Location = new System.Drawing.Point(999, 549);
+            this.button8.Location = new System.Drawing.Point(1072, 549);
             this.button8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button8.Name = "button8";
             this.button8.Padding = new System.Windows.Forms.Padding(5);
-            this.button8.Size = new System.Drawing.Size(124, 49);
+            this.button8.Size = new System.Drawing.Size(111, 49);
             this.button8.TabIndex = 89;
             this.button8.Text = "Registrar";
             this.button8.UseVisualStyleBackColor = false;
@@ -519,7 +457,8 @@
             this.reservacionesToolStripMenuItem,
             this.hotelesToolStripMenuItem,
             this.clientesToolStripMenuItem1,
-            this.reportesToolStripMenuItem});
+            this.reportesToolStripMenuItem,
+            this.cerrarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -651,6 +590,13 @@
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
             this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
+            // cerrarToolStripMenuItem
+            // 
+            this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.cerrarToolStripMenuItem.Text = "Cerrar";
+            this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -667,9 +613,9 @@
             // 
             this.listBox1.Enabled = false;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(898, 218);
+            this.listBox1.Location = new System.Drawing.Point(975, 218);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(375, 147);
+            this.listBox1.Size = new System.Drawing.Size(298, 147);
             this.listBox1.TabIndex = 97;
             // 
             // textBox3
@@ -682,15 +628,15 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(989, 376);
+            this.textBox4.Location = new System.Drawing.Point(1047, 390);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.Size = new System.Drawing.Size(155, 20);
             this.textBox4.TabIndex = 99;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(898, 379);
+            this.label10.Location = new System.Drawing.Point(981, 393);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(60, 13);
             this.label10.TabIndex = 100;
@@ -699,21 +645,35 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel3.Controls.Add(this.button7);
             this.panel3.Controls.Add(this.button6);
-            this.panel3.Location = new System.Drawing.Point(901, 427);
+            this.panel3.Location = new System.Drawing.Point(975, 427);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(371, 93);
+            this.panel3.Size = new System.Drawing.Size(297, 93);
             this.panel3.TabIndex = 101;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Plum;
             this.panel4.Controls.Add(this.linkLabel1);
-            this.panel4.Location = new System.Drawing.Point(904, 546);
+            this.panel4.Location = new System.Drawing.Point(983, 540);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(79, 56);
             this.panel4.TabIndex = 102;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(1228, 390);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(45, 20);
+            this.textBox1.TabIndex = 103;
+            this.textBox1.Text = "$";
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Codigo";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
             // Reservacion
             // 
@@ -721,6 +681,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(1301, 625);
+            this.ControlBox = false;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label10);
@@ -745,8 +707,10 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Reservacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CLIENTES:";
             this.Load += new System.EventHandler(this.Reservacion_Load);
             this.panel1.ResumeLayout(false);
@@ -783,13 +747,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label14;
@@ -812,12 +771,7 @@
         private System.Windows.Forms.ToolStripMenuItem verServiciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miPerfilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEditarRegistrarToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Camas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Clientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Habitaciones;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
@@ -827,5 +781,14 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Camas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clientes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hospedaje;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }

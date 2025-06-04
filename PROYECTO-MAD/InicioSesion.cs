@@ -31,18 +31,15 @@ namespace PROYECTO_MAD
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Correo Electronico.", "Validacion"); return; }
+            if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar una Contraseña.", "Validacion"); return; }
+
             EnlaceDB enlace = new EnlaceDB();
             bool l_tipoUsuario = radioButton1.Checked;
-            if ((Program.m_usuario = enlace.Autentificar(textBox1.Text, textBox2.Text, l_tipoUsuario)) != null)
-            {
+            if ((Program.m_usuario = enlace.Autentificar(textBox1.Text, textBox2.Text, l_tipoUsuario)) != null) {
                 Pantalla_principal pantallaprincipalform = new Pantalla_principal();
                 pantallaprincipalform.Show();
                 this.Hide();
-            }
-
-            else
-            {
-                MessageBox.Show(this, "Usuario no encontrado");
             }
         }
 

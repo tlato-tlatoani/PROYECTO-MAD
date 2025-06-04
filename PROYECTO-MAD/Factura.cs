@@ -23,10 +23,7 @@ namespace PROYECTO_MAD
     public partial class Factura : Form
     {
         List<EntServicios> m_servicios;
-        EntReservacion m_reservacion;
-        EntClientes m_cliente;
         EntFactura m_factura;
-        Hotel m_hotel;
 
         public Factura()
         {
@@ -40,29 +37,33 @@ namespace PROYECTO_MAD
 
         private void Factura_Load(object sender, EventArgs e)
         {
-            m_hotel = new EnlaceDB().getHotel(Reservacion.m_instance.comboBox3.Text);
-            m_reservacion = new EnlaceDB().getReservacion(Reservacion.m_actual);
-            m_cliente = new EnlaceDB().getCliente(Reservacion.m_cliente.RFC);
             m_factura = new EnlaceDB().GetFactura(Reservacion.m_actual);
             m_servicios = new EnlaceDB().GetFacturaServicios(Reservacion.m_actual);
 
             dateTimePicker2.Value = m_factura.FechaCreacion;
-            textBox6.Text = m_cliente.CorreoElectronico;
+            dateTimePicker1.Value = Reservacion.m_reservacionActual.Entrada;
+            dateTimePicker3.Value = Reservacion.m_reservacionActual.Salida;
+            textBox6.Text = Reservacion.m_cliente.CorreoElectronico;
             textBox2.Text = Program.m_usuario.Nombre;
             comboBox1.Text = m_factura.FormaPago;
-            textBox1.Text = m_hotel.NombreHotel;
-            textBox3.Text = m_hotel.Locacion;
-            textBox7.Text = m_cliente.Nombre;
-            textBox5.Text = m_cliente.Ciudad;
-            textBox4.Text = m_hotel.Ciudad;
+            textBox1.Text = Reservacion.m_hotel.NombreHotel;
+            textBox3.Text = Reservacion.m_hotel.Locacion;
+            textBox7.Text = Reservacion.m_cliente.Nombre;
+            textBox5.Text = Reservacion.m_cliente.Ciudad;
+            textBox4.Text = Reservacion.m_hotel.Ciudad;
 
             // Hospedaje
-            dataGridView1.Rows.Add();
-            DataGridViewRow l_row1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
-            l_row1.Cells["Cantidad"].Value = m_reservacion.Dias;
-            l_row1.Cells["Desc"].Value = "Noches de Hospedaje en " + m_reservacion.TipoHabitacionNombre;
-            l_row1.Cells["PrecioUnitario"].Value = "$ " + m_reservacion.PrecioNoche;
-            l_row1.Cells["Total"].Value = "$ " + m_factura.PrecioInicial;
+            foreach (EntHabitacion _hab in (new EnlaceDB()).getHabitacionesHotel(Reservacion.m_hotel.NombreHotel))
+            {
+                if (_hab.Reservacion != Reservacion.m_reservacionActual.CodReservacion) { continue; }
+
+                dataGridView1.Rows.Add();
+                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+                l_row.Cells["Cantidad"].Value = Reservacion.m_reservacionActual.Salida.Day - Reservacion.m_reservacionActual.Entrada.Day;
+                l_row.Cells["Desc"].Value = "Hospedaje en " + _hab.NoHabitacion + " para " + _hab.Hospedaje + " personas";
+                l_row.Cells["PrecioUnitario"].Value = "$ " + _hab.Precio;
+                l_row.Cells["Total"].Value = "$ " + _hab.Precio * _hab.Hospedaje * (Reservacion.m_reservacionActual.Salida.Day - Reservacion.m_reservacionActual.Entrada.Day);
+            }
 
             foreach (EntServicios _servicio in m_servicios)
             {
@@ -79,7 +80,7 @@ namespace PROYECTO_MAD
             DataGridViewRow l_row2 = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
             l_row2.Cells["Cantidad"].Value = "1";
             l_row2.Cells["Desc"].Value = "Anticipo Aplicado";
-            l_row2.Cells["PrecioUnitario"].Value = "$ " + -m_reservacion.Anticipo;
+            l_row2.Cells["PrecioUnitario"].Value = "$ " + -Reservacion.m_reservacionActual.Anticipo;
             l_row2.Cells["Total"].Value = "$ " + -m_factura.Anticipo;
 
             // Descuento
@@ -88,7 +89,7 @@ namespace PROYECTO_MAD
             l_row3.Cells["Cantidad"].Value = "1";
             l_row3.Cells["Desc"].Value = m_factura.NombreDescuento;
             l_row3.Cells["PrecioUnitario"].Value = "% " + m_factura.Descuento;
-            l_row3.Cells["Total"].Value = "$ " + -(m_factura.PrecioInicial + m_factura.PrecioServicios - m_factura.Anticipo) * (m_factura.Descuento / 100);
+            l_row3.Cells["Total"].Value = "$ " + -((m_factura.PrecioInicial + m_factura.PrecioServicios - m_factura.Anticipo) * (m_factura.Descuento / 100));
 
             textBox8.Text = "$ " + m_factura.PrecioTotal.ToString();
         }
@@ -112,7 +113,7 @@ namespace PROYECTO_MAD
                     l_document.SetMargins(60, 20, 55, 20);
 
                     // <----------- [Line 01] ----------->
-                    string l_prf01 = m_reservacion.HotelNombre;
+                    string l_prf01 = Reservacion.m_reservacionActual.HotelNombre;
                     var l_parraf01 = new Paragraph(l_prf01);
                     l_parraf01.SetTextAlignment(TextAlignment.LEFT);
                     l_parraf01.SetFontSize(20);

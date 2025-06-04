@@ -18,14 +18,14 @@ namespace PROYECTO_MAD
         public static Reservacion m_instance;
 
         public List<EntReservacion> m_reservaciones;
-        public EntReservacion m_reservacionActual;
 
         public bool m_registrando = false;
         public bool m_editando = false;
         public static Guid m_actual = Guid.Empty;
 
+        public static EntReservacion m_reservacionActual;
         public static EntClientes m_cliente = null;
-        public int m_habitaciones = -1;
+        public static Hotel m_hotel = null;
 
         public Reservacion()
         {
@@ -54,6 +54,9 @@ namespace PROYECTO_MAD
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (m_reservacionActual == null) { MessageBox.Show(this, "Debes Elegir una Reservacion antes de Realizar esta Accion"); return; }
+            if (m_reservacionActual.CheckOut == null) { MessageBox.Show(this, "Se deben haber Realizado todos los Checks para entrar a esta Ventana."); return; }
+
             Factura facturaform = new Factura();
             facturaform.Show();
         }
@@ -94,7 +97,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -112,7 +115,7 @@ namespace PROYECTO_MAD
         {
             if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
 
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -204,6 +207,7 @@ namespace PROYECTO_MAD
         {
             listBox1.Items.Clear();
             Hotel l_curHotel = new EnlaceDB().getHotel(comboBox3.Text);
+            m_hotel = l_curHotel;
             listBox1.Items.Add("Domicilio: " + l_curHotel.Locacion);
             listBox1.Items.Add("Numero de Pisos: " + l_curHotel.NoPisos);
             listBox1.Items.Add("Servicios: ");
@@ -212,42 +216,22 @@ namespace PROYECTO_MAD
             }
 
             dataGridView2.Rows.Clear();
-            foreach (TipoHab _tipohab in (new EnlaceDB()).getTiposHabitacionesHotel(comboBox3.Text)) {
+            foreach (EntHabitacion _hab in (new EnlaceDB()).getHabitacionesHotel(comboBox3.Text)) {
+                if(_hab.Estatus != "Desocupado") { continue; }
+
                 dataGridView2.Rows.Add();
                 DataGridViewRow l_row = dataGridView2.Rows[dataGridView2.Rows.Count - 1];
-                l_row.Cells["Nombre"].Value = _tipohab.NivelHabitacion;
-                l_row.Cells["Camas"].Value = _tipohab.NoCamas;
-                l_row.Cells["Clientes"].Value = _tipohab.CantPersonasMax;
-                l_row.Cells["Precio"].Value = _tipohab.PrecioNoche;
-                l_row.Cells["Habitaciones"].Value = _tipohab.Habitaciones;
+                l_row.Cells["Tipo"].Value = _hab.TipoHabitacionNombre;
+                l_row.Cells["Numero"].Value = _hab.NoHabitacion;
+                l_row.Cells["Camas"].Value = _hab.Camas;
+                l_row.Cells["Clientes"].Value = _hab.Clientes;
+                l_row.Cells["Precio"].Value = _hab.Precio;
+                l_row.Cells["Id"].Value = _hab.Codigo;
             }
         }
 
         private void dataGridView2_Click(object sender, EventArgs e)
         {
-            m_habitaciones = int.Parse(dataGridView2.SelectedCells[4].Value.ToString());
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length <= 0) { return; }
-            int l_curValue = 0;  int.TryParse(textBox1.Text, out l_curValue);
-
-            if (l_curValue > m_habitaciones) { textBox1.Text = m_habitaciones.ToString(); }
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length <= 0) { return; }
-            if (textBox2.Text.Length <= 0) { return; }
-            if (dataGridView2.Rows.Count < 1) { return; }
-            if (dataGridView2.ColumnCount < 1) { return; }
-            if (dataGridView2.SelectedCells.Count < 1) { return; }
-            int l_curHabits = int.Parse(textBox1.Text);
-            int l_curPersons = int.Parse(textBox2.Text);
-            int l_clientesHab = int.Parse(dataGridView2.SelectedCells[2].Value.ToString());
-
-            if (l_curPersons > l_curHabits * l_clientesHab) { textBox2.Text = (l_curHabits * l_clientesHab).ToString(); }
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -259,9 +243,35 @@ namespace PROYECTO_MAD
                 m_actual = Guid.Empty;
 
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Crearas una Reservacion.", "Informacion");
+
+                dataGridView2.Rows.Clear();
             }
             else
             {
+                if (comboBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Elegir una Ciudad", "Validacion"); return; }
+                if (comboBox3.Text.Length <= 0) { MessageBox.Show(this, "Debe Elegir un Hotel", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Agregar un Anticipo", "Validacion"); return; }
+
+                decimal l_anticipo = -1;
+                if (!decimal.TryParse(textBox4.Text, out l_anticipo)) { MessageBox.Show(this, "El Anticipo debe ser un Valor Numerico Decimal Valido.", "Validacion"); return; }
+                if (l_anticipo < 0) { MessageBox.Show(this, "El Anticipo no puede ser Negativo.", "Validacion"); return; }
+
+                if ((dateTimePicker2.Value - dateTimePicker1.Value).Days < 1) { MessageBox.Show(this, "El Cliente debe Hospedarse por lo Menos un Dia para realizar la Reservacion.", "Validacion"); return; }
+                if (dateTimePicker1.Value < DateTime.Now) { MessageBox.Show(this, "No se puede crear una Reservacion para un dia que ya transcurrio.", "Validacion"); return; }
+
+                bool l_usaHabitaciones = false;
+                foreach (DataGridViewRow _row in dataGridView2.Rows) { 
+                    if (_row.Cells["Hospedaje"].Value == null || _row.Cells["Hospedaje"].Value.ToString().Length <= 0) { continue; }
+                    l_usaHabitaciones = true;
+
+                    int l_personas = -1;
+                    if (!int.TryParse(_row.Cells["Hospedaje"].Value.ToString(), out l_personas)) { MessageBox.Show(this, "Debe Colocar un Numero Entero Valido en el Hospedaje de Habitacion.", "Validacion"); return; }
+                    if (l_personas <= 0) { MessageBox.Show(this, "Una Habitacion no puede hospedar un numero menor de 0 huespedes.", "Validacion"); return; }
+                    if (l_personas > int.Parse(_row.Cells["Clientes"].Value.ToString())) { MessageBox.Show(this, "El Numero de Huespedes Excede el Maximo de la Habitacion.", "Validacion"); return; }
+                }
+
+                if (!l_usaHabitaciones) { MessageBox.Show(this, "El Cliente debe Reservar minimo una Habitacion.", "Validacion"); return; }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar esta Reservacion?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
@@ -270,20 +280,22 @@ namespace PROYECTO_MAD
                         m_cliente.RFC,
                         comboBox2.Text,
                         comboBox3.Text,
-                        dataGridView2.SelectedRows[0].Cells[0].Value.ToString(),
-                        int.Parse(textBox1.Text),
-                        int.Parse(textBox2.Text),
                         dateTimePicker1.Value,
                         dateTimePicker2.Value,
                         "Vigente",
-                        DateTime.Now,
-                        DateTime.Now,
-                        decimal.Parse(textBox4.Text)
+                        l_anticipo
                     );
 
+                    Guid l_resCodigo;
                     EnlaceDB l_enlace = new EnlaceDB();
-                    if (l_enlace.RegistrarReservacion(l_reservacion, Program.m_usuario.NoNomina))
+                    if ((l_resCodigo = l_enlace.RegistrarReservacion(l_reservacion, Program.m_usuario.NoNomina)) != Guid.Empty)
                     {
+                        foreach (DataGridViewRow _row in dataGridView2.Rows) {
+                            if (_row.Cells["Hospedaje"] == null) { continue; }
+
+                            new EnlaceDB().ReservarHabitacion(l_resCodigo, int.Parse(_row.Cells["Id"].Value.ToString()), int.Parse(_row.Cells["Hospedaje"].Value.ToString()));
+                        }
+
                         MessageBox.Show(this, "Reservacion Creada con Exito.", "Informacion");
                         Reservacion_Load(this, new EventArgs());
                         m_registrando = false;
@@ -294,7 +306,7 @@ namespace PROYECTO_MAD
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Form2 checkoutform = new Form2();
+            Checks checkoutform = new Checks();
             checkoutform.Show();
             this.Close();
         }
@@ -312,16 +324,12 @@ namespace PROYECTO_MAD
 
             if (l_reservacion == null) { return; }
 
-            button6.Enabled = true;
-            button7.Enabled = true;
-
             m_actual = l_reservacion.CodReservacion;
             m_reservacionActual = l_reservacion;
 
             if (m_registrando)
             {
                 m_registrando = false;
-                textBox1.Text = "";
 
                 MessageBox.Show(this, "Has salido del Modo Registro", "Informacion");
             }
@@ -336,18 +344,23 @@ namespace PROYECTO_MAD
             comboBox3.Text = l_reservacion.HotelNombre;
             dateTimePicker1.Value = l_reservacion.Entrada;
             dateTimePicker2.Value = l_reservacion.Salida;
- 
-            dataGridView2.ClearSelection();
-            foreach (DataGridViewRow _row in dataGridView2.Rows)
-            {
-                if (!_row.Cells["Nombre"].Value.ToString().TrimEnd().Equals(l_reservacion.TipoHabitacion)) { continue; }
-                _row.Selected = true;
-                dataGridView2_Click(dataGridView2, new DataGridViewCellEventArgs(0, 0));
-                break;
-            }
+            textBox4.Text = l_reservacion.Anticipo.ToString();
 
-            textBox1.Text = l_reservacion.CantHabitaciones.ToString();
-            textBox2.Text = l_reservacion.CantPersonas.ToString();
+            dataGridView2.Rows.Clear();
+            foreach (EntHabitacion _hab in (new EnlaceDB()).getHabitacionesHotel(comboBox3.Text))
+            {
+                if (_hab.Reservacion != m_reservacionActual.CodReservacion) { continue; }
+
+                dataGridView2.Rows.Add();
+                DataGridViewRow l_row = dataGridView2.Rows[dataGridView2.Rows.Count - 1];
+                l_row.Cells["Tipo"].Value = _hab.TipoHabitacionNombre;
+                l_row.Cells["Numero"].Value = _hab.NoHabitacion;
+                l_row.Cells["Camas"].Value = _hab.Camas;
+                l_row.Cells["Clientes"].Value = _hab.Clientes;
+                l_row.Cells["Precio"].Value = _hab.Precio;
+                l_row.Cells["Hospedaje"].Value = _hab.Hospedaje;
+                l_row.Cells["Id"].Value = _hab.Codigo;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -377,22 +390,8 @@ namespace PROYECTO_MAD
         {
             if (m_actual == Guid.Empty) { MessageBox.Show(this, "Debes elegir una Reservacion para Realizar esta Accion.", "Error"); return; }
 
-            if (DateTime.Now.Date != m_reservacionActual.Entrada.Date)
-            {
-                MessageBox.Show(this, "No estás en una fecha valida para realizar esta acción.", "Advertencia");
-                return;
-            }
-            DialogResult l_editar = MessageBox.Show(this, "Quieres realizar el Check In de Esta Reservacion?", "Advertencia", MessageBoxButtons.YesNo);
-            if (l_editar == DialogResult.Yes)
-            {
-                string l_checks = new EnlaceDB().CheckIn(m_actual, DateTime.Now, Program.m_usuario.NoNomina);
-
-                if (l_checks == "Error") {
-                    MessageBox.Show(this, "Check-In realizada anteriormente", "Error");
-                } else {
-                    MessageBox.Show(this, "Check-In Realizada!\n\nCodigo de Reservacion: " + m_actual.ToString() + "\nHabitaciones Ocupadas:\n" + l_checks, "Informacion");
-                }
-            }
+            Checks l_checks = new Checks();
+            l_checks.ShowDialog(this);
         }
 
         private void button7_Click_1(object sender, EventArgs e)
@@ -402,13 +401,18 @@ namespace PROYECTO_MAD
                 MessageBox.Show(this, "No estás en una fecha valida para realizar esta acción.", "Advertencia");
                 return;
             }
-            Form2 l_checkout = new Form2();
+            Checks l_checkout = new Checks();
             l_checkout.ShowDialog(this);
         }
 
         private void label9_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

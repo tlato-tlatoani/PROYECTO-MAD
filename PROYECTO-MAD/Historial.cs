@@ -33,7 +33,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -47,7 +47,7 @@ namespace PROYECTO_MAD
 
         private void habitacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -128,26 +128,8 @@ namespace PROYECTO_MAD
             textBox2.Text = l_cliente.ApellidoPaterno;
             textBox1.Text = l_cliente.ApellidoMaterno;
 
-            List<EntReservacion> l_reservaciones = new EnlaceDB().getReservaciones(l_cliente.RFC);
-            dataGridView2.Rows.Clear();
-            foreach (EntReservacion _reservacion in l_reservaciones)
-            {
-                dataGridView2.Rows.Add();
-                DataGridViewRow l_row = dataGridView2.Rows[dataGridView2.Rows.Count - 1];
-                l_row.Cells["Nombre"].Value = l_cliente.Nombre;
-                l_row.Cells["Ciudad"].Value = _reservacion.Ciudad;
-                l_row.Cells["Hotel"].Value = _reservacion.HotelNombre;
-                l_row.Cells["TipoHabitacion"].Value = _reservacion.TipoHabitacionNombre;
-                l_row.Cells["NumeroHabitacion"].Value = _reservacion.NoHabitacion;
-                l_row.Cells["Personas"].Value = _reservacion.CantPersonas;
-                l_row.Cells["Codigo"].Value = _reservacion.CodReservacion;
-                l_row.Cells["FechaReservacion"].Value = _reservacion.Entrada;
-                l_row.Cells["Estatus"].Value = _reservacion.Estatus;
-                l_row.Cells["Anticipo"].Value = _reservacion.Anticipo;
-                l_row.Cells["Monto"].Value = _reservacion.Monto;
-                l_row.Cells["Servicios"].Value = _reservacion.Servicios;
-                l_row.Cells["Total"].Value = _reservacion.Total;
-            }
+            DataTable l_informacion = new EnlaceDB().getHistorialCliente(l_cliente.RFC);
+            dataGridView2.DataSource = l_informacion;
         }
 
         private void button3_Click(object sender, EventArgs e)

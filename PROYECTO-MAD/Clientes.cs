@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace PROYECTO_MAD
@@ -125,7 +126,7 @@ namespace PROYECTO_MAD
 
         private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 identificateform = new Form1();
+            FiltrarCliente identificateform = new FiltrarCliente();
             identificateform.Show();
             this.Close();
         }
@@ -143,7 +144,7 @@ namespace PROYECTO_MAD
         {
             if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
 
-            Habitacion habitacionform = new Habitacion();
+            Habitaciones habitacionform = new Habitaciones();
             habitacionform.Show();
             this.Close();
         }
@@ -213,15 +214,31 @@ namespace PROYECTO_MAD
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
+        private void button1_Click_1(object sender, EventArgs e) {
             if (!m_registrando) {
                 m_registrando = true;
                 m_clienteActual = "";
 
                 MessageBox.Show(this, "Estas en Modo Registro.\nSi Presionas este Boton de Nuevo Registraras un Cliente.", "Informacion");
-            } else {
+            } else
+            {
+                if (textBox8.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Correo Electronico.", "Validacion"); return; }
+                if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Nombre.", "Validacion"); return; }
+                if (textBox11.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Paterno.", "Validacion"); return; }
+                if (textBox10.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Materno.", "Validacion"); return; }
+                if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar una Ciudad.", "Validacion"); return; }
+                if (textBox3.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Estado.", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Pais.", "Validacion"); return; }
+                if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un RFC.", "Validacion"); return; }
+                if (textBox7.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono de Casa.", "Validacion"); return; }
+                if (textBox8.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono Celular.", "Validacion"); return; }
+                if (comboBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Seleccionar un Estado Civil.", "Validacion"); return; }
+
+                if (dateTimePicker1.Value.Year < DateTime.Now.Year - 100 || dateTimePicker1.Value.Year > DateTime.Now.Year) { MessageBox.Show(this, "Debe Colocar una Fecha de Nacimiento Valida.", "Validacion"); return; }
+                if (dateTimePicker1.Value.Year > DateTime.Now.Year - 17) { MessageBox.Show(this, "Debe ser Mayor de Edad.", "Validacion"); return; }
+                           
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Registrar este Cliente?", "Advertencia", MessageBoxButtons.YesNo);
+
                 if (l_editar == DialogResult.Yes) {
                     EntClientes l_cliente = new EntClientes(
                         textBox5.Text,
@@ -239,8 +256,7 @@ namespace PROYECTO_MAD
                     );
 
                     EnlaceDB l_enlace = new EnlaceDB();
-                    if (l_enlace.RegistrarCliente(l_cliente, Program.m_usuario.NoNomina))
-                    {
+                    if (l_enlace.RegistrarCliente(l_cliente, Program.m_usuario.NoNomina)) {
                         MessageBox.Show(this, "Cliente Registrado con Exito.", "Informacion");
                         Clientes_Load(this, new EventArgs());
                         m_registrando = false;
@@ -300,18 +316,18 @@ namespace PROYECTO_MAD
                 MessageBox.Show(this, "Has salido del Modo Edicion", "Informacion");
             }
 
-            textBox8.Text = l_cliente.CorreoElectronico;
-            textBox1.Text = l_cliente.Nombre;
-            textBox11.Text = l_cliente.ApellidoPaterno;
-            textBox10.Text = l_cliente.ApellidoMaterno;
+            textBox8.Text = l_cliente.CorreoElectronico.Trim();
+            textBox1.Text = l_cliente.Nombre.Trim();
+            textBox11.Text = l_cliente.ApellidoPaterno.Trim();
+            textBox10.Text = l_cliente.ApellidoMaterno.Trim();
             dateTimePicker1.Value = l_cliente.FechaNacimiento;
-            textBox5.Text = l_cliente.RFC;
-            textBox2.Text = l_cliente.Ciudad;
-            textBox3.Text = l_cliente.Estado;
-            textBox4.Text = l_cliente.Pais;
-            textBox6.Text = l_cliente.TelCasa;
-            textBox7.Text = l_cliente.TelCelular;
-            comboBox1.Text = l_cliente.EstadoCivil;
+            textBox5.Text = l_cliente.RFC.Trim();
+            textBox2.Text = l_cliente.Ciudad.Trim();
+            textBox3.Text = l_cliente.Estado.Trim();
+            textBox4.Text = l_cliente.Pais.Trim();
+            textBox6.Text = l_cliente.TelCasa.Trim();
+            textBox7.Text = l_cliente.TelCelular.Trim();
+            comboBox1.Text = l_cliente.EstadoCivil.Trim();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -330,6 +346,21 @@ namespace PROYECTO_MAD
             }
             else
             {
+                if (textBox8.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Correo Electronico.", "Validacion"); return; }
+                if (textBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Nombre.", "Validacion"); return; }
+                if (textBox11.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Paterno.", "Validacion"); return; }
+                if (textBox10.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Apellido Materno.", "Validacion"); return; }
+                if (textBox2.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar una Ciudad.", "Validacion"); return; }
+                if (textBox3.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Estado.", "Validacion"); return; }
+                if (textBox4.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Pais.", "Validacion"); return; }
+                if (textBox5.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un RFC.", "Validacion"); return; }
+                if (textBox7.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono de Casa.", "Validacion"); return; }
+                if (textBox8.Text.Length <= 0) { MessageBox.Show(this, "Debe Colocar un Telefono Celular.", "Validacion"); return; }
+                if (comboBox1.Text.Length <= 0) { MessageBox.Show(this, "Debe Seleccionar un Estado Civil.", "Validacion"); return; }
+
+                if (dateTimePicker1.Value.Year < DateTime.Now.Year - 100 || dateTimePicker1.Value.Year > DateTime.Now.Year) { MessageBox.Show(this, "Debe Colocar una Fecha de Nacimiento Valida.", "Validacion"); return; }
+                if (dateTimePicker1.Value.Year > DateTime.Now.Year - 17) { MessageBox.Show(this, "Debe ser Mayor de Edad.", "Validacion"); return; }
+
                 DialogResult l_editar = MessageBox.Show(this, "Quieres Editar este Cliente?", "Advertencia", MessageBoxButtons.YesNo);
                 if (l_editar == DialogResult.Yes)
                 {
@@ -362,6 +393,11 @@ namespace PROYECTO_MAD
         private void habitacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
