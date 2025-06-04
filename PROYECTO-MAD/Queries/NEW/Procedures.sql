@@ -890,36 +890,5 @@ CREATE OR ALTER PROCEDURE GetOcupaciones2
 ) 
 AS
 BEGIN	
-	SELECT
-		r.Ciudad,
-		h.NombreHotel AS Hotel,
-		@Year AS Año,
-		MONTH(r.CheckIn) AS Mes,
-		COUNT(hb_oc.Codigo) * 100 / COUNT(hb.Codigo) AS [Porcentaje de Ocupacion],
-		ISNULL(SUM(hb_oc.Hospedaje), 0) AS [Cantidad de Personas Hospedadas]
-	FROM Reservacion r
-	JOIN Hotel h ON
-		r.Hotel = h.CodHotel
-	JOIN ReservacionHabitaciones rh ON
-		rh.Reservacion = r.CodReservacion
-	JOIN Habitacion hb ON
-		rh.Habitacion = hb.Codigo
-	LEFT JOIN FuncHabitaciones(@Year) hb_oc ON
-		rh.Habitacion = hb_oc.Codigo AND
-		hb_oc.Estatus = 'Ocupado'
-	JOIN TiposHabitacion th ON
-		hb.TipoHabitacion = th.CodTDH
-	WHERE 
-		h.Pais = @Pais AND
-		YEAR(r.Entrada) = @Year AND
-		h.Ciudad = @Ciudad AND
-		h.NombreHotel = @Hotel
-	GROUP BY
-		r.Ciudad,
-		h.NombreHotel,
-		hb_oc.Hospedaje,
-		YEAR(r.CheckIn),
-		MONTH(r.CheckIn),
-		th.NivelHabitacion;
 END
 GO;

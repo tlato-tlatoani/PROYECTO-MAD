@@ -111,7 +111,7 @@ namespace PROYECTO_MAD
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            //if (Reservacion.m_reservacionActual.Entrada.DayOfYear > DateTime.Now.DayOfYear) { MessageBox.Show(this, "No puede Realizar el Check-In hasta el Dia de Entrada.", "Validacion"); return; }
+            if (Reservacion.m_reservacionActual.Entrada.DayOfYear > DateTime.Now.DayOfYear) { MessageBox.Show(this, "No puede Realizar el Check-In hasta el Dia de Entrada.", "Validacion"); return; }
             if (Reservacion.m_reservacionActual.Entrada.DayOfYear < DateTime.Now.DayOfYear) { MessageBox.Show(this, "Su dia de Entrada ya Vencio.\nNo puede Realizar el Check-In", "Validacion"); return; }
         
             if (MessageBox.Show(this, "Quiere Realizar el Check-In de esta Reservacion?", "Informacion", MessageBoxButtons.YesNo) != DialogResult.Yes) { return; }
