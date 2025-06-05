@@ -68,5 +68,10 @@ namespace PROYECTO_MAD
             reservacionform.Show();
             this.Close();
         }
+
+        private void FiltrarCliente_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -46,6 +46,7 @@ namespace PROYECTO_MAD.Entities
             FechaInicio = _FechaInicio;
         }
 
-        public Hotel() { }
+
+
     }
 }

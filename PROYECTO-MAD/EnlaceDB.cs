@@ -353,6 +353,9 @@ namespace PROYECTO_MAD
                 parametro8.Value = _usuario.TelCasa;
                 var parametro9 = _comandosql.Parameters.Add("@FechaNacimiento", SqlDbType.Date);
                 parametro9.Value = _usuario.FechaNacimiento;
+                var parametro10 = _comandosql.Parameters.Add("@Estado", SqlDbType.Bit);
+                parametro10.Value = _usuario.Estado;
+
 
                 _adaptador.InsertCommand = _comandosql;
                 _comandosql.ExecuteNonQuery();
@@ -617,8 +620,8 @@ namespace PROYECTO_MAD
 
                 var parametro2 = _comandosql.Parameters.Add("@NoHabitacion", SqlDbType.Int);
                 parametro2.Value = _habitacion.NoHabitacion;
-                var parametro3 = _comandosql.Parameters.Add("@Estatus", SqlDbType.NVarChar, 50);
-                parametro3.Value = _habitacion.Estatus;
+                //var parametro3 = _comandosql.Parameters.Add("@Estatus", SqlDbType.NVarChar, 50);
+                //parametro3.Value = _habitacion.Estatus;
                 var parametro4 = _comandosql.Parameters.Add("@Piso", SqlDbType.Int);
                 parametro4.Value = _habitacion.Piso;
                 var parametro5 = _comandosql.Parameters.Add("@TipoHabitacion", SqlDbType.NVarChar, 20);
@@ -2059,6 +2062,8 @@ namespace PROYECTO_MAD
 
             return l_return;
         }
+
+
         public EntClientes BuscarClientePorApellidos(string _ap1, string _ap2)
         {
             var msg = "";

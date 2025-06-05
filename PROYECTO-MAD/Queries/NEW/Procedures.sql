@@ -421,6 +421,26 @@ CREATE OR ALTER PROCEDURE RegistrarHabitacion
 )
 AS
 BEGIN
+    DECLARE @CodTDH INT, @idHotel INT, @PisosHotel INT;
+
+    -- Obtener CodTDH y idHotel desde TiposHabitacion
+    SELECT @CodTDH = CodTDH, @idHotel = idHotel
+    FROM TiposHabitacion
+    WHERE NivelHabitacion = @TipoHabitacion;
+
+    -- Obtener la cantidad de pisos del hotel
+    SELECT @PisosHotel = NoPisos
+    FROM Hotel
+    WHERE CodHotel = @idHotel;
+
+    -- Validar que el piso no sea mayor que la cantidad de pisos del hotel
+    IF @Piso > @PisosHotel
+    BEGIN
+        RAISERROR('El número de piso excede la cantidad de pisos del hotel.', 16, 1);
+        RETURN;
+    END
+
+    -- Insertar habitación
     INSERT INTO Habitacion(
 		NoHabitacion,
 		Piso,
@@ -430,11 +450,14 @@ BEGIN
     (
 		@NoHabitacion,
 		@Piso,
-		(SELECT CodTDH FROM TiposHabitacion WHERE NivelHabitacion = @TipoHabitacion)
+		@CodTDH
     );
 
-    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Habitacion', 'Administrador ha Registrado una Habitacion', @NoNomina);
+    -- Registrar operación
+    INSERT INTO Operacion(Accion, Descripcion, Usuario)
+    VALUES ('Registro de Habitacion', 'Administrador ha Registrado una Habitacion', @NoNomina);
 END
+
 GO;
 
 CREATE OR ALTER PROCEDURE EditarHabitacion
@@ -446,13 +469,37 @@ CREATE OR ALTER PROCEDURE EditarHabitacion
 )
 AS
 BEGIN
-    Update Habitacion SET
-	Piso = @Piso,
-	TipoHabitacion = (SELECT CodTDH FROM TiposHabitacion WHERE NivelHabitacion = @TipoHabitacion)
-	WHERE NoHabitacion = @NoHabitacion;
+    DECLARE @CodTDH INT, @idHotel INT, @PisosHotel INT;
 
-    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Edicion de Habitacion', 'Administrador ha Edicion una Habitacion', @NoNomina);
+    -- Obtener CodTDH y idHotel desde TiposHabitacion
+    SELECT @CodTDH = CodTDH, @idHotel = idHotel
+    FROM TiposHabitacion
+    WHERE NivelHabitacion = @TipoHabitacion;
+
+    -- Obtener la cantidad de pisos del hotel
+    SELECT @PisosHotel = NoPisos
+    FROM Hotel
+    WHERE CodHotel = @idHotel;
+
+    -- Validar que el piso no sea mayor que la cantidad de pisos del hotel
+    IF @Piso > @PisosHotel
+    BEGIN
+        RAISERROR('El número de piso excede la cantidad de pisos del hotel.', 16, 1);
+        RETURN;
+    END
+
+    -- Actualizar la habitación
+    UPDATE Habitacion
+    SET
+        Piso = @Piso,
+        TipoHabitacion = @CodTDH
+    WHERE NoHabitacion = @NoHabitacion;
+
+    -- Registrar operación
+    INSERT INTO Operacion(Accion, Descripcion, Usuario)
+    VALUES ('Edición de Habitacion', 'Administrador ha editado una habitación', @NoNomina);
 END;
+
 GO;
 
 CREATE OR ALTER PROCEDURE BuscarCliente
@@ -503,6 +550,7 @@ BEGIN
 	WHERE RFC = @RFC;
 END
 GO
+
 
 CREATE OR ALTER PROCEDURE BuscarClienteAp
 (
@@ -723,32 +771,60 @@ GO;
 CREATE OR ALTER PROCEDURE CheckOut
 ( 
 	@Reservacion UNIQUEIDENTIFIER,
-	@Fecha Date,
-	@Descuento Money,
-	@NombreDescuento NVarchar(50),
+	@Fecha DATE,
+	@Descuento MONEY,
+	@NombreDescuento NVARCHAR(50),
 	@NoNomina INT
 )
 AS
 BEGIN
-	IF EXISTS (SELECT 1 FROM Reservacion WHERE CheckOUT IS NOT NULL AND CodReservacion = @Reservacion) BEGIN RETURN; END
-	
+	-- Validación: Reservación concluida
+	IF EXISTS (
+		SELECT 1 
+		FROM Reservacion 
+		WHERE CodReservacion = @Reservacion AND Estatus = 'Concluido'
+	)
+	BEGIN
+		RAISERROR('No se puede realizar el Check Out porque la reservación ya está concluida.', 16, 1);
+		RETURN;
+	END
+
+	-- Validación: Fecha de CheckOut antes de la FechaInicio
+	IF EXISTS (
+		SELECT 1
+		FROM Reservacion
+		WHERE CodReservacion = @Reservacion AND @Fecha < Entrada
+	)
+	BEGIN
+		RAISERROR('No se puede realizar el Check Out antes de la fecha de inicio.', 16, 1);
+		RETURN;
+	END
+
+	-- Actualizar descuento en factura
 	UPDATE Factura SET
 		Descuento = @Descuento,
 		NombreDescuento = @NombreDescuento
 	WHERE Reservacion = @Reservacion;
-	
-	Update Reservacion SET
+
+	-- Actualizar Checkout y estatus en reservación
+	UPDATE Reservacion
+	SET 
 		CheckOut = @Fecha,
-		Estatus = 'Concluido'
+		Estatus = 'Concluido',
+		Salida = CASE WHEN @Fecha <> Salida THEN @Fecha ELSE Salida END
 	WHERE CodReservacion = @Reservacion;
-		
-    INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Check Out Realizado', 'Usuario ha realizado un Check Out de Reservacion', @NoNomina);
-	
+
+	-- Registrar operación
+	INSERT INTO Operacion(Accion, Descripcion, Usuario) 
+	VALUES ('Check Out Realizado', 'Usuario ha realizado un Check Out de Reservacion', @NoNomina);
+
+	-- Recalcular el total en la factura
 	UPDATE f SET 
-		f.PrecioTotal = ((ISNULL(f.PrecioInicial, 0) + ISNULL(f.PrecioServicios, 0)) * (1 - (ISNULL(f.Descuento, 0) / 100))) - f.Anticipo 
+		f.PrecioTotal = 
+			((ISNULL(f.PrecioInicial, 0) + ISNULL(f.PrecioServicios, 0)) * (1 - (ISNULL(f.Descuento, 0) / 100.0))) 
+			- ISNULL(f.Anticipo, 0)
 	FROM Factura f 
-	WHERE 
-		f.Reservacion = @Reservacion;
+	WHERE f.Reservacion = @Reservacion;
 END
 GO;
 
@@ -836,6 +912,7 @@ CREATE OR ALTER PROCEDURE HistorialCliente (
 END
 GO;
 
+/*lo usa reporte ocupaciones 1ra tabla*/
 CREATE OR ALTER PROCEDURE GetOcupaciones
 (
 	@Pais NVARCHAR(100),
@@ -881,14 +958,3 @@ BEGIN
 END
 GO;
 
-CREATE OR ALTER PROCEDURE GetOcupaciones2
-(
-	@Pais NVARCHAR(100),
-	@Year INT,
-	@Ciudad NVARCHAR(100),
-	@Hotel NVARCHAR(100)
-) 
-AS
-BEGIN	
-END
-GO;

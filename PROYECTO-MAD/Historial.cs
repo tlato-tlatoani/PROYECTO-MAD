@@ -31,12 +31,6 @@ namespace PROYECTO_MAD
 
         }
 
-        private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FiltrarCliente identificateform = new FiltrarCliente();
-            identificateform.Show();
-            this.Close();
-        }
 
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -138,6 +132,13 @@ namespace PROYECTO_MAD
 
             listBox1.Items.Clear();
             foreach (EntClientes _cliente in m_clientes) { listBox1.Items.Add(_cliente.Nombre.Trim() + ":" + _cliente.ApellidoPaterno.Trim() + ":" + _cliente.ApellidoMaterno.Trim()); }
+        }
+
+        private void verReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltrarCliente identificateform = new FiltrarCliente();
+            identificateform.Show();
+            this.Close();
         }
     }
 }

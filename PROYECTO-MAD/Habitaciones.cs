@@ -49,12 +49,7 @@ namespace PROYECTO_MAD
             this.Close();
         }
 
-        private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FiltrarCliente identificateform = new FiltrarCliente();
-            identificateform.Show();
-            this.Close();
-        }
+
 
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -279,6 +274,13 @@ namespace PROYECTO_MAD
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBox1.Text = m_tiposHabitaciones[comboBox1.SelectedIndex].nombreHotel;
+        }
+
+        private void verReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltrarCliente identificateform = new FiltrarCliente();
+            identificateform.Show();
+            this.Close();
         }
     }
 }

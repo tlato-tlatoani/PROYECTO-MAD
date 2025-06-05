@@ -95,13 +95,6 @@ namespace PROYECTO_MAD
             textBox3.Text = m_cliente.Nombre.Trim() + " " + m_cliente.ApellidoPaterno.Trim() + " " + m_cliente.ApellidoMaterno.Trim();
         }
 
-        private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FiltrarCliente identificateform = new FiltrarCliente();
-            identificateform.Show();
-            this.Close();
-        }
-
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
@@ -291,7 +284,7 @@ namespace PROYECTO_MAD
                     if ((l_resCodigo = l_enlace.RegistrarReservacion(l_reservacion, Program.m_usuario.NoNomina)) != Guid.Empty)
                     {
                         foreach (DataGridViewRow _row in dataGridView2.Rows) {
-                            if (_row.Cells["Hospedaje"] == null) { continue; }
+                            if (_row.Cells["Hospedaje"].Value == null) { continue; }
 
                             new EnlaceDB().ReservarHabitacion(l_resCodigo, int.Parse(_row.Cells["Id"].Value.ToString()), int.Parse(_row.Cells["Hospedaje"].Value.ToString()));
                         }
@@ -365,9 +358,10 @@ namespace PROYECTO_MAD
 
         private void button4_Click(object sender, EventArgs e)
         {
+            if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
             if (m_actual == Guid.Empty) { MessageBox.Show(this, "Debes elegir una Reservacion para Realizar esta Accion.", "Error"); return; }
 
-            if ((m_reservacionActual.Entrada - DateTime.Now).TotalDays < 3)
+            if ((m_reservacionActual.Entrada - DateTime.Now).TotalDays > 3)
             {
                 MessageBox.Show(this, "Ya no se encuentra en días hábiles para realizar su cancelación.", "Advertencia");
                 return;
@@ -413,6 +407,18 @@ namespace PROYECTO_MAD
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void verReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltrarCliente identificateform = new FiltrarCliente();
+            identificateform.Show();
+            this.Close();
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

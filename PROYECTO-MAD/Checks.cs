@@ -98,13 +98,27 @@ namespace PROYECTO_MAD
                 string l_servicios = "";
                 foreach (string _serv in listBox1.SelectedItems){ l_servicios += _serv.Split(':')[0] + ","; }
                 if (l_servicios.Length > 0) { l_servicios = l_servicios.Remove(l_servicios.Length - 1); }
-                
-                new EnlaceDB().CheckOut(Reservacion.m_actual, DateTime.Now, decimal.Parse(textBox6.Text), textBox1.Text, Program.m_usuario.NoNomina);
-                if (l_servicios.Length > 0) { new EnlaceDB().FacturarServicios(Reservacion.m_actual, l_servicios); }
 
-                MessageBox.Show(this, "Check Out Realizada con Exito!!!", "Informacion");
+                string texto6 = textBox6.Text;
+                string texto1 = textBox1.Text;
 
-                Reservacion.m_reservacionActual.CheckOut = DateTime.Now;
+                //if (Reservacion.m_reservacionActual.Entrada.DayOfYear > DateTime.Now.DayOfYear) { MessageBox.Show(this, "No puede Realizar el Check-Out hasta que tu reservacion comience.", "Validacion"); return; }
+                //if (Reservacion.m_reservacionActual.Salida.DayOfYear < DateTime.Now.DayOfYear) { MessageBox.Show(this, "Su dia de Salida ya Vencio.\nNo puede Realizar el Check-In", "Validacion"); return; }
+
+                if (texto6.Length <= 0 || texto1.Length <= 0)
+                {
+                    MessageBox.Show(this, "Debes llenar los campos de Descuento", "Error");
+                }else
+                {
+                    new EnlaceDB().CheckOut(Reservacion.m_actual, DateTime.Now, decimal.Parse(textBox6.Text), textBox1.Text, Program.m_usuario.NoNomina);
+                    if (l_servicios.Length > 0) { new EnlaceDB().FacturarServicios(Reservacion.m_actual, l_servicios); }
+
+                    MessageBox.Show(this, "Check Out Realizada con Exito!!!", "Informacion");
+
+                    Reservacion.m_reservacionActual.CheckOut = DateTime.Now;
+                }
+
+               
 
                 this.Close();
             }

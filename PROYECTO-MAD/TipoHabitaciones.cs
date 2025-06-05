@@ -87,13 +87,6 @@ namespace PROYECTO_MAD
 
         }
 
-        private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FiltrarCliente identificateform = new FiltrarCliente();
-            identificateform.Show();
-            this.Close();
-        }
-
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hoteles hotelesform = new Hoteles();
@@ -354,6 +347,13 @@ namespace PROYECTO_MAD
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void verReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltrarCliente identificateform = new FiltrarCliente();
+            identificateform.Show();
+            this.Close();
         }
     }
 }

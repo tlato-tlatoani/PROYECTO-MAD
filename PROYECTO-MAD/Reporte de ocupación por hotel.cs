@@ -46,13 +46,6 @@ namespace PROYECTO_MAD
             foreach (Hotel _hotel in m_hoteles) { listBox1.Items.Add(_hotel.NombreHotel); }
         }
 
-        private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FiltrarCliente identificateform = new FiltrarCliente();
-            identificateform.Show();
-            this.Close();
-        }
-
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hoteles hotelesform = new Hoteles();
@@ -137,6 +130,13 @@ namespace PROYECTO_MAD
 
             dataGridView1.DataSource = l_tabla1;
             dataGridView2.DataSource = l_tabla2;
+        }
+
+        private void verReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltrarCliente identificateform = new FiltrarCliente();
+            identificateform.Show();
+            this.Close();
         }
     }
 }

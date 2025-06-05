@@ -27,13 +27,6 @@ namespace PROYECTO_MAD
 
         }
 
-        private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FiltrarCliente identificateform = new FiltrarCliente();
-            identificateform.Show();
-            this.Close();
-        }
-
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hoteles hotelesform = new Hoteles();
@@ -129,6 +122,13 @@ namespace PROYECTO_MAD
 
             DataTable l_tabla = new EnlaceDB().getVentas(textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, listBox1.Text);
             dataGridView1.DataSource = l_tabla;
+        }
+
+        private void verReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltrarCliente identificateform = new FiltrarCliente();
+            identificateform.Show();
+            this.Close();
         }
     }
 }

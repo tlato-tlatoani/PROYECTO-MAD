@@ -54,6 +54,7 @@ RETURN
 );
 GO;
 
+/*reporte ventas*/
 CREATE OR ALTER FUNCTION FuncVentas (
 	@Pais NVARCHAR(100),
 	@Year INT,
@@ -63,7 +64,8 @@ CREATE OR ALTER FUNCTION FuncVentas (
 	SELECT
 		h.Ciudad,
 		h.NombreHotel AS Hotel,
-		2025 AS Año,
+		--2025 AS Año,
+		YEAR(r.Entrada) AS Año,
 		MONTH(r.Entrada) AS Mes,
 		SUM(f.PrecioInicial) AS Hospedaje,
 		SUM(f.PrecioServicios) AS Servicios,
@@ -76,10 +78,13 @@ CREATE OR ALTER FUNCTION FuncVentas (
 	GROUP BY
 		h.Ciudad,
 		h.NombreHotel,
-		r.Entrada
+		YEAR(r.Entrada),
+		MONTH(r.Entrada)
 );
 
+go
 
+/*reporte ocupaciones 2da tabla*/
 CREATE OR ALTER FUNCTION FuncOcupaciones (
 	@Pais NVARCHAR(100),
 	@Year INT,

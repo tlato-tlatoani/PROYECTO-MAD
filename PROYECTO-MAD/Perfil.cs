@@ -41,13 +41,6 @@ namespace PROYECTO_MAD
             this.Close();
         }
 
-        private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FiltrarCliente identificateform = new FiltrarCliente();
-            identificateform.Show();
-            this.Close();
-        }
-
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Program.m_usuario.TipoUsuario) { MessageBox.Show(this, "Necesita ser Administrador para Navegar a esta Ventana", "Advertencia"); return; }
@@ -190,5 +183,13 @@ namespace PROYECTO_MAD
         {
             Application.Exit();
         }
+
+        private void verReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltrarCliente identificateform = new FiltrarCliente();
+            identificateform.Show();
+            this.Close();
+        }
+
     }
 }

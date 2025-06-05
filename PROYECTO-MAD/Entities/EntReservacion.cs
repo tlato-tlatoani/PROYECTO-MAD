@@ -32,6 +32,10 @@ namespace PROYECTO_MAD.Entities
         public decimal Servicios;
         public decimal Total;
 
+        public static EntClientes m_cliente = null;
+        public static Hotel m_hotel = null;
+
+
         public EntReservacion(
             Guid _CodReservacion,
             string _Cliente,

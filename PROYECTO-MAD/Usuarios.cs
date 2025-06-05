@@ -273,14 +273,6 @@ namespace PROYECTO_MAD
             usuariosform.Show();
             this.Close();
         }
-
-        private void reservacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FiltrarCliente identificateform = new FiltrarCliente();
-            identificateform.Show();
-            this.Close();
-        }
-
         private void verHotelesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hoteles hotelesform = new Hoteles();
@@ -408,6 +400,13 @@ namespace PROYECTO_MAD
             if (l_enlace.ActualizarContra(int.Parse(textBox6.Text), textBox1.Text)) {
                 MessageBox.Show(this, "Contraseña Actualizada con Exito.", "Informacion");
             }
+        }
+
+        private void verReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FiltrarCliente identificateform = new FiltrarCliente();
+            identificateform.Show();
+            this.Close();
         }
     }
 }
