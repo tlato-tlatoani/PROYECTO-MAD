@@ -74,6 +74,7 @@ namespace PROYECTO_MAD
 
             m_reservaciones = new EnlaceDB().getReservaciones(m_cliente.RFC);
 
+            comboBox2.Items.Clear();
             foreach (string _ciudad in (new EnlaceDB()).getCiudades()) {
                 comboBox2.Items.Add(_ciudad);
             }
@@ -376,6 +377,11 @@ namespace PROYECTO_MAD
         {
             if (m_actual == Guid.Empty) { MessageBox.Show(this, "Debes elegir una Reservacion para Realizar esta Accion.", "Error"); return; }
 
+            if (DateTime.Now.Date != m_reservacionActual.Entrada.Date)
+            {
+                MessageBox.Show(this, "No estás en una fecha valida para realizar esta acción.", "Advertencia");
+                return;
+            }
             DialogResult l_editar = MessageBox.Show(this, "Quieres realizar el Check In de Esta Reservacion?", "Advertencia", MessageBoxButtons.YesNo);
             if (l_editar == DialogResult.Yes)
             {
@@ -391,6 +397,11 @@ namespace PROYECTO_MAD
 
         private void button7_Click_1(object sender, EventArgs e)
         {
+            if (DateTime.Now.Date != m_reservacionActual.Salida.Date)
+            {
+                MessageBox.Show(this, "No estás en una fecha valida para realizar esta acción.", "Advertencia");
+                return;
+            }
             Form2 l_checkout = new Form2();
             l_checkout.ShowDialog(this);
         }

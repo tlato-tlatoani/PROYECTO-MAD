@@ -295,7 +295,7 @@ SELECT
 FROM Cliente;
 GO;
 
-CREATE OR ALTER FUNCTION FGetClientes ()
+CREATE OR ALTER  FGetClientes ()
 RETURNS TABLE
 AS
 RETURN
@@ -655,6 +655,11 @@ BEGIN
     INSERT INTO Operacion(Accion, Descripcion, Usuario) VALUES ('Registro de Tipo de Habitacion', 'Administrador ha Registrado un Tipo de Habitacion', @NoNomina);
 END
 GO;
+
+select*from TiposHabitacion
+DELETE FROM TiposHabitacion WHERE NivelHabitacion = 'Master' AND CodTDH= 2;
+
+go
 
 CREATE OR ALTER PROCEDURE EditarTipoHabitacion
 (
@@ -1232,7 +1237,8 @@ BEGIN
 		s.Nombre,
 		s.Descripcion,
 		s.Precio,
-		s.CodServicio
+		s.CodServicio,
+		s.Hotel
 	FROM ServiciosAdicionales sa JOIN Servicio s ON s.CodServicio = sa.Servicio WHERE sa.Reservacion = @Codigo;
 END
 GO;
@@ -1284,9 +1290,11 @@ AFTER INSERT
 AS
 BEGIN
 	UPDATE f SET f.PrecioServicios = ISNULL(f.PrecioServicios, 0) + ISNULL(s.Precio, 0) FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion JOIN Servicio s ON s.CodServicio = i.Servicio WHERE f.Reservacion = i.Reservacion;
-	UPDATE f SET f.PrecioTotal = ((ISNULL(f.PrecioInicial, 0) + ISNULL(f.PrecioServicios, 0)) * (1 - (ISNULL(f.Descuento, 0) / 100))) - f.Anticipo FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion WHERE f.Reservacion = i.Reservacion;
+	UPDATE f SET f.PrecioTotal = ((ISNULL(f.PrecioInicial, 0) + ISNULL(f.PrecioServicios, 0) - f.Anticipo) * (1 - (ISNULL(f.Descuento, 0) / 100))) FROM Factura f JOIN inserted i ON f.Reservacion = i.Reservacion WHERE f.Reservacion = i.Reservacion;
 END
 GO;
+
+SELECT * FROM Cliente;
 
 CREATE OR ALTER VIEW ViewFactura
 AS
@@ -1334,13 +1342,14 @@ SELECT * FROM Reservacion;
 SELECT * FROM HotelesServicio;
 SELECT * FROM TiposHabitacion;
 SELECT * FROM ServiciosAdicionales;
+SELECT * FROM Cliente;
 
 TRUNCATE TABLE Checks;
 TRUNCATE TABLE Factura;
 TRUNCATE TABLE Servicio;
 TRUNCATE TABLE Reservacion;
 TRUNCATE TABLE ServiciosAdicionales;
-DELETE FROM Reservacion WHERE Hotel = 2;
+DELETE FROM Reservacion WHERE Hotel > 0;
 DELETE FROM Factura WHERE NoFactura = 1;
 DELETE FROM Checks WHERE idCheck = 8;
 DELETE FROM Contrasenna WHERE idContrasenna = 9;
@@ -1351,3 +1360,4 @@ UPDATE Habitacion SET Estatus = 'Desocupado', Reservacion = NULL;
 
 EXEC BuscarClienteRFC @RFC = '199';
 
+UPDATE Usuario SET Estado = 1;

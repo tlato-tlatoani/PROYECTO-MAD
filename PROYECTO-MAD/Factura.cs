@@ -56,6 +56,7 @@ namespace PROYECTO_MAD
             textBox5.Text = m_cliente.Ciudad;
             textBox4.Text = m_hotel.Ciudad;
 
+            // Hospedaje
             dataGridView1.Rows.Add();
             DataGridViewRow l_row1 = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
             l_row1.Cells["Cantidad"].Value = m_reservacion.Dias;
@@ -72,6 +73,22 @@ namespace PROYECTO_MAD
                 l_row.Cells["PrecioUnitario"].Value = "$ " + _servicio.Precio;
                 l_row.Cells["Total"].Value = "$ " + _servicio.Precio;
             }
+
+            // Anticipo
+            dataGridView1.Rows.Add();
+            DataGridViewRow l_row2 = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+            l_row2.Cells["Cantidad"].Value = "1";
+            l_row2.Cells["Desc"].Value = "Anticipo Aplicado";
+            l_row2.Cells["PrecioUnitario"].Value = "$ " + -m_reservacion.Anticipo;
+            l_row2.Cells["Total"].Value = "$ " + -m_factura.Anticipo;
+
+            // Descuento
+            dataGridView1.Rows.Add();
+            DataGridViewRow l_row3 = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+            l_row3.Cells["Cantidad"].Value = "1";
+            l_row3.Cells["Desc"].Value = m_factura.NombreDescuento;
+            l_row3.Cells["PrecioUnitario"].Value = "% " + m_factura.Descuento;
+            l_row3.Cells["Total"].Value = "$ " + -(m_factura.PrecioInicial + m_factura.PrecioServicios - m_factura.Anticipo) * (m_factura.Descuento / 100);
 
             textBox8.Text = "$ " + m_factura.PrecioTotal.ToString();
         }

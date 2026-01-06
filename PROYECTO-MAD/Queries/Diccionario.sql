@@ -8,10 +8,9 @@ SELECT * FROM TiposHabitacion;
 SELECT * FROM Habitacion;
 SELECT * FROM Factura;
 SELECT * FROM Servicio;
+SELECT * FROM ServiciosAdicionales;
 SELECT * FROM Hotel;
-SELECT * FROM HotelesServicio;
 SELECT * FROM Operacion;
-SELECT * FROM Checks;
 
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'El RFC �nico del cliente', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE',  @level1name = N'Cliente',  @level2type = N'COLUMN', @level2name = N'RFC';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Nombre o nombres sin apellidos', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Cliente', @level2type = N'COLUMN', @level2name = N'Nombre';
@@ -42,6 +41,14 @@ EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Costo que el h
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'N�mero de habitaci�n �nico', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Habitacion', @level2type = N'COLUMN', @level2name = N'NoHabitacion';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Disponible u ocupada', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Habitacion', @level2type = N'COLUMN', @level2name = N'Estatus';
 
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Cliente al que se le esta facturando', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Factura', @level2type = N'COLUMN', @level2name = N'Cliente';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Hotel donde se esta generando la factura', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Factura', @level2type = N'COLUMN', @level2name = N'Hotel';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Anticipo que da el cliente al hacer el check out.Este se resta en la factura final', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Factura', @level2type = N'COLUMN', @level2name = N'Anticipo';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Descuento extra aplicado a la factura final', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Factura', @level2type = N'COLUMN', @level2name = N'Descuento';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Identificador de la reservacion que se esta facturando', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Factura', @level2type = N'COLUMN', @level2name = N'Reservacion';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Precio base de hospedaje', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Factura', @level2type = N'COLUMN', @level2name = N'PrecioInicial';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Precio conjunto de los servicios adicionales', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Factura', @level2type = N'COLUMN', @level2name = N'PrecioServicios';
+
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'C�digo �nico de la reservaci�n', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Reservacion', @level2type = N'COLUMN', @level2name = N'CodReservacion';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Cantidad de habitaciones a reservar', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Reservacion', @level2type = N'COLUMN', @level2name = N'CantHabitaciones';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Cantidad de personas en la reservaci�n', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Reservacion', @level2type = N'COLUMN', @level2name = N'CantPersonas';
@@ -65,6 +72,10 @@ EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Contrase�a d
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Tel�fono celular del usuario', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Usuario', @level2type = N'COLUMN', @level2name = N'TelCelular';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Tel�fono de casa fijo del usuario', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Usuario', @level2type = N'COLUMN', @level2name = N'TelCasa';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Administrador u Operativo', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Usuario', @level2type = N'COLUMN', @level2name = N'TipoUsuario';
+
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Id de el servicio adicional aplicado a la reservación', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'ServiciosAdicionales', @level2type = N'COLUMN', @level2name = N'Id';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Identificador de la reservación en la que aparece', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'ServiciosAdicionales', @level2type = N'COLUMN', @level2name = N'Reservacion';
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Servicio que se considera adicional ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'ServiciosAdicionales', @level2type = N'COLUMN', @level2name = N'Servicio';
 
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'C�digo de contrase�a �nico', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Contrasenna', @level2type = N'COLUMN', @level2name = N'idContrasenna';
 EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'C�digo de usuario �nico del usuario al que pertenece la contrase�a', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Contrasenna', @level2type = N'COLUMN', @level2name = N'idUsuario';

@@ -15,6 +15,7 @@ namespace PROYECTO_MAD
     public partial class Reporte_de_Ventas : Form
     {
         public List<Hotel> m_hoteles;
+        public Hotel m_curHotel;
 
         public Reporte_de_Ventas()
         {
@@ -117,6 +118,31 @@ namespace PROYECTO_MAD
             dataGridView1.Rows.Clear();
             foreach (DataRow _row in l_tabla.Rows)
             {
+                dataGridView1.Rows.Add();
+                DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
+
+                l_row.Cells["Ciudad"].Value = _row["Ciudad"].ToString();
+                l_row.Cells["Hotel"].Value = _row["NombreHotel"].ToString();
+                l_row.Cells["Year"].Value = _row["Anio"].ToString();
+                l_row.Cells["Mes"].Value = _row["Mes"].ToString();
+                l_row.Cells["Hospedaje"].Value = _row["PrecioInicial"].ToString();
+                l_row.Cells["Servicios"].Value = _row["PrecioServicios"].ToString();
+                l_row.Cells["Total"].Value = _row["PrecioTotal"].ToString();
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_curHotel = m_hoteles[listBox1.SelectedIndex];
+            if (m_curHotel == null) { return; }
+
+            textBox1.Text = m_curHotel.Pais;
+            textBox2.Text = DateTime.Now.Year.ToString();
+            textBox3.Text = m_curHotel.Ciudad;
+
+            DataTable l_tabla = new EnlaceDB().getVentas(textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, listBox1.Text);
+            dataGridView1.Rows.Clear();
+            foreach (DataRow _row in l_tabla.Rows) {
                 dataGridView1.Rows.Add();
                 DataGridViewRow l_row = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
 

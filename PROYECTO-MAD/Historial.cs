@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PROYECTO_MAD
 {
@@ -121,6 +122,11 @@ namespace PROYECTO_MAD
                 l_cliente = _cliente;
                 break;
             }
+
+            if (l_cliente == null) { return; }
+
+            textBox2.Text = l_cliente.ApellidoPaterno;
+            textBox1.Text = l_cliente.ApellidoMaterno;
 
             List<EntReservacion> l_reservaciones = new EnlaceDB().getReservaciones(l_cliente.RFC);
             dataGridView2.Rows.Clear();

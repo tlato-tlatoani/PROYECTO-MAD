@@ -28,6 +28,7 @@ ALTER TABLE Servicio
 ADD CONSTRAINT FK_Servicio_Hotel
 FOREIGN KEY (Hotel) REFERENCES Hotel(CodHotel);
 
+TRUNCATE TABLE Servicio
 CREATE TABLE Hotel(
 	CodHotel INT PRIMARY KEY IDENTITY(1,1),
 	NombreHotel VARCHAR (100) NOT NULL,
@@ -43,6 +44,7 @@ ALTER TABLE Hotel ADD FechaInicio Date Not Null;
 ALTER TABLE Hotel DROP COLUMN Amenidades;
 ALTER TABLE Hotel DROP COLUMN ZonaTuristica;
 ALTER TABLE Hotel ADD ZonaTuristica Bit Not Null;
+
 
 DROP TABLE TiposHabitacion;
 CREATE TABLE TiposHabitacion(
@@ -103,7 +105,7 @@ ALTER TABLE Reservacion DROP COLUMN CheckIn;
 ALTER TABLE Reservacion DROP COLUMN CheckOut;
 ALTER TABLE Reservacion ADD CheckIn DATE DEFAULT (NULL);
 ALTER TABLE Reservacion ADD CheckOut DATE DEFAULT (NULL);
-
+DELETE FROM Reservacion WHERE Hotel > 0;
 CREATE TABLE Checks(
 	idCheck INT PRIMARY KEY IDENTITY(1,1),
 	FechaCheck DATE,
